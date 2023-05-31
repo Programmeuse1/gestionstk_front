@@ -1,0 +1,41 @@
+
+<form class="row g-3">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">creation de l'article</h5>
+      <button type="button" class="btn-close me-1 p-1 float-end" aria-label="Close" (click)="cancel()"></button>
+    </div>
+    <div class="modal-body">
+
+      <div class="col-md-12 mb-2">
+        <input type="text" class="form-control" placeholder="Nom">
+      </div>
+      <div class="col-md-12 mb-2">
+        <input type="email" class="form-control" placeholder="Prenom">
+      </div>
+      <div class="col-md-12 mb-2">
+        <input type="password" class="form-control" placeholder="Email">
+      </div>
+      <div class="col-12 mb-2">
+        <input type="text" class="form-control" placeholder="Telephone">
+      </div>
+      <div class="col-md-12 mb-2">
+        <input type="text" class="form-control" placeholder="Adresse">
+      </div>
+      <div class="col-md-12 mb-2">
+        <input type="text" class="form-control" placeholder="Code postale">
+      </div>
+      <div class="col-md-12 mb-2">
+        <input type="text" class="form-control" placeholder="Ville">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary float-start" (click)="cancel()"><i class="bi bi-dash-circle-fill"></i>&nbsp; Annuler</button>
+      <button type="reset" class="btn btn-secondary float-end">  <i class="bi bi-archive-fill"></i>&nbsp;Enregistrer</button>
+    </div>
+  </div>
+</form>
+
+
+
+

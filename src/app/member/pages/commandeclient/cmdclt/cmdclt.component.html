@@ -1,0 +1,108 @@
+<div class="pagetitle mt-3">
+  <h1>Commande Client</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a [routerLink]="['/member/dashboard']" href="javascript:void(0)">Acceuil</a></li>
+      <li class="breadcrumb-item active">Commande Client</li>
+    </ol>
+  </nav>
+</div><!-- End Page Title -->
+
+<div >
+  <button type="button" class="btn btn-primary mb-4" (click)="openModal()">
+    <i class="bi bi-plus"></i>
+    Nouvelle commande client
+  </button>
+</div>
+
+  <div class="row">
+    <div class="col-lg-12">
+
+      <div class="card">
+        <div class="card-body">
+
+          <h1 class="card-title">Liste des Commandes Clients</h1>
+          <!-- Table with stripped rows -->
+          <table class="table datatable">
+            <thead>
+            <tr>
+              <th scope="col">Nom</th>
+              <th scope="col">Prenom</th>
+              <th scope="col">Numero</th>
+              <th scope="col">Code</th>
+              <th scope="col">Date</th>
+              <th scope="col">Etat</th>
+              <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <th scope="row">bouali</th>
+              <td>ali</td>
+              <td>658589878</td>
+              <td>cm002</td>
+              <td>2023-02-12</td>
+              <td>EN PREPARATION</td>
+              <td>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-primary">Action</button>
+                  <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="visually-hidden">Toggle Dropdown</span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="javascript:void(0)">Modifier</a></li>
+                    <li>
+                      <div >
+                        <a type="button" class="dropdown-item" (click)="openModalDetaille()">
+                          Detail
+                        </a>
+                      </div>
+                    </li>
+                    <li><a class="dropdown-item" href="#">Supprimer</a></li>
+                  </ul>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">Noumi</th>
+              <td>Armand</td>
+              <td>623253254</td>
+              <td>cm001</td>
+              <td>2025-20-01</td>
+              <td>EN PREPARATION</td>
+              <td>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-primary">Action</button>
+                  <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="visually-hidden">Toggle Dropdown</span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="javascript:void(0)">Modifier</a></li>
+                    <li>
+                      <div >
+                        <a type="button" class="dropdown-item" (click)="openModalDetaille()">
+                          Detail
+                        </a>
+                      </div>
+                    </li>
+                    <li><a class="dropdown-item" href="#">Supprimer le mouvement</a></li>
+                  </ul>
+                </div>
+              </td>
+            </tr>
+
+            <!-- Basic Modal -->
+            <!--                    <app-boutton-action (clickEvent)="nouvelleCommandeClient()"></app-boutton-action>-->
+            </tbody>
+          </table>
+          <!-- End Table with stripped rows -->
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+

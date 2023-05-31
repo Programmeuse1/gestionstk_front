@@ -1,0 +1,115 @@
+<!-- ======= Sidebar ======= -->
+<aside id="sidebar" class="sidebar">
+
+  <ul class="sidebar-nav" id="sidebar-nav">
+
+    <li class="nav-item" >
+      <a class="nav-link " [routerLink]="['/member/dashboard']" href="javascript:void(0)">
+        <i class="bi bi-grid"></i>
+        <span>Dashboard</span>
+      </a>
+    </li><!-- End Dashboard Nav -->
+
+
+<!--    <li class="nav-item">-->
+<!--      <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">-->
+<!--        <i class="bi bi-graph-up-arrow"></i><span>Tableau de bord</span><i class="bi bi-chevron-down ms-auto"></i>-->
+<!--      </a>-->
+<!--      <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">-->
+
+<!--        <li>-->
+<!--          <a href="#" routerLink="/dashboard/utilisateurs">-->
+<!--            <i class="bi bi-pie-chart-fill"></i><span>Vue d'ensemble</span>-->
+<!--          </a>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--          <a href="#">-->
+<!--            <i class="bi bi-bar-chart-line"></i><span>Statistique</span>-->
+<!--          </a>-->
+<!--        </li>-->
+
+<!--      </ul>-->
+<!--    </li>&lt;!&ndash; End Utilisateurs Nav &ndash;&gt;-->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-boxes"></i><span>Articles</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="tables-general.html" [routerLink]="['/member/articles']" href="javascript:void(0)">
+
+            <i class="bi bi-boxes" ></i><span>Articles</span>
+          </a>
+        </li>
+        <li>
+          <a href="tables-data.html" [routerLink]="['/member/mouvementdustock']" href="javascript:void(0)">
+            <i class="bi bi-reception-2"></i><span>Mouvement du stock</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Tables Nav --><!-- End Forms Nav -->
+
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-people-fill"></i><span>Clients</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="forms-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="forms-layouts.html" [routerLink]="['/member/clients']" href="javascript:void(0)">
+            <i class="bi bi-people-fill"></i><span>Clients</span>
+          </a>
+        </li>
+        <li>
+          <a href="forms-validation.html"[routerLink]="['/member/commandesclients']" href="javascript:void(0)">
+            <i class="bi bi-basket2"></i><span>Commandes clients</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Forms Nav -->
+
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-people-fill"></i><span>fournisseurs</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="charts-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li>
+          <a href="charts-apexcharts.html" [routerLink]="['/member/fournisseurs']" href="javascript:void(0)">
+            <i class="bi bi-people-fill"></i><span>Fournisseurs</span>
+          </a>
+        </li>
+        <li>
+          <a href="charts-echarts.html" [routerLink]="['/member/commandesfournisseurs']" href="javascript:void(0)">
+            <i class="bi bi-cart3"></i><span>Commandes fournisseurs</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Charts Nav -->
+
+    <li class="nav-item">
+      <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
+        <i class="bi bi-gear-wide-connected"></i><span>Parametrages</span><i class="bi bi-chevron-down ms-auto"></i>
+      </a>
+      <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+
+        <li>
+          <a href="icons-remix.html"[routerLink]="['/member/categories']" href="javascript:void(0)">
+            <i class="bi bi-tools"></i><span>Categories</span>
+          </a>
+        </li>
+        <li>
+          <a href="icons-boxicons.html" [routerLink]="['/member/utilisateurs']" href="javascript:void(0)">
+            <i class="bi bi-person-gear"></i><span>Utilisateurs</span>
+          </a>
+        </li>
+      </ul>
+    </li><!-- End Parametrages -->
+
+  </ul>
+
+</aside><!-- End Sidebar-->
+
+
+

@@ -1,0 +1,1886 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Swagger Api documentation for gestion de stock_backend application",
+    "version" : "0.0.1-SNAPSHOT",
+    "title" : "Swagger Api Documentation for gestion de stock_backend application",
+    "contact" : {
+      "name" : "Noupeyou Ornela",
+      "url" : "https://www.udemy.com/user/ornela/",
+      "email" : "noupeyouornela@gmail.com"
+    }
+  },
+  "basePath" : "http://localhost:8081",
+  "tags" : [ {
+    "name" : "articlesApi"
+  }, {
+    "name" : "authApi"
+  }, {
+    "name" : "categoriesApi"
+  }, {
+    "name" : "clientsApi"
+  }, {
+    "name" : "commandesclientsApi"
+  }, {
+    "name" : "commandesfournisseursApi"
+  }, {
+    "name" : "entrepriseApi"
+  }, {
+    "name" : "fournisseurApi"
+  }, {
+    "name" : "mvtstockApi"
+  }, {
+    "name" : "rolesApi"
+  }, {
+    "name" : "utilisateurApi"
+  }, {
+    "name" : "ventesApi"
+  } ],
+  "paths" : {
+    "/gestiondestock_backend/v1/article/all" : {
+      "get" : {
+        "tags" : [ "articlesApi" ],
+        "summary" : "Renvoi la liste des articles",
+        "description" : "Cette methode permet de chercher et de renvoyer la liste des article qui existentdans la BD",
+        "operationId" : "findAll",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "La liste des articles/ une liste vide",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/ArticleDto"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/article/code/{codeArticle}" : {
+      "get" : {
+        "tags" : [ "articlesApi" ],
+        "summary" : "Recherche d'un article par CODE",
+        "description" : "Cette methode permet de chercher un article par son CODE",
+        "operationId" : "findByCode",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "codeArticle",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "L'article a ete trouve dans la BD",
+            "schema" : {
+              "$ref" : "#/definitions/ArticleDto"
+            }
+          },
+          "400" : {
+            "description" : "Aucun article n'existe dans la bd avec le CODE fourni"
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/article/create" : {
+      "post" : {
+        "tags" : [ "articlesApi" ],
+        "summary" : "Enregistrer un article",
+        "description" : "Cette methode permet d'enregistrer ou modifier un article",
+        "operationId" : "save",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ArticleDto"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "L'objet article a ete cree/modifier",
+            "schema" : {
+              "$ref" : "#/definitions/ArticleDto"
+            }
+          },
+          "400" : {
+            "description" : "L'objet article n'est pas valide"
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/article/delete/{idArticle}" : {
+      "delete" : {
+        "tags" : [ "articlesApi" ],
+        "summary" : "Supprimer un article",
+        "description" : "Cette methode permet de supprimer un article par son ID",
+        "operationId" : "delete",
+        "parameters" : [ {
+          "name" : "idArticle",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "L'article a ete supprime",
+            "schema" : {
+              "$ref" : "#/definitions/ArticleDto"
+            }
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/article/id/{idArticle}" : {
+      "get" : {
+        "tags" : [ "articlesApi" ],
+        "summary" : "Recherche d'un article par l'ID",
+        "description" : "Cette methode permet de chercher un article par son ID",
+        "operationId" : "findById",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "idArticle",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "L'article a ete trouve dans la BD",
+            "schema" : {
+              "$ref" : "#/definitions/ArticleDto"
+            }
+          },
+          "400" : {
+            "description" : "Aucun article n'existe dans la bd avec l'ID fourni"
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/auth/authenticate" : {
+      "post" : {
+        "tags" : [ "authApi" ],
+        "operationId" : "authenticate",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/AuthenticationRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/AuthenticationResponse"
+            }
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/category/all" : {
+      "get" : {
+        "tags" : [ "categoriesApi" ],
+        "summary" : "Renvoi la liste des categories",
+        "description" : "Cette methode permet de chercher et de renvoyer la liste des categories qui existentdans la BD",
+        "operationId" : "findAll",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "La liste des categories/ une liste vide",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/CategoryDto"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/category/code/{codeCategory}" : {
+      "get" : {
+        "tags" : [ "categoriesApi" ],
+        "summary" : "Recherche d'une categorie par CODE",
+        "description" : "Cette methode permet de chercher une categorie par son CODE",
+        "operationId" : "findByCode",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "codeCategory",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "La categorie a ete trouve dans la BD",
+            "schema" : {
+              "$ref" : "#/definitions/CategoryDto"
+            }
+          },
+          "400" : {
+            "description" : "Aucune categorie n'existe dans la bd avec le CODE fourni"
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/category/create" : {
+      "post" : {
+        "tags" : [ "categoriesApi" ],
+        "summary" : "Enregistrer une categorie",
+        "description" : "Cette methode permet d'enregistrer ou modifier une categorie",
+        "operationId" : "save",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/CategoryDto"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "L'objet categorie a ete cree/modifier",
+            "schema" : {
+              "$ref" : "#/definitions/CategoryDto"
+            }
+          },
+          "400" : {
+            "description" : "L'objet catgorie n'est pas valide"
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/category/delete/{idCategory}" : {
+      "delete" : {
+        "tags" : [ "categoriesApi" ],
+        "summary" : "Supprimer une categorie",
+        "description" : "Cette methode permet de supprimer une categorie par son ID",
+        "operationId" : "delete",
+        "parameters" : [ {
+          "name" : "idCategory",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "La categorie a ete supprime",
+            "schema" : {
+              "$ref" : "#/definitions/CategoryDto"
+            }
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/category/id/{idCategory}" : {
+      "get" : {
+        "tags" : [ "categoriesApi" ],
+        "summary" : "Recherche d'une categorie par l'ID",
+        "description" : "Cette methode permet de chercher un categorie par son ID",
+        "operationId" : "findById",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "idCategory",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "La categorie a ete trouve dans la BD",
+            "schema" : {
+              "$ref" : "#/definitions/CategoryDto"
+            }
+          },
+          "400" : {
+            "description" : "Aucune categorie n'existe dans la bd avec l'ID fourni"
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/client/all" : {
+      "get" : {
+        "tags" : [ "clientsApi" ],
+        "summary" : "Renvoi la liste des clients",
+        "description" : "Cette methode permet de chercher et de renvoyer la liste des clients qui existentdans la BD",
+        "operationId" : "findAll",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "La liste des clients/ une liste vide",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/ClientDto"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/client/create" : {
+      "post" : {
+        "tags" : [ "clientsApi" ],
+        "summary" : "Enregistrer un client",
+        "description" : "Cette methode permet d'enregistrer ou modifier un client",
+        "operationId" : "save",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ClientDto"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "L'objet client a ete cree/modifier",
+            "schema" : {
+              "$ref" : "#/definitions/ClientDto"
+            }
+          },
+          "400" : {
+            "description" : "L'objet client n'est pas valide"
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/client/delete/{idClient}" : {
+      "delete" : {
+        "tags" : [ "clientsApi" ],
+        "summary" : "Supprimer un client",
+        "description" : "Cette methode permet de supprimer un client par son ID",
+        "operationId" : "delete",
+        "parameters" : [ {
+          "name" : "idClient",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Le client a ete supprime",
+            "schema" : {
+              "$ref" : "#/definitions/ClientDto"
+            }
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/client/id/{idClient}" : {
+      "get" : {
+        "tags" : [ "clientsApi" ],
+        "summary" : "Recherche d'un client par l'ID",
+        "description" : "Cette methode permet de chercher un client par son ID",
+        "operationId" : "findById",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "idClient",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Le client a ete trouve dans la BD",
+            "schema" : {
+              "$ref" : "#/definitions/ClientDto"
+            }
+          },
+          "400" : {
+            "description" : "Aucun client n'existe dans la bd avec l'ID fourni"
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/client/nom/{nomClient}" : {
+      "get" : {
+        "tags" : [ "clientsApi" ],
+        "summary" : "Recherche d'un client par NOM",
+        "description" : "Cette methode permet de chercher un client par son NOM",
+        "operationId" : "findByNom",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "nomClient",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Le client a ete trouve dans la BD",
+            "schema" : {
+              "$ref" : "#/definitions/ClientDto"
+            }
+          },
+          "400" : {
+            "description" : "Aucun client n'existe dans la bd avec le NOM fourni"
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/commandesclients/all" : {
+      "get" : {
+        "tags" : [ "commandesclientsApi" ],
+        "operationId" : "findAll",
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/CommandeClientDto"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/commandesclients/create" : {
+      "post" : {
+        "tags" : [ "commandesclientsApi" ],
+        "operationId" : "save",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/CommandeClientDto"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/CommandeClientDto"
+            }
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/commandesclients/delete/{idCommandeClient}" : {
+      "delete" : {
+        "tags" : [ "commandesclientsApi" ],
+        "operationId" : "delete",
+        "parameters" : [ {
+          "name" : "idCommandeClient",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/commandesclients/{codeCommandeClient}" : {
+      "get" : {
+        "tags" : [ "commandesclientsApi" ],
+        "operationId" : "findByCode",
+        "parameters" : [ {
+          "name" : "codeCommandeClient",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/CommandeClientDto"
+            }
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/commandesclients/{idCommandeClient}" : {
+      "get" : {
+        "tags" : [ "commandesclientsApi" ],
+        "operationId" : "findById",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/CommandeClientDto"
+            }
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/commandesfournisseurs/all" : {
+      "get" : {
+        "tags" : [ "commandesfournisseursApi" ],
+        "summary" : "Renvoi la liste des commandes fournisseurs",
+        "description" : "Cette methode permet de chercher et de renvoyer la liste des commandes fournisseurs qui existentdans la BD",
+        "operationId" : "findAll",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "La liste des commandes fournisseurs/ une liste vide",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/CommandeFournisseurDto"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/commandesfournisseurs/code/{nomFournisseur}" : {
+      "get" : {
+        "tags" : [ "commandesfournisseursApi" ],
+        "summary" : "Recherche d'une commande fournisseur par CODE",
+        "description" : "Cette methode permet de chercher une commande fournisseur par son CODE",
+        "operationId" : "findByCode",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "codeCommandeFournisseur",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "La commande fournisseur a ete trouve dans la BD",
+            "schema" : {
+              "$ref" : "#/definitions/CommandeFournisseurDto"
+            }
+          },
+          "400" : {
+            "description" : "Aucune commande fournisseur n'existe dans la bd avec le CODE fourni"
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/commandesfournisseurs/create" : {
+      "post" : {
+        "tags" : [ "commandesfournisseursApi" ],
+        "summary" : "Enregistrer une commande fournisseur",
+        "description" : "Cette methode permet d'enregistrer ou modifier une commande fournisseur",
+        "operationId" : "save",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/CommandeFournisseurDto"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "L'objet commande fournisseur a ete cree/modifier",
+            "schema" : {
+              "$ref" : "#/definitions/CommandeFournisseurDto"
+            }
+          },
+          "400" : {
+            "description" : "L'objet commande fournisseur n'est pas valide"
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/commandesfournisseurs/delete/{idCommandeFournisseur}" : {
+      "delete" : {
+        "tags" : [ "commandesfournisseursApi" ],
+        "summary" : "Supprimer une commande fournisseur",
+        "description" : "Cette methode permet de supprimer une commande fournisseur par son ID",
+        "operationId" : "delete",
+        "parameters" : [ {
+          "name" : "idCommandeFournisseur",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "La commande fournisseur a ete supprime",
+            "schema" : {
+              "$ref" : "#/definitions/CommandeFournisseurDto"
+            }
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/commandesfournisseurs/id/{idCommandeFournisseur}" : {
+      "get" : {
+        "tags" : [ "commandesfournisseursApi" ],
+        "summary" : "Recherche d'une commande fournisseur par l'ID",
+        "description" : "Cette methode permet de chercher une commande fournisseur par son ID",
+        "operationId" : "findById",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "idCommandeFournisseur",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "La commande fournisseur a ete trouve dans la BD",
+            "schema" : {
+              "$ref" : "#/definitions/CommandeFournisseurDto"
+            }
+          },
+          "400" : {
+            "description" : "Aucune commande fournisseur n'existe dans la bd avec l'ID fourni"
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/entreprise/all" : {
+      "get" : {
+        "tags" : [ "entrepriseApi" ],
+        "summary" : "Renvoi la liste des entreprises",
+        "description" : "Cette methode permet de chercher et de renvoyer la liste des entreprises qui existentdans la BD",
+        "operationId" : "findAll",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "La liste des entreprises/ une liste vide",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/EntrepriseDto"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/entreprise/create" : {
+      "post" : {
+        "tags" : [ "entrepriseApi" ],
+        "summary" : "Enregistrer une entreprise",
+        "description" : "Cette methode permet d'enregistrer ou modifier une entreprise",
+        "operationId" : "save",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/EntrepriseDto"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "L'objet entreprise a ete cree/modifier",
+            "schema" : {
+              "$ref" : "#/definitions/EntrepriseDto"
+            }
+          },
+          "400" : {
+            "description" : "L'objet entreprise n'est pas valide"
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/entreprise/delete/{idEntreprise}" : {
+      "delete" : {
+        "tags" : [ "entrepriseApi" ],
+        "summary" : "Supprimer une entreprise",
+        "description" : "Cette methode permet de supprimer une entreprise par son ID",
+        "operationId" : "delete",
+        "parameters" : [ {
+          "name" : "idEntreprise",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "L'entreprise a ete supprime",
+            "schema" : {
+              "$ref" : "#/definitions/EntrepriseDto"
+            }
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/entreprise/id/{idEntreprise}" : {
+      "get" : {
+        "tags" : [ "entrepriseApi" ],
+        "summary" : "Recherche d'une entreprise par l'ID",
+        "description" : "Cette methode permet de chercher une entreprise par son ID",
+        "operationId" : "findById",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "idEntreprise",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "L'entreprise a ete trouve dans la BD",
+            "schema" : {
+              "$ref" : "#/definitions/EntrepriseDto"
+            }
+          },
+          "400" : {
+            "description" : "Aucune entreprise n'existe dans la bd avec l'ID fourni"
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/entreprise/nom/{nomEntreprise}" : {
+      "get" : {
+        "tags" : [ "entrepriseApi" ],
+        "summary" : "Recherche d'une entreprise par NOM",
+        "description" : "Cette methode permet de chercher une entreprise par son NOM",
+        "operationId" : "findByNom",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "nomEntreprise",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "L'entreprise a ete trouve dans la BD",
+            "schema" : {
+              "$ref" : "#/definitions/EntrepriseDto"
+            }
+          },
+          "400" : {
+            "description" : "Aucune entreprise n'existe dans la bd avec le NOM fourni"
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/fournisseur/all" : {
+      "get" : {
+        "tags" : [ "fournisseurApi" ],
+        "summary" : "Renvoi la liste des fournisseurs",
+        "description" : "Cette methode permet de chercher et de renvoyer la liste des fournisseurs qui existentdans la BD",
+        "operationId" : "findAll",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "La liste des fournisseurs/ une liste vide",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/FournisseurDto"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/fournisseur/create" : {
+      "post" : {
+        "tags" : [ "fournisseurApi" ],
+        "summary" : "Enregistrer un fournisseur",
+        "description" : "Cette methode permet d'enregistrer ou modifier un fournisseur",
+        "operationId" : "save",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/FournisseurDto"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "L'objet fournisseur a ete cree/modifier",
+            "schema" : {
+              "$ref" : "#/definitions/FournisseurDto"
+            }
+          },
+          "400" : {
+            "description" : "L'objet fournisseur n'est pas valide"
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/fournisseur/delete/{idFournisseur}" : {
+      "delete" : {
+        "tags" : [ "fournisseurApi" ],
+        "summary" : "Supprimer un fournisseur",
+        "description" : "Cette methode permet de supprimer un fournisseur par son ID",
+        "operationId" : "delete",
+        "parameters" : [ {
+          "name" : "idFournisseur",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Le fournisseur a ete supprime",
+            "schema" : {
+              "$ref" : "#/definitions/FournisseurDto"
+            }
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/fournisseur/id/{idFournisseur}" : {
+      "get" : {
+        "tags" : [ "fournisseurApi" ],
+        "summary" : "Recherche d'un fournisseur par l'ID",
+        "description" : "Cette methode permet de chercher un fournisseur par son ID",
+        "operationId" : "findById",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "idFournisseur",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Le fournisseur a ete trouve dans la BD",
+            "schema" : {
+              "$ref" : "#/definitions/FournisseurDto"
+            }
+          },
+          "400" : {
+            "description" : "Aucun fournisseur n'existe dans la bd avec l'ID fourni"
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/fournisseur/nom/{nomFournisseur}" : {
+      "get" : {
+        "tags" : [ "fournisseurApi" ],
+        "summary" : "Recherche d'un fournisseur par NOM",
+        "description" : "Cette methode permet de chercher un fournisseur par son NOM",
+        "operationId" : "findByNom",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "nomFournisseur",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Le fournisseur a ete trouve dans la BD",
+            "schema" : {
+              "$ref" : "#/definitions/FournisseurDto"
+            }
+          },
+          "400" : {
+            "description" : "Aucun fournisseur n'existe dans la bd avec le NOM fourni"
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/mvtStock/all" : {
+      "get" : {
+        "tags" : [ "mvtstockApi" ],
+        "operationId" : "findAll",
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/MvtStockDto"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/mvtStock/create" : {
+      "post" : {
+        "tags" : [ "mvtstockApi" ],
+        "operationId" : "save",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/MvtStockDto"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/MvtStockDto"
+            }
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/mvtStock/delete/{idMvtStock}" : {
+      "delete" : {
+        "tags" : [ "mvtstockApi" ],
+        "operationId" : "delete",
+        "parameters" : [ {
+          "name" : "idMvtStock",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/mvtStock/{idMvtStock}" : {
+      "get" : {
+        "tags" : [ "mvtstockApi" ],
+        "operationId" : "findById",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/MvtStockDto"
+            }
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/roles/all" : {
+      "get" : {
+        "tags" : [ "rolesApi" ],
+        "summary" : "Renvoi la liste des roles",
+        "description" : "Cette methode permet de chercher et de renvoyer la liste des roles qui existentdans la BD",
+        "operationId" : "findAll",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "La liste des roles/ une liste vide",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/RolesDto"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/roles/create" : {
+      "post" : {
+        "tags" : [ "rolesApi" ],
+        "summary" : "Enregistrer un role",
+        "description" : "Cette methode permet d'enregistrer ou modifier un role",
+        "operationId" : "save",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/RolesDto"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "L'objet role a ete cree/modifier",
+            "schema" : {
+              "$ref" : "#/definitions/RolesDto"
+            }
+          },
+          "400" : {
+            "description" : "L'objet role n'est pas valide"
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/roles/delete/{idRoles}" : {
+      "delete" : {
+        "tags" : [ "rolesApi" ],
+        "summary" : "Supprimer un role",
+        "description" : "Cette methode permet de supprimer un role par son ID",
+        "operationId" : "delete",
+        "parameters" : [ {
+          "name" : "idRoles",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Le role a ete supprime",
+            "schema" : {
+              "$ref" : "#/definitions/RolesDto"
+            }
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/roles/id/{idRoles}" : {
+      "get" : {
+        "tags" : [ "rolesApi" ],
+        "summary" : "Recherche d'un role par l'ID",
+        "description" : "Cette methode permet de chercher un role par son ID",
+        "operationId" : "findById",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "idRoles",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Le role a ete trouve dans la BD",
+            "schema" : {
+              "$ref" : "#/definitions/RolesDto"
+            }
+          },
+          "400" : {
+            "description" : "Aucun role n'existe dans la bd avec l'ID fourni"
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/roles/roleName/{roleNameRoles}" : {
+      "get" : {
+        "tags" : [ "rolesApi" ],
+        "summary" : "Recherche d'un role par ROLENAME",
+        "description" : "Cette methode permet de chercher un role par son ROLENAME",
+        "operationId" : "findByRoleName",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "roleNameRoles",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Le role a ete trouve dans la BD",
+            "schema" : {
+              "$ref" : "#/definitions/RolesDto"
+            }
+          },
+          "400" : {
+            "description" : "Aucun role n'existe dans la bd avec le ROLENAME fourni"
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/utilisateur/all" : {
+      "get" : {
+        "tags" : [ "utilisateurApi" ],
+        "summary" : "Renvoi la liste des utilisateurs",
+        "description" : "Cette methode permet de chercher et de renvoyer la liste des futilisateurs qui existentdans la BD",
+        "operationId" : "findAll",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "La liste des utilisateurs/ une liste vide",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/UtilisateurDto"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/utilisateur/create" : {
+      "post" : {
+        "tags" : [ "utilisateurApi" ],
+        "summary" : "Enregistrer un utilisateur",
+        "description" : "Cette methode permet d'enregistrer ou modifier un utilisateur",
+        "operationId" : "save",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/UtilisateurDto"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "L'objet utilisateur a ete cree/modifier",
+            "schema" : {
+              "$ref" : "#/definitions/UtilisateurDto"
+            }
+          },
+          "400" : {
+            "description" : "L'objet utilisateur n'est pas valide"
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/utilisateur/currentUser" : {
+      "get" : {
+        "tags" : [ "utilisateurApi" ],
+        "summary" : "Retourne l'utilisateur connecté",
+        "description" : "Cette méthode permet de retourner les informations de l'utilisateur connecté",
+        "operationId" : "currentUser",
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "Informations de l'utilisateur retournées avec succès",
+            "schema" : {
+              "$ref" : "#/definitions/UtilisateurDto"
+            }
+          },
+          "404" : {
+            "description" : "L'utilisateur n'a pas été trouvé"
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/utilisateur/delete/{idUtilisateur}" : {
+      "delete" : {
+        "tags" : [ "utilisateurApi" ],
+        "summary" : "Supprimer un utilisateur",
+        "description" : "Cette methode permet de supprimer un utilisateur par son ID",
+        "operationId" : "delete",
+        "parameters" : [ {
+          "name" : "idUtilisateur",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "L'utilisateur a ete supprime"
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/utilisateur/id/{idUtilisateur}" : {
+      "get" : {
+        "tags" : [ "utilisateurApi" ],
+        "summary" : "Recherche d'un utilisateur par l'ID",
+        "description" : "Cette methode permet de chercher un utilisateur par son ID",
+        "operationId" : "findById",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "idUtilisateur",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "L'utilisateur a ete trouve dans la BD",
+            "schema" : {
+              "$ref" : "#/definitions/UtilisateurDto"
+            }
+          },
+          "400" : {
+            "description" : "Aucun utilisateur n'existe dans la bd avec l'ID fourni"
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/utilisateur/nom/{nomUtilisateur}" : {
+      "get" : {
+        "tags" : [ "utilisateurApi" ],
+        "summary" : "Recherche d'un utilisateur par NOM",
+        "description" : "Cette methode permet de chercher un utilisateur par son NOM",
+        "operationId" : "findByNom",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "nomUtilisateur",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "L'utilisateur a ete trouve dans la BD",
+            "schema" : {
+              "$ref" : "#/definitions/UtilisateurDto"
+            }
+          },
+          "400" : {
+            "description" : "Aucun utilisateur n'existe dans la bd avec le NOM fourni"
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/ventes/all" : {
+      "get" : {
+        "tags" : [ "ventesApi" ],
+        "operationId" : "findAll",
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/VentesDto"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/ventes/create" : {
+      "post" : {
+        "tags" : [ "ventesApi" ],
+        "operationId" : "save",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/VentesDto"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/VentesDto"
+            }
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/ventes/delete/{idVente}" : {
+      "delete" : {
+        "tags" : [ "ventesApi" ],
+        "operationId" : "delete",
+        "parameters" : [ {
+          "name" : "idVente",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/ventes/{codeVente}" : {
+      "get" : {
+        "tags" : [ "ventesApi" ],
+        "operationId" : "findByCode",
+        "parameters" : [ {
+          "name" : "codeVente",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/VentesDto"
+            }
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/ventes/{idVente}" : {
+      "get" : {
+        "tags" : [ "ventesApi" ],
+        "operationId" : "findById",
+        "parameters" : [ {
+          "name" : "idVente",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/VentesDto"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Adresse" : {
+      "type" : "object",
+      "properties" : {
+        "adresse1" : {
+          "type" : "string"
+        },
+        "codepostale" : {
+          "type" : "string"
+        },
+        "adresse2" : {
+          "type" : "string"
+        },
+        "ville" : {
+          "type" : "string"
+        },
+        "pays" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Article" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "creationDate" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "lastModifiedDate" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "code" : {
+          "type" : "string"
+        },
+        "designation" : {
+          "type" : "string"
+        },
+        "prixUnitaireHt" : {
+          "type" : "number"
+        },
+        "tauxTva" : {
+          "type" : "number"
+        },
+        "photo" : {
+          "type" : "string"
+        },
+        "idEntreprise" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "category" : {
+          "$ref" : "#/definitions/Category"
+        },
+        "prixUnitaireTtc" : {
+          "type" : "number"
+        }
+      }
+    },
+    "ArticleDto" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "code" : {
+          "type" : "string"
+        },
+        "designation" : {
+          "type" : "string"
+        },
+        "prixUnitaireHt" : {
+          "type" : "number"
+        },
+        "tauxTva" : {
+          "type" : "number"
+        },
+        "photo" : {
+          "type" : "string"
+        },
+        "idEntreprise" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "category" : {
+          "$ref" : "#/definitions/CategoryDto"
+        },
+        "prixUnitaireTtc" : {
+          "type" : "number"
+        }
+      }
+    },
+    "AuthenticationRequest" : {
+      "type" : "object",
+      "properties" : {
+        "login" : {
+          "type" : "string"
+        },
+        "password" : {
+          "type" : "string"
+        }
+      }
+    },
+    "AuthenticationResponse" : {
+      "type" : "object",
+      "properties" : {
+        "accessToken" : {
+          "type" : "string"
+        }
+      }
+    },
+    "Category" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "creationDate" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "lastModifiedDate" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "code" : {
+          "type" : "string"
+        },
+        "designation" : {
+          "type" : "string"
+        },
+        "idEntreprise" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "articles" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Article"
+          }
+        }
+      }
+    },
+    "CategoryDto" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "code" : {
+          "type" : "string"
+        },
+        "designation" : {
+          "type" : "string"
+        },
+        "idEntreprise" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "articles" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Article"
+          }
+        }
+      }
+    },
+    "ClientDto" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "nom" : {
+          "type" : "string"
+        },
+        "prenom" : {
+          "type" : "string"
+        },
+        "adresse" : {
+          "$ref" : "#/definitions/Adresse"
+        },
+        "photo" : {
+          "type" : "string"
+        },
+        "numTel" : {
+          "type" : "string"
+        },
+        "id_Entreprise" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "CommandeClientDto" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "etatCommande" : {
+          "type" : "string",
+          "enum" : [ "EN_PREPARATION", "VALIDEE", "LIVREE" ]
+        },
+        "code" : {
+          "type" : "string"
+        },
+        "dateCommande" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "idEntreprise" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "client" : {
+          "$ref" : "#/definitions/ClientDto"
+        },
+        "ligneCommandeClients" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/LigneCommandeClientDto"
+          }
+        }
+      }
+    },
+    "CommandeFournisseurDto" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "etatCommande" : {
+          "type" : "string",
+          "enum" : [ "EN_PREPARATION", "VALIDEE", "LIVREE" ]
+        },
+        "code" : {
+          "type" : "string"
+        },
+        "dateCommande" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "idEntreprise" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "fournisseur" : {
+          "$ref" : "#/definitions/FournisseurDto"
+        },
+        "ligneCommandeFournisseurs" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/LigneCommandeFournisseurDto"
+          }
+        }
+      }
+    },
+    "EntrepriseDto" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "nom" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string"
+        },
+        "adresse" : {
+          "$ref" : "#/definitions/Adresse"
+        },
+        "codeFiscal" : {
+          "type" : "string"
+        },
+        "photo" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "numTel" : {
+          "type" : "string"
+        },
+        "siteWeb" : {
+          "type" : "string"
+        },
+        "utilisateurs" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/UtilisateurDto"
+          }
+        }
+      }
+    },
+    "FournisseurDto" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "nom" : {
+          "type" : "string"
+        },
+        "prenom" : {
+          "type" : "string"
+        },
+        "adresse" : {
+          "$ref" : "#/definitions/Adresse"
+        },
+        "photo" : {
+          "type" : "string"
+        },
+        "mail" : {
+          "type" : "string"
+        },
+        "numTel" : {
+          "type" : "string"
+        },
+        "idEntreprise" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "commandeFournisseurs" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/CommandeFournisseurDto"
+          }
+        }
+      }
+    },
+    "LigneCommandeClientDto" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "code" : {
+          "type" : "string"
+        },
+        "article" : {
+          "$ref" : "#/definitions/ArticleDto"
+        },
+        "quantite" : {
+          "type" : "number"
+        },
+        "prixUnitaire" : {
+          "type" : "number"
+        }
+      }
+    },
+    "LigneCommandeFournisseurDto" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "code" : {
+          "type" : "string"
+        },
+        "quantite" : {
+          "type" : "number"
+        },
+        "prixUnitaire" : {
+          "type" : "number"
+        },
+        "article" : {
+          "$ref" : "#/definitions/ArticleDto"
+        },
+        "idEntreprise" : {
+          "type" : "integer",
+          "format" : "int32"
+        }
+      }
+    },
+    "LigneVenteDto" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "quantite" : {
+          "type" : "number"
+        },
+        "code" : {
+          "type" : "string"
+        },
+        "prixUnitaire" : {
+          "type" : "number"
+        },
+        "idEntreprise" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "article" : {
+          "$ref" : "#/definitions/ArticleDto"
+        }
+      }
+    },
+    "MvtStockDto" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "dateMvt" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "quantite" : {
+          "type" : "number"
+        },
+        "idEntreprise" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "article" : {
+          "$ref" : "#/definitions/ArticleDto"
+        },
+        "typeMvtStk" : {
+          "type" : "string",
+          "enum" : [ "ENTREE", "SORTIE", "CORRECTION_POS", "CORRECTION_NEG" ]
+        }
+      }
+    },
+    "RolesDto" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "roleName" : {
+          "type" : "string"
+        },
+        "utilisateur" : {
+          "$ref" : "#/definitions/UtilisateurDto"
+        }
+      }
+    },
+    "UtilisateurDto" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "nom" : {
+          "type" : "string"
+        },
+        "prenom" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "dateDeNaissance" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "motDePasse" : {
+          "type" : "string"
+        },
+        "adresse" : {
+          "$ref" : "#/definitions/Adresse"
+        },
+        "photo" : {
+          "type" : "string"
+        },
+        "numTel" : {
+          "type" : "string"
+        },
+        "entreprise" : {
+          "$ref" : "#/definitions/EntrepriseDto"
+        },
+        "roles" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/RolesDto"
+          }
+        }
+      }
+    },
+    "VentesDto" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "id_Entreprise" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "code" : {
+          "type" : "string"
+        },
+        "datevente" : {
+          "type" : "integer",
+          "format" : "int64"
+        },
+        "observation" : {
+          "type" : "string"
+        },
+        "ligneVentes" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/LigneVenteDto"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,103 @@
+<div class="pagetitle mt-3">
+  <h1> Mouvement du Stock</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a  [routerLink]="['/member/dashboard']" href="javascript:void(0)">Acceuil</a></li>
+      <li class="breadcrumb-item active">Mouvement du Stock</li>
+    </ol>
+  </nav>
+</div><!-- End Page Title -->
+
+<div class="row">
+  <div class="col-lg-12">
+
+    <div class="card">
+      <div class="card-body">
+
+        <h1 class="card-title">Liste des Mouvement du Stock</h1>
+        <!-- Table with stripped rows -->
+        <table class="table datatable">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Code article</th>
+            <th scope="col">Disignation</th>
+            <th scope="col">Prix HT</th>
+            <th scope="col">Prix TTC</th>
+            <th scope="col">Stocks atuels</th>
+            <th scope="col">Action</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>c004</td>
+            <td>habits</td>
+            <td>1500</td>
+            <td>10</td>
+            <td>100</td>
+            <td>
+              <div class="btn-group">
+                <button type="button" class="btn btn-primary">Action</button>
+                <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                  <span class="visually-hidden">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Modifier</a></li>
+                  <li><a class="dropdown-item" href="#">Detail</a></li>
+                  <li>
+                    <div >
+                      <a type="button" class="dropdown-item" (click)="openModalCorrection()">
+                        Correction de stock
+                      </a>
+                    </div>
+                  </li>
+                  <li><a class="dropdown-item" href="#">Supprimer</a></li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>c006</td>
+            <td>alimentation</td>
+            <td>250</td>
+            <td>10</td>
+            <td>50</td>
+            <td>
+              <div class="btn-group">
+                <button type="button" class="btn btn-primary">Action</button>
+                <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                  <span class="visually-hidden">Toggle Dropdown</span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Modifier</a></li>
+                  <li><a class="dropdown-item" href="#">Detail</a></li>
+                  <li>
+                    <div >
+                      <a type="button" class="dropdown-item" (click)="openModalCorrection()">
+                        Correction de stock
+                      </a>
+                    </div>
+                  </li>
+                  <li><a class="dropdown-item" href="#">Supprimer le mouvement</a></li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+
+          <!-- Basic Modal -->
+          <!--                    <app-boutton-action (clickEvent)="nouvelleCommandeClient()"></app-boutton-action>-->
+          </tbody>
+        </table>
+        <!-- End Table with stripped rows -->
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
