@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {NouveauClientComponent} from "./nouveau-client/nouveau-client.component";
+import {FormBuilder} from "@angular/forms";
 
 @Component({
   selector: 'app-client',
@@ -9,9 +10,19 @@ import {NouveauClientComponent} from "./nouveau-client/nouveau-client.component"
 })
 export class ClientComponent {
 
+  searchForm = this.fb.group({
+    nom: [],
+    /*numeroCni: [],
+    email: [],
+    telephone: [],
+    adresse: [],*/
+    itemsPerPage: [10],
+  });
+
 
   constructor(
     private ngbModal: NgbModal,
+    private fb: FormBuilder,
   ) {}
 
   openModal(): void {
@@ -21,5 +32,9 @@ export class ClientComponent {
 
       }
     })
+  }
+
+  findAll() {
+
   }
 }

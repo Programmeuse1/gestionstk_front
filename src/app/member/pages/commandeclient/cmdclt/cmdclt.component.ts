@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {NouvelleCommandeclientComponent} from "./nouvelle-commandeclient/nouvelle-commandeclient.component";
 import {DetailCmdcltComponent} from "./detail-cmdclt/detail-cmdclt.component";
+import {FormBuilder} from "@angular/forms";
 
 @Component({
   selector: 'app-cmdclt',
@@ -10,9 +11,18 @@ import {DetailCmdcltComponent} from "./detail-cmdclt/detail-cmdclt.component";
 })
 export class CmdcltComponent {
 
+  searchForm = this.fb.group({
+    nom: [],
+    /*numeroCni: [],
+    email: [],
+    telephone: [],
+    adresse: [],*/
+    itemsPerPage: [10],
+  });
 
   constructor(
     private ngbModal: NgbModal,
+    private fb:FormBuilder
   ) {}
 
   openModal(): void {
@@ -31,5 +41,9 @@ export class CmdcltComponent {
 
       }
     })
+  }
+
+  findAll(){
+
   }
 }

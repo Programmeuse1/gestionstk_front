@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {FormBuilder} from "@angular/forms";
 import {ClientService} from "../service/client.service";
+import {Adresse} from "../../../../../gs-api/src/models/adresse";
 
 @Component({
   selector: 'app-nouveau-client',
@@ -17,8 +18,10 @@ export class NouveauClientComponent {
   ) {}
 
   clientsForm = this.fb.group({
-    code: [null],
-    designation: [null],
+    id: [null],
+    nom: [null],
+    numTel: [null],
+    prenom: [null],
   });
 
   cancel(): void {

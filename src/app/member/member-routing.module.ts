@@ -44,6 +44,10 @@ const routes: Routes = [
     loadChildren: () => import("./pages/profil/profil.module").then(m=> m.ProfilModule)
   },
   {
+    path: 'vente',
+    loadChildren: () => import("./pages/vente/vente.module").then(m=> m.VenteModule)
+  },
+  {
     path:'',
     redirectTo:'/dashboard',
     pathMatch:'full',

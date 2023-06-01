@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {NouveauFournisseurComponent} from "./nouveau-fournisseur/nouveau-fournisseur.component";
+import {FormBuilder} from "@angular/forms";
 
 @Component({
   selector: 'app-fournisseurs',
@@ -9,9 +10,18 @@ import {NouveauFournisseurComponent} from "./nouveau-fournisseur/nouveau-fournis
 })
 export class FournisseursComponent {
 
+  searchForm = this.fb.group({
+    nom: [],
+    /*numeroCni: [],
+    email: [],
+    telephone: [],
+    adresse: [],*/
+    itemsPerPage: [10],
+  });
 
   constructor(
     private ngbModal: NgbModal,
+    private fb: FormBuilder
   ) {}
 
   openModal(): void {
@@ -21,5 +31,9 @@ export class FournisseursComponent {
 
       }
     })
+  }
+
+  findAll(){
+
   }
 }

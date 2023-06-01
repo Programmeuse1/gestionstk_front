@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {DetailMvtstkComponent} from "./detail-mvtstk/detail-mvtstk.component";
+import {FormBuilder} from "@angular/forms";
 
 @Component({
   selector: 'app-mvtstk',
@@ -9,8 +10,18 @@ import {DetailMvtstkComponent} from "./detail-mvtstk/detail-mvtstk.component";
 })
 export class MvtstkComponent {
 
+  searchForm = this.fb.group({
+    nom: [],
+    /*numeroCni: [],
+    email: [],
+    telephone: [],
+    adresse: [],*/
+    itemsPerPage: [10],
+  });
+
   constructor(
     private ngbModal: NgbModal,
+    private fb: FormBuilder
   ) {}
 
 
@@ -21,5 +32,9 @@ export class MvtstkComponent {
 
       }
     })
+  }
+
+  findAll(){
+
   }
 }

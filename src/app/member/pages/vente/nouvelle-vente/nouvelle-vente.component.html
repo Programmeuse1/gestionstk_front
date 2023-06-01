@@ -1,0 +1,37 @@
+
+<form class="row g-3">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">creation de la vente</h5>
+      <button type="button" class="btn-close me-1 p-1 float-end" aria-label="Close" (click)="cancel()"></button>
+    </div>
+    <div class="modal-body">
+
+      <div class="col-md-12 mb-2">
+        <input type="date" class="form-control" placeholder="date vente">
+      </div>
+      <div class="col-md-12 mb-2">
+        <select id="inputState" class="form-select">
+          <option selected>Selectionner un client</option>
+          <option>ornela</option>
+          <option>bouali</option>
+        </select>
+      </div>
+      <div class="col-md-12 mb-2">
+        <input type="text" class="form-control" placeholder="article">
+      </div>
+      <div class="col-12 mb-2">
+        <input type="text" class="form-control" placeholder="prixunitairettc">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-primary float-start" (click)="cancel()"><i class="bi bi-dash-circle-fill"></i>&nbsp; Annuler</button>
+      <button type="reset" class="btn btn-secondary float-end">  <i class="bi bi-archive-fill"></i>&nbsp;Enregistrer</button>
+    </div>
+  </div>
+</form>
+
+
+
+
+
