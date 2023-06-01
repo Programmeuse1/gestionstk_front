@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {NgbActiveModal, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {NouvelArticleComponent} from "./nouvel-article/nouvel-article.component";
+import {FormBuilder} from "@angular/forms";
 
 @Component({
   selector: 'app-article',
@@ -8,10 +9,19 @@ import {NouvelArticleComponent} from "./nouvel-article/nouvel-article.component"
   styleUrls: ['./article.component.scss']
 })
 export class ArticleComponent {
+  searchForm = this.fb.group({
+    nom: [],
+    /*numeroCni: [],
+    email: [],
+    telephone: [],
+    adresse: [],*/
+    itemsPerPage: [10],
+  });
 
 
   constructor(
     private ngbModal: NgbModal,
+    private fb: FormBuilder,
   ) {}
 
   openModal(): void {
@@ -23,4 +33,7 @@ export class ArticleComponent {
     })
   }
 
+  findAll() {
+    
+  }
 }

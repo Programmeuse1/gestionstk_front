@@ -128,10 +128,10 @@ class MvtstockApiService extends __BaseService {
   }
 
   /**
-   * @param id undefined
+   * @param idMvtStock undefined
    * @return successful operation
    */
-  findByIdResponse(id: number): __Observable<__StrictHttpResponse<MvtStockDto>> {
+  findByIdResponse(idMvtStock: number): __Observable<__StrictHttpResponse<MvtStockDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -154,11 +154,11 @@ class MvtstockApiService extends __BaseService {
     );
   }
   /**
-   * @param id undefined
+   * @param idMvtStock undefined
    * @return successful operation
    */
-  findById(id: number): __Observable<MvtStockDto> {
-    return this.findByIdResponse(id).pipe(
+  findById(idMvtStock: number): __Observable<MvtStockDto> {
+    return this.findByIdResponse(idMvtStock).pipe(
       __map(_r => _r.body as MvtStockDto)
     );
   }

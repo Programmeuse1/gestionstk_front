@@ -518,7 +518,7 @@
         "tags" : [ "commandesclientsApi" ],
         "operationId" : "findById",
         "parameters" : [ {
-          "name" : "id",
+          "name" : "idCommandeClient",
           "in" : "path",
           "required" : true,
           "type" : "integer",
@@ -554,7 +554,7 @@
         }
       }
     },
-    "/gestiondestock_backend/v1/commandesfournisseurs/code/{nomFournisseur}" : {
+    "/gestiondestock_backend/v1/commandesfournisseurs/code/{codeCommandeFournisseur}" : {
       "get" : {
         "tags" : [ "commandesfournisseursApi" ],
         "summary" : "Recherche d'une commande fournisseur par CODE",
@@ -971,7 +971,7 @@
         "tags" : [ "mvtstockApi" ],
         "operationId" : "findById",
         "parameters" : [ {
-          "name" : "id",
+          "name" : "idMvtStock",
           "in" : "path",
           "required" : true,
           "type" : "integer",

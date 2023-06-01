@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {UtilisateurApiService} from "../../../../../gs-api/src/services/utilisateur-api.service";
 import {Observable} from "rxjs";
 import {UtilisateurDto} from "../../../../../gs-api/src/models/utilisateur-dto";
+import {UtilisateurApiService} from "../../../../../gs-api/src/services";
 
 @Injectable({
   providedIn: 'root'
