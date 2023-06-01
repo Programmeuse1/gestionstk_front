@@ -31,18 +31,16 @@
               <th scope="col">Prenom</th>
               <th scope="col">Email</th>
               <th scope="col">numTel</th>
-              <th scope="col">motDePasse</th>
               <th scope="col">Action</th>
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let utilisateurDto of utilisateurList;">
-            <tr>
-<!--              <th scope="row">{{utilisateurDto.nom}}</th>-->
-<!--              <td>{{utilisateurDto.prenom}}</td>-->
-<!--              <td>{{utilisateurDto.email}}</td>-->
-<!--              <td>{{utilisateurDto.numTel}}</td>-->
-<!--              <td>{{utilisateurDto.motDePasse}} </td>-->
+            <tr *ngFor="let utilisateurDto of utilisateurList">
+
+              <th scope="row">{{utilisateurDto?.nom}}</th>
+              <td>{{utilisateurDto?.prenom}}</td>
+              <td>{{utilisateurDto?.email}}</td>
+              <td>{{utilisateurDto?.numTel}}</td>
               <td>
                 <div class="btn-group">
                   <button type="button" class="btn btn-primary">Action</button>
@@ -56,29 +54,29 @@
                   </ul>
                 </div>
               </td>
-            </tr>
 
-            <tr>
-              <th scope="row">Kouanang</th>
-              <td>Joelle</td>
-              <td>665254521</td>
-              <td>rue chateau</td>
-              <td>2002</td>
-              <td>France</td>
-              <td>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-primary">Action</button>
-                  <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                    <span class="visually-hidden">Toggle Dropdown</span>
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Modifier </a></li>
-                    <li><a class="dropdown-item" href="#">Detail</a></li>
-                    <li><a class="dropdown-item" href="#">Supprimer</a></li>
-                  </ul>
-                </div>
-              </td>
-            </tr>
+
+<!--            <tr>-->
+<!--              <th scope="row">Kouanang</th>-->
+<!--              <td>Joelle</td>-->
+<!--              <td>665254521</td>-->
+<!--              <td>rue chateau</td>-->
+<!--              <td>2002</td>-->
+<!--              <td>France</td>-->
+<!--              <td>-->
+<!--                <div class="btn-group">-->
+<!--                  <button type="button" class="btn btn-primary">Action</button>-->
+<!--                  <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--                    <span class="visually-hidden">Toggle Dropdown</span>-->
+<!--                  </button>-->
+<!--                  <ul class="dropdown-menu">-->
+<!--                    <li><a class="dropdown-item" href="#">Modifier </a></li>-->
+<!--                    <li><a class="dropdown-item" href="#">Detail</a></li>-->
+<!--                    <li><a class="dropdown-item" href="#">Supprimer</a></li>-->
+<!--                  </ul>-->
+<!--                </div>-->
+<!--              </td>-->
+<!--            </tr>-->
 
 <!--            <app-boutton-action (clickEvent)="nouvelUtilisateur()"></app-boutton-action>-->
             </tbody>

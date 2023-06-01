@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
-import {FormBuilder} from "@angular/forms";
+import {FormBuilder, Validators} from "@angular/forms";
 import {ArticleService} from "../service/article.service";
 import {ArticleDto} from "../../../../../gs-api/src/models/article-dto";
 import {CategorieService} from "../../categorie/service/categorie.service";
@@ -31,13 +31,13 @@ export class NouvelArticleComponent implements OnInit{
     codearticle: [null],
     designation: [null],
     prixunitairettc: [null],
-    category: [null],
+    categorie: [null, [Validators.required]],
     tauxtva: [null]
   });
 
   saveValue(): ArticleDto {
     this.category = {
-      id: this.articlesForm?.get('category')?.value ?? undefined
+      id: this.articlesForm?.get('categorie')?.value ?? undefined
     };
     return {
     category: this.category,
@@ -49,7 +49,6 @@ export class NouvelArticleComponent implements OnInit{
   }
 
   saveArticle():void{
-    // console.log(this.saveValue());
     this.articlesService.savearticle(this.saveValue()).subscribe({
       next: (res) => {
         console.log(res);
@@ -73,5 +72,4 @@ export class NouvelArticleComponent implements OnInit{
   cancel(): void {
     this.activeModal.dismiss('cancel');
   }
-
 }

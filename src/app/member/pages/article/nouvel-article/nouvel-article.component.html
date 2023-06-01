@@ -20,8 +20,8 @@
         <input type="text" class="form-control" placeholder="Taux TVA" formControlName="tauxtva">
       </div>
       <div class="col-md-12 mb-2">
-        <select id="inputState" class="form-select" formControlName="category">
-          <option *ngFor = "let category of categorieList" [value]="category.id">{{category.designation}}</option>
+        <select id="categorie" class="form-select" formControlName="categorie" >
+          <option *ngFor = "let categorie of categorieList" name="categorie" [value]="categorie.id">{{categorie.designation}} | {{categorie.code}}</option>
         </select>
       </div>
 

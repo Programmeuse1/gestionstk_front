@@ -34,8 +34,8 @@ export class UtilisateursComponent implements OnInit{
   getUtilisateurList(){
     this.utilisateurService.findUtilisateurAll().subscribe({
       next: value =>{
-        console.log(value)
         this.utilisateurList = value;
+        console.log(this.utilisateurList);
       },
       error: error => {
 
