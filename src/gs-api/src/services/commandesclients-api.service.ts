@@ -165,10 +165,10 @@ class CommandesclientsApiService extends __BaseService {
   }
 
   /**
-   * @param id undefined
+   * @param idCommandeClient undefined
    * @return successful operation
    */
-  findByIdResponse(id: number): __Observable<__StrictHttpResponse<CommandeClientDto>> {
+  findByIdResponse(idCommandeClient: number): __Observable<__StrictHttpResponse<CommandeClientDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -191,11 +191,11 @@ class CommandesclientsApiService extends __BaseService {
     );
   }
   /**
-   * @param id undefined
+   * @param idCommandeClient undefined
    * @return successful operation
    */
-  findById(id: number): __Observable<CommandeClientDto> {
-    return this.findByIdResponse(id).pipe(
+  findById(idCommandeClient: number): __Observable<CommandeClientDto> {
+    return this.findByIdResponse(idCommandeClient).pipe(
       __map(_r => _r.body as CommandeClientDto)
     );
   }

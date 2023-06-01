@@ -13,7 +13,7 @@ import { CommandeFournisseurDto } from '../models/commande-fournisseur-dto';
 })
 class CommandesfournisseursApiService extends __BaseService {
   static readonly findAllPath = '/gestiondestock_backend/v1/commandesfournisseurs/all';
-  static readonly findByCodePath = '/gestiondestock_backend/v1/commandesfournisseurs/code/{nomFournisseur}';
+  static readonly findByCodePath = '/gestiondestock_backend/v1/commandesfournisseurs/code/{codeCommandeFournisseur}';
   static readonly savePath = '/gestiondestock_backend/v1/commandesfournisseurs/create';
   static readonly deletePath = '/gestiondestock_backend/v1/commandesfournisseurs/delete/{idCommandeFournisseur}';
   static readonly findByIdPath = '/gestiondestock_backend/v1/commandesfournisseurs/id/{idCommandeFournisseur}';
@@ -78,7 +78,7 @@ class CommandesfournisseursApiService extends __BaseService {
 
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/gestiondestock_backend/v1/commandesfournisseurs/code/${encodeURIComponent(String(nomFournisseur))}`,
+      this.rootUrl + `/gestiondestock_backend/v1/commandesfournisseurs/code/${encodeURIComponent(String(codeCommandeFournisseur))}`,
       __body,
       {
         headers: __headers,
