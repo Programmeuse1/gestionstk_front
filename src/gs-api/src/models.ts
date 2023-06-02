@@ -1,5 +1,6 @@
 export { Adresse } from './models/adresse';
 export { Article } from './models/article';
+export { ArticleCriteria } from './models/article-criteria';
 export { ArticleDto } from './models/article-dto';
 export { AuthenticationRequest } from './models/authentication-request';
 export { AuthenticationResponse } from './models/authentication-response';

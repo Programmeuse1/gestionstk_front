@@ -8,15 +8,15 @@
     "watch": "ng build --watch --configuration development",
     "gs-api": "npm run gs-api:download && npm run gs-api:extract && npm run gs-api:swagger-gen",
     "gs-api:create-dist": "mkdir tools\\swagger\\dist && mkdir tools\\swagger\\src",
-    "gs-api:download": "copy C:\\Users\\PC\\Documents\\stage\\gestiondestock_backend\\gestiondestock_backend\\target\\gestiondestock_backend-0.0.1-SNAPSHOT.jar .\\tools\\swagger\\dist && copy C:\\Users\\PC\\Documents\\stage\\gestiondestock_backend\\gestiondestock_backend\\target\\swagger.json .\\tools\\swagger\\src",
+    "gs-api:download": "copy C:\\Users\\RODRIGUE\\Documents\\Ornella_Stage\\gestiondestock_backend\\target\\gestiondestock_backend-0.0.1-SNAPSHOT.jar .\\tools\\swagger\\dist && copy C:\\Users\\RODRIGUE\\Documents\\Ornella_Stage\\gestiondestock_backend\\target\\swagger.json .\\tools\\swagger\\src",
     "gs-api:extract": "node .\\tools\\swagger\\src\\swagger.json 0.0.1-SNAPSHOT",
     "gs-api:swagger-gen": ".\\node_modules\\.bin\\ng-swagger-gen -i .\\tools\\swagger\\src\\swagger.json -o src\\gs-api\\src",
     "test": "ng test"
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^14.1.0",
     "@angular/common": "^14.1.0",
+    "@angular/animations": "^14.1.0",
     "@angular/compiler": "^14.1.0",
     "@angular/core": "^14.1.0",
     "@angular/forms": "^14.1.0",
