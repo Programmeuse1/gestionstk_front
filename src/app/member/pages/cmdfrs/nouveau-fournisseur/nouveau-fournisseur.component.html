@@ -1,6 +1,6 @@
 <button type="button" class="btn-close me-1 p-1 float-end" aria-label="Close" (click)="cancel()"></button>
 
-<form class="row g-3">
+<form class="row g-3" [formGroup]="commandeFournisseurForm">
   <div class="modal-content">
     <div class="modal-header">
 
@@ -33,7 +33,7 @@
     </div>
     <div class="modal-footer">
       <button type="submit" class="btn btn-primary float-start" (click)="cancel()"><i class="bi bi-dash-circle-fill"></i>&nbsp; Annuler</button>
-      <button type="reset" class="btn btn-secondary float-end">  <i class="bi bi-archive-fill"></i>&nbsp;Enregistrer</button>
+      <button type="reset" class="btn btn-secondary float-end" (click)="saveCommandeFournisseur()">  <i class="bi bi-archive-fill"></i>&nbsp;Enregistrer</button>
     </div>
   </div>
 </form>

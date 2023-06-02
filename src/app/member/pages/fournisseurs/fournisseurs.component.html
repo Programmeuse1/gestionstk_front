@@ -78,20 +78,16 @@
               <th scope="col">Nom</th>
               <th scope="col">Prenom</th>
               <th scope="col">Telephone</th>
-              <th scope="col">Adresse</th>
-              <th scope="col">Code postal</th>
-              <th scope="col">Pays</th>
+              <th scope="col">Email</th>
               <th scope="col">Action</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <th scope="row">Noupeyou</th>
-              <td>ornela</td>
-              <td>652125456</td>
-              <td>rue 1025</td>
-              <td>1012</td>
-              <td>Cameroun</td>
+            <tr *ngFor="let fournisseurDto of fournisseurList">
+              <th scope="row">{{fournisseurDto?.nom}}</th>
+              <td>{{fournisseurDto?.prenom}}</td>
+              <td>{{fournisseurDto?.numTel}}</td>
+              <td>{{fournisseurDto?.mail}}</td>
               <td>
                 <div class="btn-group">
                   <button type="button" class="btn btn-primary">Action</button>
@@ -106,28 +102,7 @@
                 </div>
               </td>
             </tr>
-            <tr>
-              <th scope="row">Kouanang</th>
-              <td>Joelle</td>
-              <td>665254521</td>
-              <td>rue chateau</td>
-              <td>5220 </td>
-              <td>France</td>
-              <td>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-primary">Action</button>
-                  <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                    <span class="visually-hidden">Toggle Dropdown</span>
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Modifier </a></li>
-                    <li><a class="dropdown-item" href="#">Detail</a></li>
-                    <li><a class="dropdown-item" href="#">Supprimer</a></li>
-                  </ul>
-                </div>
-              </td>
-            </tr>
-<!--            <app-boutton-action (clickEvent)="nouveauFournisseur()"></app-boutton-action>-->
+
             </tbody>
           </table>
           <!-- End Table with stripped rows -->

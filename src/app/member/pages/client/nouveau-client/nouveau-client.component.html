@@ -1,5 +1,5 @@
 
-<form class="row g-3">
+<form class="row g-3" [formGroup]="clientsForm">
   <div class="modal-content">
     <div class="modal-header">
       <h5 class="modal-title">creation du client</h5>
@@ -8,30 +8,33 @@
     <div class="modal-body">
 
       <div class="col-md-12 mb-2">
-        <input type="text" class="form-control" placeholder="Nom">
+        <input type="text" class="form-control" placeholder="nom" formControlName="nom">
       </div>
       <div class="col-md-12 mb-2">
-        <input type="email" class="form-control" placeholder="Prenom">
+        <input type="text" class="form-control" placeholder="prenom" formControlName="prenom">
       </div>
       <div class="col-md-12 mb-2">
-        <input type="password" class="form-control" placeholder="Email">
+        <input type="email" class="form-control" placeholder="email" formControlName="email">
       </div>
       <div class="col-12 mb-2">
-        <input type="text" class="form-control" placeholder="Telephone">
+        <input type="text" class="form-control" placeholder="numTel" formControlName="numTel">
+      </div>
+<!--      <div class="col-md-12 mb-2">-->
+<!--        <input type="text" class="form-control" placeholder="adresse" formControlName="adresse">-->
+<!--      </div>-->
+      <div class="col-md-12 mb-2">
+        <input type="text" class="form-control" placeholder="ville" formControlName="ville">
       </div>
       <div class="col-md-12 mb-2">
-        <input type="text" class="form-control" placeholder="Adresse">
+        <input type="text" class="form-control" placeholder="code postale" formControlName="codepostale">
       </div>
       <div class="col-md-12 mb-2">
-        <input type="text" class="form-control" placeholder="Code postale">
-      </div>
-      <div class="col-md-12 mb-2">
-        <input type="text" class="form-control" placeholder="Ville">
+        <input type="text" class="form-control" placeholder="pays" formControlName="pays">
       </div>
     </div>
     <div class="modal-footer">
       <button type="submit" class="btn btn-primary float-start" (click)="cancel()"><i class="bi bi-dash-circle-fill"></i>&nbsp; Annuler</button>
-      <button type="reset" class="btn btn-secondary float-end">  <i class="bi bi-archive-fill"></i>&nbsp;Enregistrer</button>
+      <button type="reset" class="btn btn-secondary float-end" (click)="saveClient()">  <i class="bi bi-archive-fill"></i>&nbsp;Enregistrer</button>
     </div>
   </div>
 </form>

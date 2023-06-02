@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { VenteRoutingModule } from './vente-routing.module';
 import {VenteComponent} from "./vente.component";
 import {NouvelleVenteComponent} from "./nouvelle-vente/nouvelle-vente.component";
+import {SharedMemberModule} from "../../shared-member/shared-member.module";
 
 
 @NgModule({
@@ -11,7 +11,7 @@ import {NouvelleVenteComponent} from "./nouvelle-vente/nouvelle-vente.component"
     NouvelleVenteComponent
   ],
   imports: [
-    CommonModule,
+    SharedMemberModule,
     VenteRoutingModule
   ]
 })

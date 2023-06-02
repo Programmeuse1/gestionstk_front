@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {NouveauFournisseurComponent} from "./nouveau-fournisseur/nouveau-fournisseur.component";
 import {FormBuilder} from "@angular/forms";
+import {FournisseurDto} from "../../../../gs-api/src/models/fournisseur-dto";
+import {FournisseursService} from "./service/fournisseurs.service";
 
 @Component({
   selector: 'app-fournisseurs',
@@ -19,15 +21,35 @@ export class FournisseursComponent {
     itemsPerPage: [10],
   });
 
+  fournisseurList: Array<FournisseurDto> = [];
+
   constructor(
     private ngbModal: NgbModal,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private fournisseurService: FournisseursService
   ) {}
 
   openModal(): void {
     const modalRef = this.ngbModal.open(NouveauFournisseurComponent, {size: 'lg', backdrop: 'static', animation: true});
     modalRef.closed.subscribe((res) => {
-      if('success-fournisseurs' === res) {
+      if('success' === res) {
+        this.getFournisseurList();
+
+      }
+    })
+  }
+
+  ngOnInit(): void{
+    this.getFournisseurList();
+  }
+
+  getFournisseurList(){
+    this.fournisseurService.findFournisseurAll().subscribe({
+      next: value =>{
+        this.fournisseurList = value;
+        console.log(this.fournisseurList);
+      },
+      error:error => {
 
       }
     })
