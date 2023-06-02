@@ -8,6 +8,7 @@ import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
 import { ArticleDto } from '../models/article-dto';
+import { ArticleCriteria } from '../models/article-criteria';
 @Injectable({
   providedIn: 'root',
 })
@@ -17,6 +18,7 @@ class ArticlesApiService extends __BaseService {
   static readonly savePath = '/gestiondestock_backend/v1/article/create';
   static readonly deletePath = '/gestiondestock_backend/v1/article/delete/{idArticle}';
   static readonly findByIdPath = '/gestiondestock_backend/v1/article/id/{idArticle}';
+  static readonly listingArticlePath = '/gestiondestock_backend/v1/article/listingArticle';
 
   constructor(
     config: __Configuration,
@@ -229,6 +231,48 @@ class ArticlesApiService extends __BaseService {
   findById(idArticle: number): __Observable<ArticleDto> {
     return this.findByIdResponse(idArticle).pipe(
       __map(_r => _r.body as ArticleDto)
+    );
+  }
+
+  /**
+   * Renvoi la liste des articles en fonction des critères de recherche
+   *
+   * Cette methode permet de chercher et de renvoyer la liste des article qui existentdans la BD
+   * @param body undefined
+   * @return La liste des articles/ une liste vide
+   */
+  listingArticleResponse(body?: ArticleCriteria): __Observable<__StrictHttpResponse<Array<ArticleDto>>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = body;
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/gestiondestock_backend/v1/article/listingArticle`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Array<ArticleDto>>;
+      })
+    );
+  }
+  /**
+   * Renvoi la liste des articles en fonction des critères de recherche
+   *
+   * Cette methode permet de chercher et de renvoyer la liste des article qui existentdans la BD
+   * @param body undefined
+   * @return La liste des articles/ une liste vide
+   */
+  listingArticle(body?: ArticleCriteria): __Observable<Array<ArticleDto>> {
+    return this.listingArticleResponse(body).pipe(
+      __map(_r => _r.body as Array<ArticleDto>)
     );
   }
 }

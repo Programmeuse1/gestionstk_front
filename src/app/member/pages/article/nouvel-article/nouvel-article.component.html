@@ -7,24 +7,39 @@
     </div>
     <div class="modal-body">
 
+      <!--<div class="col-md-12 mb-2">
+        <input type="text" class="form-control" placeholder="Code article" readonly formControlName="codearticle">
+      </div>-->
       <div class="col-md-12 mb-2">
-        <input type="text" class="form-control" placeholder="Code article" formControlName="codearticle">
-      </div>
-      <div class="col-md-12 mb-2">
+        <label class="form-check-label" for="actif">Designation</label>
         <input type="email" class="form-control" placeholder="Designation" formControlName="designation">
       </div>
       <div class="col-md-12 mb-2">
+        <label class="form-check-label" for="actif">Prix Unitaire ttc</label>
         <input type="text" class="form-control" placeholder="Prix unitaire TTC" formControlName="prixunitairettc">
       </div>
       <div class="col-md-12 mb-2">
+        <label class="form-check-label" for="actif">Taux tva</label>
         <input type="text" class="form-control" placeholder="Taux TVA" formControlName="tauxtva">
       </div>
       <div class="col-md-12 mb-2">
+        <label class="form-check-label" for="actif">Prix Unitaire Ht</label>
+        <input type="text" class="form-control" placeholder="prixUnitaireHt" formControlName="prixUnitaireHt">
+      </div>
+      <div class="col-md-12 mb-2">
+        <label class="control-label field-font">
+          Category
+        </label>
         <select id="categorie" class="form-select" formControlName="categorie" >
           <option *ngFor = "let categorie of categorieList" name="categorie" [value]="categorie.id">{{categorie.designation}} | {{categorie.code}}</option>
         </select>
       </div>
-
+      <div class="col-md-12 mb-2">
+        <div class="form-group form-check">
+          <input type="checkbox" [checked]="true"  class="form-check-input" id="actif" formControlName="actif">
+          <label class="form-check-label" for="actif">Actif</label>
+        </div>
+      </div>
     </div>
     <div class="modal-footer">
       <button type="submit" class="btn btn-primary float-start" (click)="cancel()"><i class="bi bi-dash-circle-fill"></i>&nbsp; Annuler</button>

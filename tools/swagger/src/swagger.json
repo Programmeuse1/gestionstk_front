@@ -162,6 +162,35 @@
         }
       }
     },
+    "/gestiondestock_backend/v1/article/listingArticle" : {
+      "post" : {
+        "tags" : [ "articlesApi" ],
+        "summary" : "Renvoi la liste des articles en fonction des critères de recherche",
+        "description" : "Cette methode permet de chercher et de renvoyer la liste des article qui existentdans la BD",
+        "operationId" : "listingArticle",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ArticleCriteria"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "La liste des articles/ une liste vide",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/ArticleDto"
+              }
+            }
+          }
+        }
+      }
+    },
     "/gestiondestock_backend/v1/auth/authenticate" : {
       "post" : {
         "tags" : [ "authApi" ],
@@ -1392,6 +1421,9 @@
         "code" : {
           "type" : "string"
         },
+        "actif" : {
+          "type" : "boolean"
+        },
         "designation" : {
           "type" : "string"
         },
@@ -1399,6 +1431,9 @@
           "type" : "number"
         },
         "tauxTva" : {
+          "type" : "number"
+        },
+        "prixUnitaireTtc" : {
           "type" : "number"
         },
         "photo" : {
@@ -1410,9 +1445,23 @@
         },
         "category" : {
           "$ref" : "#/definitions/Category"
+        }
+      }
+    },
+    "ArticleCriteria" : {
+      "type" : "object",
+      "properties" : {
+        "designation" : {
+          "type" : "string"
         },
-        "prixUnitaireTtc" : {
-          "type" : "number"
+        "code" : {
+          "type" : "string"
+        },
+        "actif" : {
+          "type" : "boolean"
+        },
+        "nombreDeResultat" : {
+          "type" : "string"
         }
       }
     },
@@ -1426,6 +1475,9 @@
         "code" : {
           "type" : "string"
         },
+        "actif" : {
+          "type" : "boolean"
+        },
         "designation" : {
           "type" : "string"
         },
@@ -1433,6 +1485,9 @@
           "type" : "number"
         },
         "tauxTva" : {
+          "type" : "number"
+        },
+        "prixUnitaireTtc" : {
           "type" : "number"
         },
         "photo" : {
@@ -1444,9 +1499,6 @@
         },
         "category" : {
           "$ref" : "#/definitions/CategoryDto"
-        },
-        "prixUnitaireTtc" : {
-          "type" : "number"
         }
       }
     },
