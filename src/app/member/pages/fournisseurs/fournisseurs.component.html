@@ -125,7 +125,6 @@
 
               <td>{{fournisseur.numTel != null ? fournisseur.numTel : '-'}}</td>
               <td>{{fournisseur.mail != null ? fournisseur.mail : '-'}}</td>
-              <!--              <td>{{client.adresse != null ? client.adresse : '-'}}</td>-->
               <td>
                 <button [disabled]="true" *ngIf = "fournisseur?.actif" class = "btn btn-sm btn-success">Actif</button>
                 <button [disabled]="true" *ngIf = "!fournisseur?.actif" class = "btn btn-sm btn-danger">Non Actif</button>

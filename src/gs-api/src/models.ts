@@ -5,6 +5,7 @@ export { ArticleDto } from './models/article-dto';
 export { AuthenticationRequest } from './models/authentication-request';
 export { AuthenticationResponse } from './models/authentication-response';
 export { Category } from './models/category';
+export { CategoryCriteria } from './models/category-criteria';
 export { CategoryDto } from './models/category-dto';
 export { ClientCriteria } from './models/client-criteria';
 export { ClientDto } from './models/client-dto';

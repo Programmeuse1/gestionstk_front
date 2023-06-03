@@ -340,6 +340,35 @@
         }
       }
     },
+    "/gestiondestock_backend/v1/category/listingCategorie" : {
+      "post" : {
+        "tags" : [ "categoriesApi" ],
+        "summary" : "Renvoi la liste des categorie en fonction des critères de recherche",
+        "description" : "Cette methode permet de chercher et de renvoyer la liste des categories qui existentdans la BD",
+        "operationId" : "listingCategory",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/CategoryCriteria"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "La liste des categories/ une liste vide",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/CategoryDto"
+              }
+            }
+          }
+        }
+      }
+    },
     "/gestiondestock_backend/v1/client/all" : {
       "get" : {
         "tags" : [ "clientsApi" ],
@@ -1620,6 +1649,23 @@
           "items" : {
             "$ref" : "#/definitions/Article"
           }
+        }
+      }
+    },
+    "CategoryCriteria" : {
+      "type" : "object",
+      "properties" : {
+        "designation" : {
+          "type" : "string"
+        },
+        "code" : {
+          "type" : "string"
+        },
+        "actif" : {
+          "type" : "boolean"
+        },
+        "nombreDeResultat" : {
+          "type" : "string"
         }
       }
     },

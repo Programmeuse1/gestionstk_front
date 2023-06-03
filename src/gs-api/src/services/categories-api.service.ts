@@ -8,6 +8,7 @@ import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
 import { CategoryDto } from '../models/category-dto';
+import { CategoryCriteria } from '../models/category-criteria';
 @Injectable({
   providedIn: 'root',
 })
@@ -17,6 +18,7 @@ class CategoriesApiService extends __BaseService {
   static readonly savePath = '/gestiondestock_backend/v1/category/create';
   static readonly deletePath = '/gestiondestock_backend/v1/category/delete/{idCategory}';
   static readonly findByIdPath = '/gestiondestock_backend/v1/category/id/{idCategory}';
+  static readonly listingCategoryPath = '/gestiondestock_backend/v1/category/listingCategorie';
 
   constructor(
     config: __Configuration,
@@ -229,6 +231,48 @@ class CategoriesApiService extends __BaseService {
   findById(idCategory: number): __Observable<CategoryDto> {
     return this.findByIdResponse(idCategory).pipe(
       __map(_r => _r.body as CategoryDto)
+    );
+  }
+
+  /**
+   * Renvoi la liste des categorie en fonction des critères de recherche
+   *
+   * Cette methode permet de chercher et de renvoyer la liste des categories qui existentdans la BD
+   * @param body undefined
+   * @return La liste des categories/ une liste vide
+   */
+  listingCategoryResponse(body?: CategoryCriteria): __Observable<__StrictHttpResponse<Array<CategoryDto>>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = body;
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/gestiondestock_backend/v1/category/listingCategorie`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Array<CategoryDto>>;
+      })
+    );
+  }
+  /**
+   * Renvoi la liste des categorie en fonction des critères de recherche
+   *
+   * Cette methode permet de chercher et de renvoyer la liste des categories qui existentdans la BD
+   * @param body undefined
+   * @return La liste des categories/ une liste vide
+   */
+  listingCategory(body?: CategoryCriteria): __Observable<Array<CategoryDto>> {
+    return this.listingCategoryResponse(body).pipe(
+      __map(_r => _r.body as Array<CategoryDto>)
     );
   }
 }
