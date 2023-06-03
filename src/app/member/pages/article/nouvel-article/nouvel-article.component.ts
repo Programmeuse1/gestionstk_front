@@ -15,6 +15,7 @@ export class NouvelArticleComponent implements OnInit{
 
   categorieList: Array<CategoryDto> = [];
   category: CategoryDto = {};
+  articleDto: ArticleDto = {};
 
   constructor(
     private activeModal: NgbActiveModal,
@@ -25,14 +26,30 @@ export class NouvelArticleComponent implements OnInit{
 
   ngOnInit(): void {
     this.getCategoryList();
+    this.updateForm(this.articleDto);
+  }
+
+  updateForm(article: ArticleDto): void{
+    console.log(article);
+    this.articlesForm.patchValue({
+      // codearticle: article.code,
+      designation: article.designation,
+      prixunitairettc: article.prixUnitaireTtc,
+      prixUnitaireHt: article.prixUnitaireHt,
+      tauxtva: article.tauxTva,
+      categorie: article.category?.id ?? undefined,
+      actif: article?.actif ?? true
+    });
   }
 
   articlesForm = this.fb.group({
-    codearticle: [null],
-    designation: [null],
-    prixunitairettc: [null],
-    categorie: [null, [Validators.required]],
-    tauxtva: [null]
+    // codearticle: ["", Validators.required],
+    designation: ["", Validators.required],
+    prixunitairettc: [0],
+    prixUnitaireHt: [0],
+    categorie: [0,Validators.required],
+    actif: [true],
+    tauxtva: [0]
   });
 
   saveValue(): ArticleDto {
@@ -40,11 +57,13 @@ export class NouvelArticleComponent implements OnInit{
       id: this.articlesForm?.get('categorie')?.value ?? undefined
     };
     return {
-    category: this.category,
-    code: this.articlesForm?.get('codearticle')?.value ?? '',
-    designation: this.articlesForm?.get('designation')?.value ?? '',
-    prixUnitaireTtc: this.articlesForm?.get('prixunitaireht')?.value ?? undefined,
-    tauxTva: this.articlesForm?.get('tauxtva')?.value ?? undefined
+      ...this.articleDto,
+      category: this.category,
+      actif: this.articlesForm?.get('actif')?.value ?? true,
+      designation: this.articlesForm?.get('designation')?.value ?? '',
+      prixUnitaireHt: this.articlesForm?.get('prixUnitaireHt')?.value ?? undefined,
+      prixUnitaireTtc: this.articlesForm?.get('prixunitairettc')?.value ?? undefined,
+      tauxTva: this.articlesForm?.get('tauxtva')?.value ?? undefined
     }
   }
 
@@ -52,6 +71,7 @@ export class NouvelArticleComponent implements OnInit{
     this.articlesService.savearticle(this.saveValue()).subscribe({
       next: (res) => {
         console.log(res);
+        this.activeModal.close('success');
         this.cancel();
       },
       error: error =>{

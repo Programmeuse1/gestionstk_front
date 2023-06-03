@@ -19,6 +19,12 @@
       <div class="col-12 mb-2">
         <input type="number" class="form-control" placeholder="numTel" formControlName="numTel">
       </div>
+      <div class="col-md-12 mb-2">
+        <div class="form-group form-check">
+          <input type="checkbox" [checked]="true"  class="form-check-input" id="actif" formControlName="actif">
+          <label class="form-check-label" for="actif">Actif</label>
+        </div>
+      </div>
     </div>
     <div class="modal-footer">
       <button type="submit" class="btn btn-primary float-start" (click)="cancel()"><i class="bi bi-dash-circle-fill"></i>&nbsp; Annuler</button>

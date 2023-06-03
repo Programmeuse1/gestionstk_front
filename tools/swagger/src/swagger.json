@@ -162,6 +162,35 @@
         }
       }
     },
+    "/gestiondestock_backend/v1/article/listingArticle" : {
+      "post" : {
+        "tags" : [ "articlesApi" ],
+        "summary" : "Renvoi la liste des articles en fonction des critères de recherche",
+        "description" : "Cette methode permet de chercher et de renvoyer la liste des article qui existentdans la BD",
+        "operationId" : "listingArticle",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ArticleCriteria"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "La liste des articles/ une liste vide",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/ArticleDto"
+              }
+            }
+          }
+        }
+      }
+    },
     "/gestiondestock_backend/v1/auth/authenticate" : {
       "post" : {
         "tags" : [ "authApi" ],
@@ -406,6 +435,35 @@
           },
           "400" : {
             "description" : "Aucun client n'existe dans la bd avec l'ID fourni"
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/client/listingClient" : {
+      "post" : {
+        "tags" : [ "clientsApi" ],
+        "summary" : "Renvoi la liste des clients en fonction des critères de recherche",
+        "description" : "Cette methode permet de chercher et de renvoyer la liste des clients qui existentdans la BD",
+        "operationId" : "listingClient",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ClientCriteria"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "La liste des clients/ une liste vide",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/ClientDto"
+              }
+            }
           }
         }
       }
@@ -879,6 +937,35 @@
           },
           "400" : {
             "description" : "Aucun fournisseur n'existe dans la bd avec l'ID fourni"
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/fournisseur/listingFournisseur" : {
+      "post" : {
+        "tags" : [ "fournisseurApi" ],
+        "summary" : "Renvoi la liste des fournisseurs en fonction des critères de recherche",
+        "description" : "Cette methode permet de chercher et de renvoyer la liste des fournisseurs qui existentdans la BD",
+        "operationId" : "listingFournisseur",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/FournisseurCriteria"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "La liste des fournisseurs/ une liste vide",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/FournisseurDto"
+              }
+            }
           }
         }
       }
@@ -1392,6 +1479,9 @@
         "code" : {
           "type" : "string"
         },
+        "actif" : {
+          "type" : "boolean"
+        },
         "designation" : {
           "type" : "string"
         },
@@ -1399,6 +1489,9 @@
           "type" : "number"
         },
         "tauxTva" : {
+          "type" : "number"
+        },
+        "prixUnitaireTtc" : {
           "type" : "number"
         },
         "photo" : {
@@ -1410,9 +1503,23 @@
         },
         "category" : {
           "$ref" : "#/definitions/Category"
+        }
+      }
+    },
+    "ArticleCriteria" : {
+      "type" : "object",
+      "properties" : {
+        "designation" : {
+          "type" : "string"
         },
-        "prixUnitaireTtc" : {
-          "type" : "number"
+        "code" : {
+          "type" : "string"
+        },
+        "actif" : {
+          "type" : "boolean"
+        },
+        "nombreDeResultat" : {
+          "type" : "string"
         }
       }
     },
@@ -1426,6 +1533,9 @@
         "code" : {
           "type" : "string"
         },
+        "actif" : {
+          "type" : "boolean"
+        },
         "designation" : {
           "type" : "string"
         },
@@ -1433,6 +1543,9 @@
           "type" : "number"
         },
         "tauxTva" : {
+          "type" : "number"
+        },
+        "prixUnitaireTtc" : {
           "type" : "number"
         },
         "photo" : {
@@ -1444,9 +1557,6 @@
         },
         "category" : {
           "$ref" : "#/definitions/CategoryDto"
-        },
-        "prixUnitaireTtc" : {
-          "type" : "number"
         }
       }
     },
@@ -1486,6 +1596,9 @@
         },
         "code" : {
           "type" : "string"
+        },
+        "actif" : {
+          "type" : "boolean"
         },
         "designation" : {
           "type" : "string"
@@ -1527,6 +1640,23 @@
         }
       }
     },
+    "ClientCriteria" : {
+      "type" : "object",
+      "properties" : {
+        "nom" : {
+          "type" : "string"
+        },
+        "code" : {
+          "type" : "string"
+        },
+        "actif" : {
+          "type" : "boolean"
+        },
+        "nombreDeResultat" : {
+          "type" : "string"
+        }
+      }
+    },
     "ClientDto" : {
       "type" : "object",
       "properties" : {
@@ -1535,6 +1665,12 @@
           "format" : "int64"
         },
         "nom" : {
+          "type" : "string"
+        },
+        "actif" : {
+          "type" : "boolean"
+        },
+        "code" : {
           "type" : "string"
         },
         "prenom" : {
@@ -1660,6 +1796,23 @@
         }
       }
     },
+    "FournisseurCriteria" : {
+      "type" : "object",
+      "properties" : {
+        "nom" : {
+          "type" : "string"
+        },
+        "code" : {
+          "type" : "string"
+        },
+        "actif" : {
+          "type" : "boolean"
+        },
+        "nombreDeResultat" : {
+          "type" : "string"
+        }
+      }
+    },
     "FournisseurDto" : {
       "type" : "object",
       "properties" : {
@@ -1668,6 +1821,12 @@
           "format" : "int64"
         },
         "nom" : {
+          "type" : "string"
+        },
+        "actif" : {
+          "type" : "boolean"
+        },
+        "code" : {
           "type" : "string"
         },
         "prenom" : {

@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
-import {ArticlesApiService} from "../../../../../gs-api/src/services/articles-api.service";
 
 import {ArticleDto} from "../../../../../gs-api/src/models/article-dto";
 import {Observable} from "rxjs";
+import {ArticlesApiService} from "../../../../../gs-api/src/services";
+import {ArticleCriteria} from "../../../../../gs-api/src/models/article-criteria";
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,9 @@ export class ArticleService {
 
   deleteArticle(idArticle: number): Observable<ArticleDto> {
     return this.articles.delete(idArticle);
+  }
 
+  listingArtcile(articleCriteria: ArticleCriteria):Observable<ArticleDto[]>{
+    return this.articles.listingArticle(articleCriteria)
   }
 }

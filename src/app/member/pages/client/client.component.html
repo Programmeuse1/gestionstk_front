@@ -18,6 +18,7 @@
 <section class="section">
 
   <div class="row">
+    <!--    Critere de recherche debut -->
     <div class="col-md-12">
       <div class="card">
         <div class="content mb-2">
@@ -35,23 +36,47 @@
             <div class="col-md-12">
               <form [formGroup]="searchForm">
                 <div class="row">
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Entrer l'identifiant"
-                             formControlName="id">
+                      <label class="control-label field-font">
+                        Nom Client
+                      </label>
+                      <input type="text" class="form-control" placeholder="Entrer le nom"
+                             formControlName="nom">
                     </div>
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Entrer le nom" formControlName="nom">
+                      <label class="control-label field-font">
+                        Code Client
+                      </label>
+                      <input type="text" class="form-control" placeholder="Entrer le code" formControlName="code">
                     </div>
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                     <div class="form-group">
-                      <select class="form-control"  formControlName="itemsPerPage">
+                      <label class="control-label field-font">
+                        Statut
+                      </label>
+                      <select class="form-control" formControlName="actif">
+                        <option [value]="''" selected>Tous</option>
+                        <option [value]="true">Actif</option>
+                        <option [value]="false">Non Actif</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label class="control-label field-font">
+                        Nombre de Résultat
+                      </label>
+                      <select class="form-control" formControlName="nombreDeResultat">
                         <option value="10">10</option>
-                        <option value="50">25</option>
-                        <option value="100">50</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                        <option value="200">200</option>
+                        <option value="500">500</option>
+                        <option value="1000">1000</option>
                         <option value="-1">Tous</option>
                       </select>
                     </div>
@@ -68,6 +93,7 @@
 
       </div>
     </div>
+    <!--    Critere de recherche fin -->
 
 
     <div class="col-lg-12">
@@ -80,21 +106,29 @@
           <table class="table datatable">
             <thead>
             <tr>
-              <th scope="col">#</th>
+              <th scope="col">N°</th>
+              <th scope="col">Code client</th>
               <th scope="col">Nom</th>
               <th scope="col">Prenom</th>
               <th scope="col">Telephone</th>
-              <th scope="col">Adresse</th>
+              <th scope="col">Etat</th>
+<!--              <th scope="col">Adresse</th>-->
               <th scope="col">Action</th>
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let clientDto of clientList">
-              <th scope="row">{{clientDto.id}}</th>
-              <td>{{clientDto.nom}}</td>
-              <td>{{clientDto.prenom}}</td>
-              <td>{{clientDto.numTel}}</td>
-              <td>{{clientDto.adresse}}</td>
+            <tr *ngFor="let client of clientList; let i = index">
+              <td>{{i +1 }}</td>
+              <td>{{client.code != null ? client.code : '-'}}</td>
+              <td>{{client.nom != null ? client.nom : '-'}}</td>
+              <td>{{client.prenom != null ? client.prenom : '-'}}</td>
+
+              <td>{{client.numTel != null ? client.numTel : '-'}}</td>
+<!--              <td>{{client.adresse != null ? client.adresse : '-'}}</td>-->
+              <td>
+                <button [disabled]="true" *ngIf = "client?.actif" class = "btn btn-sm btn-success">Actif</button>
+                <button [disabled]="true" *ngIf = "!client?.actif" class = "btn btn-sm btn-danger">Non Actif</button>
+              </td>
               <td>
                 <div class="btn-group">
                   <button type="button" class="btn btn-primary">Action</button>
@@ -102,36 +136,14 @@
                     <span class="visually-hidden">Toggle Dropdown</span>
                   </button>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Modifier</a></li>
+                    <li><a class="dropdown-item" (click)="updateClient(client)">Modifier</a></li>
                     <li><a class="dropdown-item" href="#">Detail</a></li>
                     <li><a class="dropdown-item" href="#">Supprimer</a></li>
                   </ul>
                 </div>
               </td>
             </tr>
-<!--            <tr>-->
-<!--              <th scope="row">2</th>-->
-<!--              <td>Kouanang</td>-->
-<!--              <td>Joelle</td>-->
-<!--              <td>665254521</td>-->
-<!--              <td>rue chateau</td>-->
-<!--              <td>1002</td>-->
-<!--              <td>France</td>-->
-<!--              <td>-->
-<!--                <div class="btn-group">-->
-<!--                  <button type="button" class="btn btn-primary">Action</button>-->
-<!--                  <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">-->
-<!--                    <span class="visually-hidden">Toggle Dropdown</span>-->
-<!--                  </button>-->
-<!--                  <ul class="dropdown-menu">-->
-<!--                    <li><a class="dropdown-item" href="#">Modifier </a></li>-->
-<!--                    <li><a class="dropdown-item" href="#">Detail</a></li>-->
-<!--                    <li><a class="dropdown-item" href="#">Supprimer</a></li>-->
-<!--                  </ul>-->
-<!--                </div>-->
-<!--              </td>-->
-<!--            </tr>-->
-<!--            <app-boutton-action (clickEvent)="nouveauClient()"></app-boutton-action>-->
+
             </tbody>
           </table>
           <!-- End Table with stripped rows -->

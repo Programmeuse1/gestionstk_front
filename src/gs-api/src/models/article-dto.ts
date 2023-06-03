@@ -1,6 +1,7 @@
 /* tslint:disable */
 import { CategoryDto } from './category-dto';
 export interface ArticleDto {
+  actif?: boolean;
   category?: CategoryDto;
   code?: string;
   designation?: string;

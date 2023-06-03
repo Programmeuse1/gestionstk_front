@@ -3,7 +3,7 @@
   <div class="modal-content">
     <div class="modal-header">
       <h5 class="modal-title">creation du client</h5>
-<!--      <button type="button" class="btn-close me-1 p-1 float-end" aria-label="Close" (click)="cancel()"></button>-->
+      <button type="button" class="btn-close me-1 p-1 float-end" aria-label="Close" (click)="cancel()"></button>
     </div>
     <div class="modal-body">
 
@@ -20,16 +20,13 @@
         <input type="text" class="form-control" placeholder="numTel" formControlName="numTel">
       </div>
 <!--      <div class="col-md-12 mb-2">-->
-<!--        <input type="text" class="form-control" placeholder="adresse" formControlName="adresse">-->
+<!--        <input type="text" class="form-control" placeholder="code" formControlName="code">-->
 <!--      </div>-->
       <div class="col-md-12 mb-2">
-        <input type="text" class="form-control" placeholder="ville" formControlName="ville">
-      </div>
-      <div class="col-md-12 mb-2">
-        <input type="text" class="form-control" placeholder="code postale" formControlName="codepostale">
-      </div>
-      <div class="col-md-12 mb-2">
-        <input type="text" class="form-control" placeholder="pays" formControlName="pays">
+        <div class="form-group form-check">
+          <input type="checkbox" [checked]="true"  class="form-check-input" id="actif" formControlName="actif">
+          <label class="form-check-label" for="actif">Actif</label>
+        </div>
       </div>
     </div>
     <div class="modal-footer">

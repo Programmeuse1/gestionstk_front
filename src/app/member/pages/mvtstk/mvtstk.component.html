@@ -69,21 +69,18 @@
           <tr>
             <th scope="col">#</th>
             <th scope="col">Code article</th>
-            <th scope="col">Disignation</th>
-            <th scope="col">Prix HT</th>
-            <th scope="col">Prix TTC</th>
-            <th scope="col">Stocks atuels</th>
-            <th scope="col">Action</th>
+            <th scope="col">Article</th>
+            <th scope="col">Quantite</th>
+            <th scope="col">Type Mvtstock</th>
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>c004</td>
-            <td>habits</td>
-            <td>1500</td>
-            <td>10</td>
-            <td>100</td>
+          <tr *ngFor="let mvtStockDto of mvtStkList">
+            <th scope="row">{{mvtStockDto.id}}</th>
+            <td>{{mvtStockDto.article}}</td>
+            <td>{{mvtStockDto.quantite}}</td>
+            <td>{{mvtStockDto.typeMvtStk}}</td>
+
             <td>
               <div class="btn-group">
                 <button type="button" class="btn btn-primary">Action</button>
@@ -105,34 +102,34 @@
               </div>
             </td>
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>c006</td>
-            <td>alimentation</td>
-            <td>250</td>
-            <td>10</td>
-            <td>50</td>
-            <td>
-              <div class="btn-group">
-                <button type="button" class="btn btn-primary">Action</button>
-                <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                  <span class="visually-hidden">Toggle Dropdown</span>
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Modifier</a></li>
-                  <li><a class="dropdown-item" href="#">Detail</a></li>
-                  <li>
-                    <div >
-                      <a type="button" class="dropdown-item" (click)="openModalCorrection()">
-                        Correction de stock
-                      </a>
-                    </div>
-                  </li>
-                  <li><a class="dropdown-item" href="#">Supprimer le mouvement</a></li>
-                </ul>
-              </div>
-            </td>
-          </tr>
+<!--          <tr>-->
+<!--            <th scope="row">2</th>-->
+<!--            <td>c006</td>-->
+<!--            <td>alimentation</td>-->
+<!--            <td>250</td>-->
+<!--            <td>10</td>-->
+<!--            <td>50</td>-->
+<!--            <td>-->
+<!--              <div class="btn-group">-->
+<!--                <button type="button" class="btn btn-primary">Action</button>-->
+<!--                <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">-->
+<!--                  <span class="visually-hidden">Toggle Dropdown</span>-->
+<!--                </button>-->
+<!--                <ul class="dropdown-menu">-->
+<!--                  <li><a class="dropdown-item" href="#">Modifier</a></li>-->
+<!--                  <li><a class="dropdown-item" href="#">Detail</a></li>-->
+<!--                  <li>-->
+<!--                    <div >-->
+<!--                      <a type="button" class="dropdown-item" (click)="openModalCorrection()">-->
+<!--                        Correction de stock-->
+<!--                      </a>-->
+<!--                    </div>-->
+<!--                  </li>-->
+<!--                  <li><a class="dropdown-item" href="#">Supprimer le mouvement</a></li>-->
+<!--                </ul>-->
+<!--              </div>-->
+<!--            </td>-->
+<!--          </tr>-->
 
           <!-- Basic Modal -->
           <!--                    <app-boutton-action (clickEvent)="nouvelleCommandeClient()"></app-boutton-action>-->
