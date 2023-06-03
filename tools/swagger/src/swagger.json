@@ -1485,6 +1485,10 @@
         "designation" : {
           "type" : "string"
         },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
         "prixUnitaireHt" : {
           "type" : "number"
         },
@@ -1538,6 +1542,10 @@
         },
         "designation" : {
           "type" : "string"
+        },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
         },
         "prixUnitaireHt" : {
           "type" : "number"
@@ -1624,6 +1632,9 @@
         },
         "code" : {
           "type" : "string"
+        },
+        "actif" : {
+          "type" : "boolean"
         },
         "designation" : {
           "type" : "string"

@@ -5,6 +5,8 @@ import {FormBuilder} from "@angular/forms";
 import {ArticleService} from "./service/article.service";
 import {response} from "express";
 import {ArticleDto} from "../../../../gs-api/src/models/article-dto";
+import {DeleteArticleComponent} from "./delete-article/delete-article.component";
+import {DetailArticleComponent} from "./detail-article/detail-article.component";
 
 @Component({
   selector: 'app-article',
@@ -58,6 +60,16 @@ export class ArticleComponent implements OnInit{
 
   updateArticle(articleDto: ArticleDto) {
     const modalRef = this.ngbModal.open(NouvelArticleComponent, {size: 'md'});
+    this.closeModal(modalRef, articleDto);
+  }
+
+  detailsArticle(articleDto: ArticleDto) {
+    const modalRef = this.ngbModal.open(DetailArticleComponent, {size: 'lg'});
+    this.closeModal(modalRef, articleDto);
+  }
+
+  deleteArticle(articleDto: ArticleDto) {
+    const modalRef = this.ngbModal.open(DeleteArticleComponent, {size: 'md'});
     this.closeModal(modalRef, articleDto);
   }
 

@@ -5,6 +5,7 @@ export interface Article {
   category?: Category;
   code?: string;
   creationDate?: number;
+  dateEnregistrement?: string;
   designation?: string;
   id?: number;
   idEntreprise?: number;

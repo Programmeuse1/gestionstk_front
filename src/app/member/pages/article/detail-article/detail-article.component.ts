@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {ArticleDto} from "../../../../../gs-api/src/models/article-dto";
+import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-detail-article',
@@ -7,4 +9,13 @@ import { Component } from '@angular/core';
 })
 export class DetailArticleComponent {
 
+  articleDto: ArticleDto = {};
+
+  constructor(
+    private activeModal: NgbActiveModal
+  ) { }
+
+  cancle(): void {
+    this.activeModal.dismiss('cancel');
+  }
 }

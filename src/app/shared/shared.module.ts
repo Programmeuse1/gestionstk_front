@@ -1,11 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {DateHourFormatPipe} from "./pipe/DateHourFormatPipe";
+import {DateFormatUpdatePipe} from "./pipe/DateFormatUpdatePipe";
+import {DateFormatPipe} from "./pipe/DateFormatPipe";
+import {MyDatePipe} from "./pipe/myDatePipe.pipe";
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    MyDatePipe,
+    DateFormatPipe,
+    DateFormatUpdatePipe,
+    DateHourFormatPipe,
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -14,6 +23,10 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
   exports:[
     CommonModule,
     FormsModule,
+    MyDatePipe,
+    DateFormatPipe,
+    DateFormatUpdatePipe,
+    DateHourFormatPipe,
     ReactiveFormsModule
   ]
 })
