@@ -1427,6 +1427,10 @@
         "designation" : {
           "type" : "string"
         },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
         "prixUnitaireHt" : {
           "type" : "number"
         },
@@ -1480,6 +1484,10 @@
         },
         "designation" : {
           "type" : "string"
+        },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
         },
         "prixUnitaireHt" : {
           "type" : "number"

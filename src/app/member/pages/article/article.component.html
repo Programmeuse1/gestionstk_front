@@ -107,6 +107,7 @@
               <th scope="col">N°</th>
               <th scope="col">Code article</th>
               <th scope="col">Designation</th>
+              <th scope="col">Date Creation</th>
               <th scope="col">Etat</th>
               <th scope="col">Prix HT</th>
               <th scope="col">Prix TTC</th>
@@ -120,6 +121,7 @@
               <td>{{i +1 }}</td>
               <td>{{article.code != null ? article.code : '-'}}</td>
               <td>{{article.designation != null ? article.designation : '-'}}</td>
+              <td>{{article.dateEnregistrement | dateHourFormat}}</td>
               <td>
                 <button [disabled]="true" *ngIf = "article?.actif" class = "btn btn-sm btn-success">Actif</button>
                 <button [disabled]="true" *ngIf = "!article?.actif" class = "btn btn-sm btn-danger">Non Actif</button>
@@ -136,8 +138,8 @@
                   </button>
                   <ul class="dropdown-menu">
                     <li><a class="dropdown-item" (click)="updateArticle(article)">Modifier</a></li>
-                    <li><a class="dropdown-item">Detail</a></li>
-                    <li><a class="dropdown-item">Supprimer</a></li>
+                    <li><a class="dropdown-item" (click)="detailsArticle(article)">Detail</a></li>
+                    <li><a class="dropdown-item" (click)="deleteArticle(article)">Supprimer</a></li>
                   </ul>
                 </div>
               </td>

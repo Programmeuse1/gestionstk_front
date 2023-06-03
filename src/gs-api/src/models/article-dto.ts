@@ -4,6 +4,7 @@ export interface ArticleDto {
   actif?: boolean;
   category?: CategoryDto;
   code?: string;
+  dateEnregistrement?: string;
   designation?: string;
   id?: number;
   idEntreprise?: number;

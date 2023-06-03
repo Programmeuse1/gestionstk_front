@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import {SharedModule} from "./shared/shared.module";
 import {RouterModule} from "@angular/router";
 import {CoreModule} from "./core/core.module";
+import {DateFormatPipe} from "./shared/pipe/DateFormatPipe";
+import {DateFormatUpdatePipe} from "./shared/pipe/DateFormatUpdatePipe";
+import {DateHourFormatPipe} from "./shared/pipe/DateHourFormatPipe";
 
 
 
@@ -20,7 +23,11 @@ import {CoreModule} from "./core/core.module";
     SharedModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    DateFormatPipe,
+    DateFormatUpdatePipe,
+    DateHourFormatPipe
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
