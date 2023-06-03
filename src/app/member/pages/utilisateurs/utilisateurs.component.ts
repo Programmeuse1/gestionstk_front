@@ -3,6 +3,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {NouvelUtilisateurComponent} from "./nouvel-utilisateur/nouvel-utilisateur.component";
 import {UtilisateurDto} from "../../../../gs-api/src/models/utilisateur-dto";
 import {UtilisateursService} from "./service/utilisateurs.service";
+import {FormBuilder} from "@angular/forms";
 
 @Component({
   selector: 'app-utilisateurs',
@@ -11,10 +12,20 @@ import {UtilisateursService} from "./service/utilisateurs.service";
 })
 export class UtilisateursComponent implements OnInit{
 
+  searchForm = this.fb.group({
+    nom: [],
+    /*numeroCni: [],
+    email: [],
+    telephone: [],
+    adresse: [],*/
+    itemsPerPage: [10],
+  });
+
   utilisateurList: Array<UtilisateurDto> = [];
 
   constructor(
     private ngbModal: NgbModal,
+    private fb: FormBuilder,
     private utilisateurService: UtilisateursService,
   ) {}
 
@@ -41,5 +52,9 @@ export class UtilisateursComponent implements OnInit{
 
       }
       });
+  }
+
+  findAll(){
+
   }
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {ClientsApiService} from "../../../../../gs-api/src/services/clients-api.service";
 import {Observable} from "rxjs";
 import {ClientDto} from "../../../../../gs-api/src/models/client-dto";
+import {ClientCriteria} from "../../../../../gs-api/src/models/client-criteria";
 
 @Injectable({
   providedIn: 'root'
@@ -36,5 +37,9 @@ export class ClientService {
   deleteClient(idClient: number): Observable<ClientDto> {
     return this.clients.delete(idClient);
 
+  }
+
+  listingClient(clientCriteria: ClientCriteria):Observable<ClientDto[]>{
+    return this.clients.listingClient(clientCriteria)
   }
 }

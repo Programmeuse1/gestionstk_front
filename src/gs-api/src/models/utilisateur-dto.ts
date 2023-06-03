@@ -5,6 +5,7 @@ import { RolesDto } from './roles-dto';
 export interface UtilisateurDto {
   adresse?: Adresse;
   dateDeNaissance?: number;
+  dateEnregistrement?: string;
   email?: string;
   entreprise?: EntrepriseDto;
   id?: number;

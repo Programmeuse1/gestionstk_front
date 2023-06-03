@@ -4,6 +4,7 @@ import {NouvelleCategorieComponent} from "./nouvelle-categorie/nouvelle-categori
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {CategorieService} from "./service/categorie.service";
 import {CategoryDto} from "../../../../gs-api/src/models/category-dto";
+import {FormBuilder} from "@angular/forms";
 
 @Component({
   selector: 'app-categorie',
@@ -12,10 +13,20 @@ import {CategoryDto} from "../../../../gs-api/src/models/category-dto";
 })
 export class CategorieComponent implements OnInit{
 
+  searchForm = this.fb.group({
+    nom: [],
+    /*numeroCni: [],
+    email: [],
+    telephone: [],
+    adresse: [],*/
+    itemsPerPage: [10],
+  });
+
   categoryList: Array<CategoryDto> = [];
 
   constructor(
     private ngbModal: NgbModal,
+    private fb: FormBuilder,
     private categorieService: CategorieService
   ) {}
 
@@ -42,5 +53,9 @@ export class CategorieComponent implements OnInit{
 
       }
     });
+  }
+
+  findAll() {
+
   }
 }

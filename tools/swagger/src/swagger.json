@@ -439,6 +439,35 @@
         }
       }
     },
+    "/gestiondestock_backend/v1/client/listingClient" : {
+      "post" : {
+        "tags" : [ "clientsApi" ],
+        "summary" : "Renvoi la liste des clients en fonction des critères de recherche",
+        "description" : "Cette methode permet de chercher et de renvoyer la liste des clients qui existentdans la BD",
+        "operationId" : "listingClient",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/ClientCriteria"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "La liste des clients/ une liste vide",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/ClientDto"
+              }
+            }
+          }
+        }
+      }
+    },
     "/gestiondestock_backend/v1/client/nom/{nomClient}" : {
       "get" : {
         "tags" : [ "clientsApi" ],
@@ -908,6 +937,35 @@
           },
           "400" : {
             "description" : "Aucun fournisseur n'existe dans la bd avec l'ID fourni"
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/fournisseur/listingFournisseur" : {
+      "post" : {
+        "tags" : [ "fournisseurApi" ],
+        "summary" : "Renvoi la liste des fournisseurs en fonction des critères de recherche",
+        "description" : "Cette methode permet de chercher et de renvoyer la liste des fournisseurs qui existentdans la BD",
+        "operationId" : "listingFournisseur",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/FournisseurCriteria"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "La liste des fournisseurs/ une liste vide",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/FournisseurDto"
+              }
+            }
           }
         }
       }
@@ -1445,6 +1503,10 @@
         },
         "category" : {
           "$ref" : "#/definitions/Category"
+        },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
         }
       }
     },
@@ -1480,6 +1542,10 @@
         },
         "designation" : {
           "type" : "string"
+        },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
         },
         "prixUnitaireHt" : {
           "type" : "number"
@@ -1539,6 +1605,9 @@
         "code" : {
           "type" : "string"
         },
+        "actif" : {
+          "type" : "boolean"
+        },
         "designation" : {
           "type" : "string"
         },
@@ -1551,6 +1620,10 @@
           "items" : {
             "$ref" : "#/definitions/Article"
           }
+        },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
         }
       }
     },
@@ -1564,6 +1637,13 @@
         "code" : {
           "type" : "string"
         },
+        "actif" : {
+          "type" : "boolean"
+        },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
         "designation" : {
           "type" : "string"
         },
@@ -1579,6 +1659,23 @@
         }
       }
     },
+    "ClientCriteria" : {
+      "type" : "object",
+      "properties" : {
+        "nom" : {
+          "type" : "string"
+        },
+        "code" : {
+          "type" : "string"
+        },
+        "actif" : {
+          "type" : "boolean"
+        },
+        "nombreDeResultat" : {
+          "type" : "string"
+        }
+      }
+    },
     "ClientDto" : {
       "type" : "object",
       "properties" : {
@@ -1588,6 +1685,16 @@
         },
         "nom" : {
           "type" : "string"
+        },
+        "actif" : {
+          "type" : "boolean"
+        },
+        "code" : {
+          "type" : "string"
+        },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
         },
         "prenom" : {
           "type" : "string"
@@ -1621,6 +1728,10 @@
         "code" : {
           "type" : "string"
         },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
         "dateCommande" : {
           "type" : "integer",
           "format" : "int64"
@@ -1653,6 +1764,10 @@
         },
         "code" : {
           "type" : "string"
+        },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
         },
         "dateCommande" : {
           "type" : "integer",
@@ -1689,6 +1804,10 @@
         "adresse" : {
           "$ref" : "#/definitions/Adresse"
         },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
         "codeFiscal" : {
           "type" : "string"
         },
@@ -1712,6 +1831,23 @@
         }
       }
     },
+    "FournisseurCriteria" : {
+      "type" : "object",
+      "properties" : {
+        "nom" : {
+          "type" : "string"
+        },
+        "code" : {
+          "type" : "string"
+        },
+        "actif" : {
+          "type" : "boolean"
+        },
+        "nombreDeResultat" : {
+          "type" : "string"
+        }
+      }
+    },
     "FournisseurDto" : {
       "type" : "object",
       "properties" : {
@@ -1721,6 +1857,16 @@
         },
         "nom" : {
           "type" : "string"
+        },
+        "actif" : {
+          "type" : "boolean"
+        },
+        "code" : {
+          "type" : "string"
+        },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
         },
         "prenom" : {
           "type" : "string"
@@ -1759,6 +1905,10 @@
         "code" : {
           "type" : "string"
         },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
         "article" : {
           "$ref" : "#/definitions/ArticleDto"
         },
@@ -1782,6 +1932,10 @@
         },
         "quantite" : {
           "type" : "number"
+        },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
         },
         "prixUnitaire" : {
           "type" : "number"
@@ -1808,6 +1962,10 @@
         "code" : {
           "type" : "string"
         },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
         "prixUnitaire" : {
           "type" : "number"
         },
@@ -1830,6 +1988,10 @@
         "dateMvt" : {
           "type" : "integer",
           "format" : "int64"
+        },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
         },
         "quantite" : {
           "type" : "number"
@@ -1857,6 +2019,10 @@
         "roleName" : {
           "type" : "string"
         },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
         "utilisateur" : {
           "$ref" : "#/definitions/UtilisateurDto"
         }
@@ -1871,6 +2037,10 @@
         },
         "nom" : {
           "type" : "string"
+        },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
         },
         "prenom" : {
           "type" : "string"
@@ -1911,6 +2081,10 @@
         "id" : {
           "type" : "integer",
           "format" : "int64"
+        },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
         },
         "id_Entreprise" : {
           "type" : "integer",

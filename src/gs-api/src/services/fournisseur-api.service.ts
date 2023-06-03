@@ -8,6 +8,7 @@ import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
 import { FournisseurDto } from '../models/fournisseur-dto';
+import { FournisseurCriteria } from '../models/fournisseur-criteria';
 @Injectable({
   providedIn: 'root',
 })
@@ -16,6 +17,7 @@ class FournisseurApiService extends __BaseService {
   static readonly savePath = '/gestiondestock_backend/v1/fournisseur/create';
   static readonly deletePath = '/gestiondestock_backend/v1/fournisseur/delete/{idFournisseur}';
   static readonly findByIdPath = '/gestiondestock_backend/v1/fournisseur/id/{idFournisseur}';
+  static readonly listingFournisseurPath = '/gestiondestock_backend/v1/fournisseur/listingFournisseur';
   static readonly findByNomPath = '/gestiondestock_backend/v1/fournisseur/nom/{nomFournisseur}';
 
   constructor(
@@ -187,6 +189,48 @@ class FournisseurApiService extends __BaseService {
   findById(idFournisseur: number): __Observable<FournisseurDto> {
     return this.findByIdResponse(idFournisseur).pipe(
       __map(_r => _r.body as FournisseurDto)
+    );
+  }
+
+  /**
+   * Renvoi la liste des fournisseurs en fonction des critères de recherche
+   *
+   * Cette methode permet de chercher et de renvoyer la liste des fournisseurs qui existentdans la BD
+   * @param body undefined
+   * @return La liste des fournisseurs/ une liste vide
+   */
+  listingFournisseurResponse(body?: FournisseurCriteria): __Observable<__StrictHttpResponse<Array<FournisseurDto>>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = body;
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/gestiondestock_backend/v1/fournisseur/listingFournisseur`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Array<FournisseurDto>>;
+      })
+    );
+  }
+  /**
+   * Renvoi la liste des fournisseurs en fonction des critères de recherche
+   *
+   * Cette methode permet de chercher et de renvoyer la liste des fournisseurs qui existentdans la BD
+   * @param body undefined
+   * @return La liste des fournisseurs/ une liste vide
+   */
+  listingFournisseur(body?: FournisseurCriteria): __Observable<Array<FournisseurDto>> {
+    return this.listingFournisseurResponse(body).pipe(
+      __map(_r => _r.body as Array<FournisseurDto>)
     );
   }
 

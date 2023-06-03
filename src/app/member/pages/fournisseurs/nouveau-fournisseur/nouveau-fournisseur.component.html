@@ -1,37 +1,34 @@
 
-<form class="row g-3">
+<form class="row g-3" [formGroup]="fournisseurForm">
   <div class="modal-content">
     <div class="modal-header">
-      <h5 class="modal-title">creation de l'article</h5>
+      <h5 class="modal-title">creation du fournisseur</h5>
       <button type="button" class="btn-close me-1 p-1 float-end" aria-label="Close" (click)="cancel()"></button>
     </div>
     <div class="modal-body">
 
       <div class="col-md-12 mb-2">
-        <input type="text" class="form-control" placeholder="Nom">
+        <input type="text" class="form-control" placeholder="nom" formControlName="nom">
       </div>
       <div class="col-md-12 mb-2">
-        <input type="email" class="form-control" placeholder="Prenom">
+        <input type="text" class="form-control" placeholder="prenom" formControlName="prenom">
       </div>
       <div class="col-md-12 mb-2">
-        <input type="password" class="form-control" placeholder="Email">
+        <input type="email" class="form-control" placeholder="email" formControlName="mail">
       </div>
       <div class="col-12 mb-2">
-        <input type="text" class="form-control" placeholder="Telephone">
+        <input type="number" class="form-control" placeholder="numTel" formControlName="numTel">
       </div>
       <div class="col-md-12 mb-2">
-        <input type="text" class="form-control" placeholder="Adresse">
-      </div>
-      <div class="col-md-12 mb-2">
-        <input type="text" class="form-control" placeholder="Code postale">
-      </div>
-      <div class="col-md-12 mb-2">
-        <input type="text" class="form-control" placeholder="Ville">
+        <div class="form-group form-check">
+          <input type="checkbox" [checked]="true"  class="form-check-input" id="actif" formControlName="actif">
+          <label class="form-check-label" for="actif">Actif</label>
+        </div>
       </div>
     </div>
     <div class="modal-footer">
       <button type="submit" class="btn btn-primary float-start" (click)="cancel()"><i class="bi bi-dash-circle-fill"></i>&nbsp; Annuler</button>
-      <button type="reset" class="btn btn-secondary float-end">  <i class="bi bi-archive-fill"></i>&nbsp;Enregistrer</button>
+      <button type="reset" class="btn btn-secondary float-end" (click)="saveFournisseur()">  <i class="bi bi-archive-fill"></i>&nbsp;Enregistrer</button>
     </div>
   </div>
 </form>

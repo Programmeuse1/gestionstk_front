@@ -1,1 +1,70 @@
-<p>detail-article works!</p>
+<div class="modal-content">
+  <div class="modal-header p-1">
+    <h5 class="modal-title font-weight-bold">Detail de l'article<span class="ms-1">{{articleDto.code}}</span></h5>
+    <button type="button" class="btn-close me-1 p-1" aria-label="Close" (click)="cancle()"></button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-6 mb-2">
+        <div class="form-group">
+          <label class="control-label field-font pb-1" for="code"> Code Aricle</label>
+          <input disabled type="text" class="form-control field-font-header p-1" name="code" id="code" value="{{articleDto.code ? articleDto.code : '-'}}"/>
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-2">
+        <div class="form-group">
+          <label class="control-label field-font pb-1" for="designation"> Designation</label>
+          <input disabled type="text" class="form-control field-font-header p-1" name="designation" id="designation" value="{{articleDto.designation ? articleDto.designation : '-'}}"/>
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-2">
+        <div class="form-group">
+          <label class="control-label field-font pb-1" for="prixUnitaireTtc"> Prix Unitaire ttc </label>
+          <input type="text" disabled class="form-control field-font-header p-1" name="prixUnitaireTtc" id="prixUnitaireTtc" value="{{articleDto.prixUnitaireTtc ? articleDto.prixUnitaireTtc : '-'}}"/>
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-2">
+        <div class="form-group">
+          <label class="control-label field-font pb-1" for="tauxTva"> Prix HT </label>
+          <input type="text" disabled class="form-control field-font-header p-1" name="tauxTva" id="prixHt" value="{{articleDto.prixUnitaireHt ? articleDto.prixUnitaireHt : '-'}}"/>
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-2">
+        <div class="form-group">
+          <label class="control-label field-font pb-1" for="tauxTva"> Taux tva </label>
+          <input type="text" disabled class="form-control field-font-header p-1" name="tauxTva" id="tauxTva" value="{{articleDto.tauxTva ? articleDto.tauxTva : '-'}}"/>
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-2">
+        <div class="form-group">
+          <label class="control-label field-font pb-1" for="codeCatgorie"> Code categorie </label>
+          <input type="text" disabled class="form-control field-font-header p-1" name="codeCatgorie" id="codeCatgorie" value="{{articleDto.category?.code ? articleDto.category?.code : '-'}}"/>
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-2">
+        <div class="form-group">
+          <label class="control-label field-font pb-1" for="dateCreationArticle"> Date de création </label>
+          <input type="text" disabled class="form-control field-font-header p-1" name="dateCreationArticle" id="dateCreationArticle" value="{{articleDto.dateEnregistrement | dateHourFormat}}"/>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-check" *ngIf = "articleDto.actif">
+          <input type="checkbox" disabled class="form-check-input" id="isActif"  [checked]="articleDto.actif">
+          <label class="form-check-label field-font" for="isActif"><strong>Actif</strong></label>
+        </div>
+        <div class="form-group form-check" *ngIf = "!articleDto.actif">
+          <input type="checkbox" disabled class="form-check-input" id="isNotActif"  [checked]="articleDto.actif">
+          <label class="form-check-label field-font" for="isActif"><strong>Non Actif</strong></label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

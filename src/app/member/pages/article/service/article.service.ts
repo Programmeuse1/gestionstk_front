@@ -4,7 +4,6 @@ import {ArticleDto} from "../../../../../gs-api/src/models/article-dto";
 import {Observable} from "rxjs";
 import {ArticlesApiService} from "../../../../../gs-api/src/services";
 import {ArticleCriteria} from "../../../../../gs-api/src/models/article-criteria";
-import {Article} from "../../../../../gs-api/src/models/article";
 
 @Injectable({
   providedIn: 'root'

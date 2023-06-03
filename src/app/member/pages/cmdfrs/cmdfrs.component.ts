@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {NouveauFournisseurComponent} from "./nouveau-fournisseur/nouveau-fournisseur.component";
 import {DetailCmfrsComponent} from "./detail-cmfrs/detail-cmfrs.component";
+import {FormBuilder} from "@angular/forms";
 
 @Component({
   selector: 'app-cmdfrs',
@@ -10,9 +11,18 @@ import {DetailCmfrsComponent} from "./detail-cmfrs/detail-cmfrs.component";
 })
 export class CmdfrsComponent {
 
+  searchForm = this.fb.group({
+    nom: [],
+    /*numeroCni: [],
+    email: [],
+    telephone: [],
+    adresse: [],*/
+    itemsPerPage: [10],
+  });
 
   constructor(
     private ngbModal: NgbModal,
+    private fb: FormBuilder
   ) {}
 
 
@@ -32,6 +42,10 @@ export class CmdfrsComponent {
 
       }
     })
+  }
+
+  findAll(){
+
   }
 
 }

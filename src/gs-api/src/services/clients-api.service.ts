@@ -8,6 +8,7 @@ import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
 import { ClientDto } from '../models/client-dto';
+import { ClientCriteria } from '../models/client-criteria';
 @Injectable({
   providedIn: 'root',
 })
@@ -16,6 +17,7 @@ class ClientsApiService extends __BaseService {
   static readonly savePath = '/gestiondestock_backend/v1/client/create';
   static readonly deletePath = '/gestiondestock_backend/v1/client/delete/{idClient}';
   static readonly findByIdPath = '/gestiondestock_backend/v1/client/id/{idClient}';
+  static readonly listingClientPath = '/gestiondestock_backend/v1/client/listingClient';
   static readonly findByNomPath = '/gestiondestock_backend/v1/client/nom/{nomClient}';
 
   constructor(
@@ -187,6 +189,48 @@ class ClientsApiService extends __BaseService {
   findById(idClient: number): __Observable<ClientDto> {
     return this.findByIdResponse(idClient).pipe(
       __map(_r => _r.body as ClientDto)
+    );
+  }
+
+  /**
+   * Renvoi la liste des clients en fonction des critères de recherche
+   *
+   * Cette methode permet de chercher et de renvoyer la liste des clients qui existentdans la BD
+   * @param body undefined
+   * @return La liste des clients/ une liste vide
+   */
+  listingClientResponse(body?: ClientCriteria): __Observable<__StrictHttpResponse<Array<ClientDto>>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = body;
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/gestiondestock_backend/v1/client/listingClient`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Array<ClientDto>>;
+      })
+    );
+  }
+  /**
+   * Renvoi la liste des clients en fonction des critères de recherche
+   *
+   * Cette methode permet de chercher et de renvoyer la liste des clients qui existentdans la BD
+   * @param body undefined
+   * @return La liste des clients/ une liste vide
+   */
+  listingClient(body?: ClientCriteria): __Observable<Array<ClientDto>> {
+    return this.listingClientResponse(body).pipe(
+      __map(_r => _r.body as Array<ClientDto>)
     );
   }
 
