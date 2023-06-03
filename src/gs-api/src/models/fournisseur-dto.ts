@@ -6,6 +6,7 @@ export interface FournisseurDto {
   adresse?: Adresse;
   code?: string;
   commandeFournisseurs?: Array<CommandeFournisseurDto>;
+  dateEnregistrement?: string;
   id?: number;
   idEntreprise?: number;
   mail?: string;

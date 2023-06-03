@@ -5,6 +5,7 @@ export interface Category {
   articles?: Array<Article>;
   code?: string;
   creationDate?: number;
+  dateEnregistrement?: string;
   designation?: string;
   id?: number;
   idEntreprise?: number;

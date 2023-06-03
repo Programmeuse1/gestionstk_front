@@ -2,6 +2,7 @@
 import { ArticleDto } from './article-dto';
 export interface MvtStockDto {
   article?: ArticleDto;
+  dateEnregistrement?: string;
   dateMvt?: number;
   id?: number;
   idEntreprise?: number;
