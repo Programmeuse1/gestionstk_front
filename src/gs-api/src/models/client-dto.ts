@@ -4,6 +4,8 @@ export interface ClientDto {
   actif?: boolean;
   adresse?: Adresse;
   code?: string;
+  dateEnregistrement?: string;
+  email?: string;
   id?: number;
   id_Entreprise?: number;
   nom?: string;

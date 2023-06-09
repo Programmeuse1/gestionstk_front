@@ -4,6 +4,7 @@ import { LigneCommandeFournisseurDto } from './ligne-commande-fournisseur-dto';
 export interface CommandeFournisseurDto {
   code?: string;
   dateCommande?: number;
+  dateEnregistrement?: string;
   etatCommande?: 'EN_PREPARATION' | 'VALIDEE' | 'LIVREE';
   fournisseur?: FournisseurDto;
   id?: number;

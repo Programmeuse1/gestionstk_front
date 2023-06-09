@@ -4,6 +4,7 @@ import { UtilisateurDto } from './utilisateur-dto';
 export interface EntrepriseDto {
   adresse?: Adresse;
   codeFiscal?: string;
+  dateEnregistrement?: string;
   description?: string;
   email?: string;
   id?: number;

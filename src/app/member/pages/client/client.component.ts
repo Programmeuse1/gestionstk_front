@@ -7,6 +7,10 @@ import {ClientDto} from "../../../../gs-api/src/models/client-dto";
 import {ClientService} from "./service/client.service";
 import {ArticleDto} from "../../../../gs-api/src/models/article-dto";
 import {NouvelArticleComponent} from "../article/nouvel-article/nouvel-article.component";
+import {DeleteArticleComponent} from "../article/delete-article/delete-article.component";
+import {DeleteClientComponent} from "./delete-client/delete-client.component";
+import {DetailArticleComponent} from "../article/detail-article/detail-article.component";
+import {DetailClientComponent} from "./detail-client/detail-client.component";
 
 @Component({
   selector: 'app-client',
@@ -59,10 +63,18 @@ export class ClientComponent implements OnInit{
     })
   }
 
-
-
   updateClient(clientDto: ClientDto) {
     const modalRef = this.ngbModal.open(NouveauClientComponent, {size: 'md'});
+    this.closeModal(modalRef, clientDto);
+  }
+
+  detailClient(clientDto: ClientDto) {
+    const modalRef = this.ngbModal.open(DetailClientComponent, {size: 'lg'});
+    this.closeModal(modalRef, clientDto);
+  }
+
+  deleteClient(clientDto: ClientDto) {
+    const modalRef = this.ngbModal.open(DeleteClientComponent, {size: 'md'});
     this.closeModal(modalRef, clientDto);
   }
 

@@ -19,5 +19,6 @@ export { LigneCommandeFournisseurDto } from './models/ligne-commande-fournisseur
 export { LigneVenteDto } from './models/ligne-vente-dto';
 export { MvtStockDto } from './models/mvt-stock-dto';
 export { RolesDto } from './models/roles-dto';
+export { UtilisateurCriteria } from './models/utilisateur-criteria';
 export { UtilisateurDto } from './models/utilisateur-dto';
 export { VentesDto } from './models/ventes-dto';

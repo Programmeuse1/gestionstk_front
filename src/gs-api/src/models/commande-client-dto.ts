@@ -5,6 +5,7 @@ export interface CommandeClientDto {
   client?: ClientDto;
   code?: string;
   dateCommande?: number;
+  dateEnregistrement?: string;
   etatCommande?: 'EN_PREPARATION' | 'VALIDEE' | 'LIVREE';
   id?: number;
   idEntreprise?: number;

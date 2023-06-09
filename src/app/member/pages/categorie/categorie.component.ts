@@ -5,8 +5,11 @@ import {NgbModal, NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
 import {CategorieService} from "./service/categorie.service";
 import {CategoryDto} from "../../../../gs-api/src/models/category-dto";
 import {FormBuilder} from "@angular/forms";
-import {FournisseurDto} from "../../../../gs-api/src/models/fournisseur-dto";
-import {NouveauFournisseurComponent} from "../fournisseurs/nouveau-fournisseur/nouveau-fournisseur.component";
+import {ArticleDto} from "../../../../gs-api/src/models/article-dto";
+import {DeleteArticleComponent} from "../article/delete-article/delete-article.component";
+import {DeleteCategorieComponent} from "./delete-categorie/delete-categorie.component";
+import {DetailArticleComponent} from "../article/detail-article/detail-article.component";
+import {DetailCategorieComponent} from "./detail-categorie/detail-categorie.component";
 
 @Component({
   selector: 'app-categorie',
@@ -63,6 +66,16 @@ export class CategorieComponent implements OnInit{
   updateCategory(categoryDto: CategoryDto) {
     console.log(categoryDto);
     const modalRef = this.ngbModal.open(NouvelleCategorieComponent, {size: 'md'});
+    this.closeModal(modalRef, categoryDto);
+  }
+
+  detailCategory(categoryDto: CategoryDto) {
+    const modalRef = this.ngbModal.open(DetailCategorieComponent, {size: 'lg'});
+    this.closeModal(modalRef, categoryDto);
+  }
+
+  deleteCategorie(categoryDto: CategoryDto) {
+    const modalRef = this.ngbModal.open(DeleteCategorieComponent, {size: 'md'});
     this.closeModal(modalRef, categoryDto);
   }
 

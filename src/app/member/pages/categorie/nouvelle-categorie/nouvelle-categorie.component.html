@@ -8,15 +8,19 @@
     <div class="modal-body">
 
       <div class="col-md-12 mb-2">
-        <input type="text" class="form-control" placeholder="Code categorie" formControlName="code">
+        <label><strong>Designation</strong></label>
+        <input type="email" class="form-control" placeholder="Description" formControlName="designation">
       </div>
       <div class="col-md-12 mb-2">
-        <input type="email" class="form-control" placeholder="Description" formControlName="designation">
+        <div class="form-group form-check">
+          <input type="checkbox" [checked]="true"  class="form-check-input" id="actif" formControlName="actif">
+          <label class="form-check-label" for="actif">Actif</label>
+        </div>
       </div>
     </div>
     <div class="modal-footer">
       <button type="submit" class="btn btn-primary float-start" (click)="cancel()"><i class="bi bi-dash-circle-fill"></i>&nbsp; Annuler</button>
-      <button type="reset" class="btn btn-secondary float-end" (click)="saveCategory()"><i class="bi bi-archive-fill"></i>&nbsp;Enregistrer</button>
+      <button type="reset" class="btn btn-secondary float-end" [disabled]="categorieForm.invalid || isSaving "  (click)="saveCategory()"><i class="bi bi-archive-fill"></i>&nbsp;Enregistrer</button>
     </div>
   </div>
 </form>

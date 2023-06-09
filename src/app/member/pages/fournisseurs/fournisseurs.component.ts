@@ -4,6 +4,12 @@ import {NouveauFournisseurComponent} from "./nouveau-fournisseur/nouveau-fournis
 import {FormBuilder} from "@angular/forms";
 import {FournisseurDto} from "../../../../gs-api/src/models/fournisseur-dto";
 import {FournisseursService} from "./service/fournisseurs.service";
+import {ArticleDto} from "../../../../gs-api/src/models/article-dto";
+import {DeleteArticleComponent} from "../article/delete-article/delete-article.component";
+import {DeleteFournisseurComponent} from "./delete-fournisseur/delete-fournisseur.component";
+import {ClientDto} from "../../../../gs-api/src/models/client-dto";
+import {DetailClientComponent} from "../client/detail-client/detail-client.component";
+import {DetailFournisseurComponent} from "./detail-fournisseur/detail-fournisseur.component";
 
 @Component({
   selector: 'app-fournisseurs',
@@ -56,6 +62,16 @@ export class FournisseursComponent implements OnInit{
 
       }
     })
+  }
+
+  detailFournisseur(fournisseurDto: FournisseurDto) {
+    const modalRef = this.ngbModal.open(DetailFournisseurComponent, {size: 'lg'});
+    this.closeModal(modalRef, fournisseurDto);
+  }
+
+  deleteFournisseur(fournisseurDto: FournisseurDto) {
+    const modalRef = this.ngbModal.open(DeleteFournisseurComponent, {size: 'md'});
+    this.closeModal(modalRef, fournisseurDto);
   }
 
   updateFournisseur(fournisseurDto: FournisseurDto) {

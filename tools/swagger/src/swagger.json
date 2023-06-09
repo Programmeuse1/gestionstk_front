@@ -1344,6 +1344,35 @@
         }
       }
     },
+    "/gestiondestock_backend/v1/utilisateur/listingUtilisateur" : {
+      "post" : {
+        "tags" : [ "utilisateurApi" ],
+        "summary" : "Renvoi la liste des utilisateurs en fonction des critères de recherche",
+        "description" : "Cette methode permet de chercher et de renvoyer la liste des utilisateurs qui existentdans la BD",
+        "operationId" : "listingUtilisateur",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/UtilisateurCriteria"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "La liste des utilisateurs/ une liste vide",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/UtilisateurDto"
+              }
+            }
+          }
+        }
+      }
+    },
     "/gestiondestock_backend/v1/utilisateur/nom/{nomUtilisateur}" : {
       "get" : {
         "tags" : [ "utilisateurApi" ],
@@ -1514,10 +1543,6 @@
         "designation" : {
           "type" : "string"
         },
-        "dateEnregistrement" : {
-          "type" : "string",
-          "format" : "date-time"
-        },
         "prixUnitaireHt" : {
           "type" : "number"
         },
@@ -1536,6 +1561,10 @@
         },
         "category" : {
           "$ref" : "#/definitions/Category"
+        },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
         }
       }
     },
@@ -1649,6 +1678,10 @@
           "items" : {
             "$ref" : "#/definitions/Article"
           }
+        },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
         }
       }
     },
@@ -1681,6 +1714,10 @@
         },
         "actif" : {
           "type" : "boolean"
+        },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
         },
         "designation" : {
           "type" : "string"
@@ -1730,6 +1767,13 @@
         "code" : {
           "type" : "string"
         },
+        "email" : {
+          "type" : "string"
+        },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
         "prenom" : {
           "type" : "string"
         },
@@ -1761,6 +1805,10 @@
         },
         "code" : {
           "type" : "string"
+        },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
         },
         "dateCommande" : {
           "type" : "integer",
@@ -1794,6 +1842,10 @@
         },
         "code" : {
           "type" : "string"
+        },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
         },
         "dateCommande" : {
           "type" : "integer",
@@ -1829,6 +1881,10 @@
         },
         "adresse" : {
           "$ref" : "#/definitions/Adresse"
+        },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
         },
         "codeFiscal" : {
           "type" : "string"
@@ -1886,6 +1942,10 @@
         "code" : {
           "type" : "string"
         },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
         "prenom" : {
           "type" : "string"
         },
@@ -1923,6 +1983,10 @@
         "code" : {
           "type" : "string"
         },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
         "article" : {
           "$ref" : "#/definitions/ArticleDto"
         },
@@ -1946,6 +2010,10 @@
         },
         "quantite" : {
           "type" : "number"
+        },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
         },
         "prixUnitaire" : {
           "type" : "number"
@@ -1972,6 +2040,10 @@
         "code" : {
           "type" : "string"
         },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
         "prixUnitaire" : {
           "type" : "number"
         },
@@ -1994,6 +2066,10 @@
         "dateMvt" : {
           "type" : "integer",
           "format" : "int64"
+        },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
         },
         "quantite" : {
           "type" : "number"
@@ -2021,8 +2097,29 @@
         "roleName" : {
           "type" : "string"
         },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
+        },
         "utilisateur" : {
           "$ref" : "#/definitions/UtilisateurDto"
+        }
+      }
+    },
+    "UtilisateurCriteria" : {
+      "type" : "object",
+      "properties" : {
+        "nom" : {
+          "type" : "string"
+        },
+        "code" : {
+          "type" : "string"
+        },
+        "actif" : {
+          "type" : "boolean"
+        },
+        "nombreDeResultat" : {
+          "type" : "string"
         }
       }
     },
@@ -2035,6 +2132,16 @@
         },
         "nom" : {
           "type" : "string"
+        },
+        "actif" : {
+          "type" : "boolean"
+        },
+        "code" : {
+          "type" : "string"
+        },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
         },
         "prenom" : {
           "type" : "string"
@@ -2075,6 +2182,10 @@
         "id" : {
           "type" : "integer",
           "format" : "int64"
+        },
+        "dateEnregistrement" : {
+          "type" : "string",
+          "format" : "date-time"
         },
         "id_Entreprise" : {
           "type" : "integer",

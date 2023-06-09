@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import {CategoriesApiService} from "../../../../../gs-api/src/services/categories-api.service";
 import {Observable} from "rxjs";
 import {CategoryDto} from "../../../../../gs-api/src/models/category-dto";
-import {FournisseurCriteria} from "../../../../../gs-api/src/models/fournisseur-criteria";
-import {FournisseurDto} from "../../../../../gs-api/src/models/fournisseur-dto";
 import {CategoryCriteria} from "../../../../../gs-api/src/models/category-criteria";
 
 @Injectable({
