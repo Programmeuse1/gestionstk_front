@@ -10,4 +10,5 @@ export interface CommandeClientDto {
   id?: number;
   idEntreprise?: number;
   ligneCommandeClients?: Array<LigneCommandeClientDto>;
+  observation?: string;
 }

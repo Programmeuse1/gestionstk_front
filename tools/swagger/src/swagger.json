@@ -549,7 +549,7 @@
           "name" : "body",
           "required" : false,
           "schema" : {
-            "$ref" : "#/definitions/CommandeClientDto"
+            "$ref" : "#/definitions/CommandeClientUpdate"
           }
         } ],
         "responses" : {
@@ -574,8 +574,11 @@
           "format" : "int64"
         } ],
         "responses" : {
-          "default" : {
-            "description" : "successful operation"
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/CommandeClientDto"
+            }
           }
         }
       }
@@ -1082,6 +1085,31 @@
         }
       }
     },
+    "/gestiondestock_backend/v1/mvtStock/mvtStock/listingMvtStock" : {
+      "post" : {
+        "tags" : [ "mvtstockApi" ],
+        "operationId" : "listingMvtStock",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/MvtStockCriteria"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/MvtStockDto"
+              }
+            }
+          }
+        }
+      }
+    },
     "/gestiondestock_backend/v1/mvtStock/{idMvtStock}" : {
       "get" : {
         "tags" : [ "mvtstockApi" ],
@@ -1549,6 +1577,9 @@
         "tauxTva" : {
           "type" : "number"
         },
+        "prix" : {
+          "type" : "number"
+        },
         "prixUnitaireTtc" : {
           "type" : "number"
         },
@@ -1826,6 +1857,23 @@
           "items" : {
             "$ref" : "#/definitions/LigneCommandeClientDto"
           }
+        },
+        "observation" : {
+          "type" : "string"
+        }
+      }
+    },
+    "CommandeClientUpdate" : {
+      "type" : "object",
+      "properties" : {
+        "commandeClientDto" : {
+          "$ref" : "#/definitions/CommandeClientDto"
+        },
+        "ligneCommandeClientDtoList" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/LigneCommandeClientDto"
+          }
         }
       }
     },
@@ -1875,6 +1923,12 @@
         },
         "nom" : {
           "type" : "string"
+        },
+        "code" : {
+          "type" : "string"
+        },
+        "actif" : {
+          "type" : "boolean"
         },
         "description" : {
           "type" : "string"
@@ -1990,6 +2044,9 @@
         "article" : {
           "$ref" : "#/definitions/ArticleDto"
         },
+        "observation" : {
+          "type" : "string"
+        },
         "quantite" : {
           "type" : "number"
         },
@@ -2056,6 +2113,20 @@
         }
       }
     },
+    "MvtStockCriteria" : {
+      "type" : "object",
+      "properties" : {
+        "article" : {
+          "$ref" : "#/definitions/Article"
+        },
+        "dateEnregistrement" : {
+          "type" : "string"
+        },
+        "nombreDeResultat" : {
+          "type" : "string"
+        }
+      }
+    },
     "MvtStockDto" : {
       "type" : "object",
       "properties" : {
@@ -2084,6 +2155,10 @@
         "typeMvtStk" : {
           "type" : "string",
           "enum" : [ "ENTREE", "SORTIE", "CORRECTION_POS", "CORRECTION_NEG" ]
+        },
+        "sourceMvtStk" : {
+          "type" : "string",
+          "enum" : [ "COMMANDE_CLIENT", "COMMANDE_FOURNISSEUR", "VENTE" ]
         }
       }
     },

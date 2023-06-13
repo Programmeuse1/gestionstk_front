@@ -7,5 +7,6 @@ export interface MvtStockDto {
   id?: number;
   idEntreprise?: number;
   quantite?: number;
+  sourceMvtStk?: 'COMMANDE_CLIENT' | 'COMMANDE_FOURNISSEUR' | 'VENTE';
   typeMvtStk?: 'ENTREE' | 'SORTIE' | 'CORRECTION_POS' | 'CORRECTION_NEG';
 }

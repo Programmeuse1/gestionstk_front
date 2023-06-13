@@ -5,6 +5,7 @@ export interface LigneCommandeClientDto {
   code?: string;
   dateEnregistrement?: string;
   id?: number;
+  observation?: string;
   prixUnitaire?: number;
   quantite?: number;
 }

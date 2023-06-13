@@ -2,7 +2,9 @@
 import { Adresse } from './adresse';
 import { UtilisateurDto } from './utilisateur-dto';
 export interface EntrepriseDto {
+  actif?: boolean;
   adresse?: Adresse;
+  code?: string;
   codeFiscal?: string;
   dateEnregistrement?: string;
   description?: string;

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {DetailMvtstkComponent} from "./detail-mvtstk/detail-mvtstk.component";
 import {FormBuilder} from "@angular/forms";
@@ -10,18 +10,15 @@ import {MvtstkService} from "./service/mvtstk.service";
   templateUrl: './mvtstk.component.html',
   styleUrls: ['./mvtstk.component.scss']
 })
-export class MvtstkComponent {
+export class MvtstkComponent implements OnInit{
 
+  mvtStockDto: MvtStockDto [] = [];
   mvtStkList: Array<MvtStockDto> = [];
 
   searchForm = this.fb.group({
-    nom: [],
-    id: [],
-    /*numeroCni: [],
-    email: [],
-    telephone: [],
-    adresse: [],*/
-    itemsPerPage: [10],
+    article: [],
+    dateEnregistrement: [],
+    nombreDeResultat: ["10"],
   });
 
   constructor(
@@ -58,6 +55,16 @@ export class MvtstkComponent {
 
 
   findAll(){
-
+    this.mvtstkService.listingMvtStock({
+      article: this.searchForm.value.article ?? undefined,
+      dateEnregistrement: this.searchForm.value.dateEnregistrement ?? undefined,
+      nombreDeResultat: this.searchForm.value.nombreDeResultat ?? "10"
+    }
+    ).subscribe({
+      next: response =>{
+        this.mvtStkList = response;
+      },
+      error: err => console.log(err)
+    })
   }
 }

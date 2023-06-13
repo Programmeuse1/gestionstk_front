@@ -30,18 +30,27 @@
                 <div class="row">
                   <div class="col-md-4">
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Entrer l'identifiant"
-                             formControlName="id">
+                      <label class="control-label field-font">
+                        Article
+                      </label>
+                      <input type="text" class="form-control" placeholder="Entrer l'article"
+                             formControlName="article">
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
+                      <label class="control-label field-font">
+                        Date Mouvement Stock
+                      </label>
                       <input type="text" class="form-control" placeholder="Entrer la date" formControlName="datemvt">
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
-                      <select class="form-control"  formControlName="itemsPerPage">
+                      <label class="control-label field-font">
+                        Nombre de resultat
+                      </label>
+                      <select class="form-control"  formControlName="nombreDeResultat">
                         <option value="10">5</option>
                         <option value="50">25</option>
                         <option value="100">50</option>
@@ -62,24 +71,28 @@
     <div class="card">
       <div class="card-body">
 
-        <h1 class="card-title">Liste des Mouvement du Stock</h1>
+        <h1 class="card-title">Mouvement du Stock</h1>
         <!-- Table with stripped rows -->
         <table class="table datatable">
           <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">Code article</th>
+            <th scope="col">N°</th>
             <th scope="col">Article</th>
-            <th scope="col">Quantite</th>
+            <th scope="col">Quantite en stock</th>
+            <th scope="col">Date Mouvement</th>
             <th scope="col">Type Mvtstock</th>
+            <th scope="col">Source mvt</th>
+            <th scope="col">Action</th>
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let mvtStockDto of mvtStkList">
-            <th scope="row">{{mvtStockDto.id}}</th>
-            <td>{{mvtStockDto.article}}</td>
-            <td>{{mvtStockDto.quantite}}</td>
-            <td>{{mvtStockDto.typeMvtStk}}</td>
+          <tr *ngFor="let mvtStock of mvtStkList; let i = index">
+            <td>{{i +1 }}</td>
+            <td>{{mvtStock.article != null ? mvtStock.article : '-'}}</td>
+            <td>{{mvtStock.quantite != null ? mvtStock.quantite : '-'}}</td>
+            <td>{{mvtStock.dateEnregistrement | dateHourFormat}}</td>
+            <td>{{mvtStock.typeMvtStk != null ? mvtStock.typeMvtStk : '-'}}</td>
+            <td>{{mvtStock.sourceMvtStk != null ? mvtStock.sourceMvtStk : '-'}}</td>
 
             <td>
               <div class="btn-group">
