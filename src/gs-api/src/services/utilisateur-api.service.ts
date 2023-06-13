@@ -8,6 +8,7 @@ import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
 import { UtilisateurDto } from '../models/utilisateur-dto';
+import { UtilisateurCriteria } from '../models/utilisateur-criteria';
 @Injectable({
   providedIn: 'root',
 })
@@ -17,6 +18,7 @@ class UtilisateurApiService extends __BaseService {
   static readonly currentUserPath = '/gestiondestock_backend/v1/utilisateur/currentUser';
   static readonly deletePath = '/gestiondestock_backend/v1/utilisateur/delete/{idUtilisateur}';
   static readonly findByIdPath = '/gestiondestock_backend/v1/utilisateur/id/{idUtilisateur}';
+  static readonly listingUtilisateurPath = '/gestiondestock_backend/v1/utilisateur/listingUtilisateur';
   static readonly findByNomPath = '/gestiondestock_backend/v1/utilisateur/nom/{nomUtilisateur}';
 
   constructor(
@@ -225,6 +227,48 @@ class UtilisateurApiService extends __BaseService {
   findById(idUtilisateur: number): __Observable<UtilisateurDto> {
     return this.findByIdResponse(idUtilisateur).pipe(
       __map(_r => _r.body as UtilisateurDto)
+    );
+  }
+
+  /**
+   * Renvoi la liste des utilisateurs en fonction des critères de recherche
+   *
+   * Cette methode permet de chercher et de renvoyer la liste des utilisateurs qui existentdans la BD
+   * @param body undefined
+   * @return La liste des utilisateurs/ une liste vide
+   */
+  listingUtilisateurResponse(body?: UtilisateurCriteria): __Observable<__StrictHttpResponse<Array<UtilisateurDto>>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+    __body = body;
+    let req = new HttpRequest<any>(
+      'POST',
+      this.rootUrl + `/gestiondestock_backend/v1/utilisateur/listingUtilisateur`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Array<UtilisateurDto>>;
+      })
+    );
+  }
+  /**
+   * Renvoi la liste des utilisateurs en fonction des critères de recherche
+   *
+   * Cette methode permet de chercher et de renvoyer la liste des utilisateurs qui existentdans la BD
+   * @param body undefined
+   * @return La liste des utilisateurs/ une liste vide
+   */
+  listingUtilisateur(body?: UtilisateurCriteria): __Observable<Array<UtilisateurDto>> {
+    return this.listingUtilisateurResponse(body).pipe(
+      __map(_r => _r.body as Array<UtilisateurDto>)
     );
   }
 

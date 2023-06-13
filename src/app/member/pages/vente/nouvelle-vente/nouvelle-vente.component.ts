@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {FormBuilder} from "@angular/forms";
 import {VenteService} from "../service/vente.service";
-import {UtilisateurDto} from "../../../../../gs-api/src/models/utilisateur-dto";
-import {VentesDto} from "../../../../../gs-api/src/models/ventes-dto";
 
 @Component({
   selector: 'app-nouvelle-vente',
@@ -18,7 +16,7 @@ export class NouvelleVenteComponent implements OnInit {
     private ventesService: VenteService
   ) {}
 
-  utilisateurForm = this.fb.group({
+  venteForm = this.fb.group({
     email:  [null],
     motDePasse:  [null],
     nom:  [null],

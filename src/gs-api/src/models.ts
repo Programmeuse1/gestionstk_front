@@ -5,6 +5,7 @@ export { ArticleDto } from './models/article-dto';
 export { AuthenticationRequest } from './models/authentication-request';
 export { AuthenticationResponse } from './models/authentication-response';
 export { Category } from './models/category';
+export { CategoryCriteria } from './models/category-criteria';
 export { CategoryDto } from './models/category-dto';
 export { ClientCriteria } from './models/client-criteria';
 export { ClientDto } from './models/client-dto';
@@ -19,5 +20,6 @@ export { LigneCommandeFournisseurDto } from './models/ligne-commande-fournisseur
 export { LigneVenteDto } from './models/ligne-vente-dto';
 export { MvtStockDto } from './models/mvt-stock-dto';
 export { RolesDto } from './models/roles-dto';
+export { UtilisateurCriteria } from './models/utilisateur-criteria';
 export { UtilisateurDto } from './models/utilisateur-dto';
 export { VentesDto } from './models/ventes-dto';

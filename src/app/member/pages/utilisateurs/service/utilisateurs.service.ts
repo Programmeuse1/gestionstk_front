@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {UtilisateurDto} from "../../../../../gs-api/src/models/utilisateur-dto";
 import {UtilisateurApiService} from "../../../../../gs-api/src/services";
+import {UtilisateurCriteria} from "../../../../../gs-api/src/models/utilisateur-criteria";
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,10 @@ export class UtilisateursService {
   deleteUtilisateur(idUtilisateur: number): Observable<null> {
     return this.utilisateur.delete(idUtilisateur);
 
+  }
+
+  listingUtilisateur(utilisateurCriteria: UtilisateurCriteria):Observable<UtilisateurDto[]>{
+    return this.utilisateur.listingUtilisateur(utilisateurCriteria)
   }
 
   currentuser(): Observable<UtilisateurDto> {

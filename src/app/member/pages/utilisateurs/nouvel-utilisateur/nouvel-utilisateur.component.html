@@ -3,29 +3,41 @@
   <div class="modal-content">
     <div class="modal-header">
       <h5 class="modal-title">creation du l'utilisateur</h5>
+      <button type="button" class="btn-close me-1 p-1 float-end" aria-label="Close" (click)="cancel()"></button>
       <!--      <button type="button" class="btn-close me-1 p-1 float-end" aria-label="Close" (click)="cancel()"></button>-->
     </div>
     <div class="modal-body">
 
       <div class="col-md-12 mb-2">
+        <label><strong>Nom</strong></label>
         <input type="text" class="form-control" placeholder="nom" formControlName="nom">
       </div>
       <div class="col-md-12 mb-2">
+        <label><strong>Prenom</strong></label>
         <input type="email" class="form-control" placeholder="prenom" formControlName="prenom">
       </div>
       <div class="col-md-12 mb-2">
+        <label><strong>Email</strong></label>
         <input type="text" class="form-control" placeholder="email" formControlName="email">
       </div>
       <div class="col-12 mb-2">
+        <label><strong>Telephone</strong></label>
         <input type="number" class="form-control" placeholder="numTel" formControlName="numTel">
       </div>
       <div class="col-md-12 mb-2">
+        <label><strong>Mot de passe</strong></label>
         <input type="password" class="form-control" placeholder="motDePasse" formControlName="motDePasse">
+      </div>
+      <div class="col-md-12 mb-2">
+        <div class="form-group form-check">
+          <input type="checkbox" [checked]="true"  class="form-check-input" id="actif" formControlName="actif">
+          <label class="form-check-label" for="actif">Actif</label>
+        </div>
       </div>
     </div>
     <div class="modal-footer">
       <button type="submit" class="btn btn-primary float-start" (click)="cancel()"><i class="bi bi-dash-circle-fill"></i>&nbsp; Annuler</button>
-      <button type="reset" class="btn btn-secondary float-end" (click)="saveUtilisateur()">  <i class="bi bi-archive-fill"></i>&nbsp;Enregistrer</button>
+      <button type="reset" class="btn btn-secondary float-end" [disabled]="utilisateurForm.invalid || isSaving "  (click)="saveUtilisateur()">  <i class="bi bi-archive-fill"></i>&nbsp;Enregistrer</button>
     </div>
   </div>
 </form>

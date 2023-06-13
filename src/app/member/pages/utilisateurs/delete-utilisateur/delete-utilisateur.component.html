@@ -1,0 +1,30 @@
+<form name="deleteForm"  (ngSubmit)="onDeleteUtilisateur(utilisateurDto.id)"  novalidate="novalidate">
+  <div class="modal-header">
+    <h4 class="modal-title">Confirmation de suppression Utilisateur</h4>
+    <button type="button" class="close" data-dismiss="modal"  aria-label="Close" (click) = "cancel()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <p >
+      Vous êtes sur le point de supprimer l'utilisateur
+      <span class="" style="margin: 0 5px 0 5px; height: 10px; font-weight: bold; font-size: 16px; background-color: #91cb64">
+         {{utilisateurDto.code}}
+       </span>. <br/>
+      Voulez vous vraiment continuer?
+    </p>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click) = "cancel()">
+      <i class="fa fa-ban"></i>&nbsp;
+      <span>Annuler</span>
+    </button>
+    <button type="submit" class="btn btn-danger">
+      <i class="fa fa-trash"></i>&nbsp;
+      <span>Supprimer</span>
+    </button>
+  </div>
+</form>
+
