@@ -3,6 +3,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {NouvelleCommandeclientComponent} from "./nouvelle-commandeclient/nouvelle-commandeclient.component";
 import {DetailCmdcltComponent} from "./detail-cmdclt/detail-cmdclt.component";
 import {FormBuilder} from "@angular/forms";
+import {Route, Router} from "@angular/router";
 
 @Component({
   selector: 'app-cmdclt',
@@ -13,6 +14,7 @@ export class CmdcltComponent {
 
   searchForm = this.fb.group({
     nom: [],
+    code: [],
     /*numeroCni: [],
     email: [],
     telephone: [],
@@ -22,16 +24,12 @@ export class CmdcltComponent {
 
   constructor(
     private ngbModal: NgbModal,
-    private fb:FormBuilder
+    private fb:FormBuilder,
+    private router:Router
   ) {}
 
-  openModal(): void {
-    const modalRef = this.ngbModal.open(NouvelleCommandeclientComponent, {size: 'lg', backdrop: 'static', animation: true});
-    modalRef.closed.subscribe((res) => {
-      if('success-commandesclients' === res) {
-
-      }
-    })
+  openNouvelleCommandeClient(): void {
+    this.router.navigate(['member/commandesclients/nouvelle_commande_client']).then();
   }
 
   openModalDetaille(): void {

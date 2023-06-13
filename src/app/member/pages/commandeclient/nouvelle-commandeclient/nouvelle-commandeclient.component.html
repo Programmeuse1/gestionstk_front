@@ -1,0 +1,266 @@
+<div class="pagetitle mt-3">
+  <h1>Commande Client</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a [routerLink]="['/member/dashboard']" href="javascript:void(0)">Acceuil</a></li>
+      <li class="breadcrumb-item active">Commande Client</li>
+    </ol>
+  </nav>
+</div><!-- End Page Title -->
+
+<section class="section dashboard">
+  <form [formGroup]="saveCommandeForm">
+    <div class="row">
+      <div class="container-fluid">
+        <div class="card mb-4">
+          <div class="card-header">
+            <!--<h5 class="float-start font-weight-bold mt-1 ms-2" *ngIf="expeditionDto.id">
+              {{'expedition.update_expedition' | translate}} {{expeditionDto.numeroExpedition}}
+            </h5>-->
+            <h5 class=" float-start font-weight-bold mt-1 ms-2" >
+              Créer une commande
+            </h5>
+            <button class="btn btn-secondary float-end align-content-center" (click)="exit()" type="button">
+              <i class="bi bi-arrow-left"></i>
+            </button>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="row">
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label class="control-label field-font">
+                        Client</label>
+                      <ng-select [searchable]="true" [clearable]="true" placeholder="Selectionner le client" class="control-label" formControlName="client" [id]="'clientSelect'" (change)="clientSelect($event)" (clear)="onClearable()">
+                        <ng-option *ngFor="let client of ClientListDto" [value]="client">{{client.nom}}|{{client.numTel}}</ng-option>
+                      </ng-select>
+                    </div>
+                  </div>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="card">
+            <div class="content mb-2">
+              <div class="card-header card-header-padding">
+                <div class="d-flex align-items-center justify-content-between">
+                  <h5 class="font-weight-bold">Rechercher</h5>
+                  <button class="btn btn-sm btn-primary" (click)="findArticleByCriteria()">
+                    <span class="bi bi-search"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="control-label field-font">
+                            Désignation Article
+                          </label>
+                          <input type="text" class="form-control" placeholder="Entrer la désignation"
+                                 formControlName="designation">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label class="control-label field-font">
+                            Code Article
+                          </label>
+                          <input type="text" class="form-control" placeholder="Entrer le code" formControlName="code">
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--<ng-container *ngIf="stockageValide">-->
+        <ng-container >
+          <div class="content mt-4 mb-5">
+            <div class="container-fluid pe-0 ps-0">
+              <div class="card shadow card-solid">
+                <div class="card-header">
+                  <h6 class="float-start m-0 mt-1 ms-2 font-weight-bold">Article Disponible</h6>
+                  <span class="ms-2 badge btn-primary"> ({{commandeClientDispo.ligneCommandeClientDtoList?.length}}) </span>
+                  <!--<span class="ms-2 badge button-color"> ({{stockageValide.length}})</span>-->
+                  <div class="float-end">
+                    <button (click)="OnSelectAllArticle()" class="btn btn-primary btn-sm text-white ">
+                      Tout ajouter
+                    </button>
+                  </div>
+                </div>
+                <div class="card-body p-0 bg-white">
+                  <!--<div *ngIf="errorMsg && errorMsg.length > 0" class="alert alert-danger">
+                    {{ errorMsg }}
+                  </div>-->
+                  <ng-template #notFound>
+                    <div class="alert alert-warning">
+                      <span>Aucun article disponible</span>
+                    </div>
+                     
+                  </ng-template>
+
+                  <!--<table class="table table-striped card-table table-hover table table-mobile-md"
+                         *ngIf="stockageValide && stockageValide.length > 0; else notFound" >-->
+
+                  <table class="table table-striped card-table table-hover table table-mobile-md" *ngIf="commandeClientDispo.ligneCommandeClientDtoList && commandeClientDispo.ligneCommandeClientDtoList!.length > 0; else notFound">
+                    <thead>
+                    <tr>
+                      <th>N°</th>
+                      <th id="code_article">Code Article</th>
+                      <th id="designation_article">Designation</th>
+                      <th id="date_fabrication">Date Création</th>
+                      <!--<th>{{'stockage.quantiteEnCours' | translate}}</th>-->
+                      <th id="action" class="text-center">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!--<tr *ngFor="let lot of stockageValide | paginate: { itemsPerPage: 10, currentPage: gridListings };
+                    let i = index; trackBy: trackBy" [ngStyle]="{'background-color': lot.lot?.actif ?  '#ffffff':'rgba(246,174,184,0.36)' }">-->
+                    <tr *ngFor="let ligneCommande of commandeClientDispo.ligneCommandeClientDtoList; let i = index">
+                      <td>{{i+1}}</td>
+                      <td>{{ligneCommande.article?.code}}</td>
+                      <td>{{ligneCommande.article?.designation}}</td>
+                      <td>{{ligneCommande.article?.dateEnregistrement | dateHourFormat}}</td>
+                      <!--<td>{{lot.lot?.dateFabrication | dateFormat}}</td>-->
+                      <!--<td>{{lot.quantiteEnCours != null ? lot.quantiteEnCours : '-'}}</td>-->
+                      <td class="text-center">
+                        <button (click)=" OnSelectArticle(i)" class="btn btn-sm btn-primary  text-white align-text-top">
+                          Ajouter
+                        </button>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                  <!--<div *ngIf="stockageValide">
+                    <div class="pagination-area text-center">
+                      <pagination-controls (pageChange)="gridListings = $event"></pagination-controls>
+                    </div>
+                  </div>-->
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-container>
+          <!--<ng-container *ngIf="articleSelected">-->
+
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <div class="float-start">
+                <h6 class="float-start m-0 mt-1 font-weight-bold">Aricle Commandé</h6>
+                <span class="ms-2 badge btn-primary"> ({{commandeClientDispo.ligneCommandeClientDtoList?.length}})</span>
+                <!--<span class="ms-2 badge button-color"> ({{stockageSelected.length}})</span>-->
+              </div>
+              <div class="float-end">
+                <button (click)="OnDeleteAllArticle()" class="btn btn-sm text-white bg-danger">
+                  Tout retirer
+                </button>
+              </div>
+            </div>
+            <div class="card-body p-0 bg-white">
+              <!--<div *ngIf="errorMsg && errorMsg.length > 0" class="alert alert-danger">
+                {{ errorMsg }}
+              </div>-->
+
+              <ng-template #notFound2>
+                <div class="alert alert-warning">
+                  <span>Aucun article selectionné pour la commande du client</span>
+                </div>
+                 
+              </ng-template>
+
+              <!--<table class="table table-striped card-table table-hover table table-mobile-md"
+                     *ngIf="articleSelected && articleSelected.length > 0; else notFound2" >-->
+              <table class="table table-striped card-table table-hover table table-mobile-md"
+                     *ngIf="commandeClientSelect.ligneCommandeClientDtoList && commandeClientSelect.ligneCommandeClientDtoList!.length > 0; else notFound2">
+                <thead>
+                <tr>
+                  <th>N°</th>
+                  <th id="code_article2">Code Article</th>
+                  <th id="designation_article2">Designation</th>
+                  <th id="date_fabrication2">Date Création</th>
+                  <!--<th>{{'stockage.quantiteEnCours' | translate}}</th>-->
+                  <th>Quantite</th>
+                  <th>Observation</th>
+                  <th id="action2" class="text-center">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!--<tr *ngFor="let lot of stockageSelected | paginate: { itemsPerPage: 10, currentPage: gridListings };
+                let i = index; trackBy: trackBy2" [ngStyle]="{'background-color': lot.lot?.actif ?  '#ffffff':'rgba(246,174,184,0.36)' }">-->
+                <tr *ngFor="let ligneCommande of commandeClientSelect.ligneCommandeClientDtoList; let i = index">
+                  <td>{{i+1}}</td>
+                  <td>{{ligneCommande.article?.code}}</td>
+                  <td>{{ligneCommande.article?.designation}}</td>
+                  <td>{{ligneCommande.article?.dateEnregistrement | dateHourFormat}}</td>
+                  <!--<td>{{lot.lot?.dateFabrication | dateFormat}}</td>-->
+                  <!--<td>{{lot.quantiteEnCours != null ? lot.quantiteEnCours : '-'}}</td>-->
+                  <td>
+                    <div class="form-group">
+                      <input (change)="onChangeQuantity(i, $event, ligneCommande)" class="form-control" min="1" type="number"/>
+                      <!--<input (change)="onChangeQuantity(i, $event, lot)" class="form-control" min="1" type="number"
+                             [value]="lot.lot?.quantiteExpedier"/>-->
+                    </div>
+                  </td>
+                  <td>
+                    <div class="form-group">
+                      <input (change)="onChangeObservation(i, $event, ligneCommande)" class="form-control" type="text"/>
+                      <!--<input (change)="onChangeObservation(i, $event)" class="form-control" type="text"
+                             [value]="lot.lot?.observationExpe"/>-->
+                    </div>
+                  </td>
+                  <td class="text-center">
+                    <!--<button (click)="OnRemoveAricle(i)" class="btn btn-sm bg-danger text-white align-text-top">
+                      {{'remove' | translate}}
+                    </button>-->
+                    <button (click)="OnRemoveAricle(i)" class="btn btn-sm bg-danger text-white align-text-top">
+                      Retirer
+                    </button>
+                  </td>
+                </tr>
+                </tbody>
+                <tfoot class="field-font-header">
+                <tr>
+                  <td colspan="5">
+                    <div class="form-group">
+                      <label class="control-label field-font">Observation</label>
+                      <textarea placeholder="observation" class="form-control" formControlName="observation"></textarea>
+                    </div>
+                  </td>
+                  <td class="text-center" >
+                    <button (click)="saveCommande(true)" [disabled]="!isSaveCommande" class="btn btn-sm btn-success mt-4 ms-1" type="submit">
+                      <em class="bi bi-printer"></em>&nbsp;
+                      <span>Payer</span>
+                    </button>
+                  </td>
+
+                  <td class="text-center">
+                    <button (click)="saveCommande(false)" [disabled]="!isSaveCommande" class="btn btn-sm btn-primary mt-4 ms-1" type="submit">
+                      <em class="bi bi-save"></em>&nbsp;
+                      <span>Enregistrer</span>
+                    </button>
+                  </td>
+                </tr>
+                </tfoot>
+                <!--End-->
+              </table>
+            </div>
+
+          </div>
+        </ng-container>
+
+      </div>
+    </div>
+  </form>
+</section>

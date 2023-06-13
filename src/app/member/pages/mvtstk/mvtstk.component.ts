@@ -16,6 +16,7 @@ export class MvtstkComponent {
 
   searchForm = this.fb.group({
     nom: [],
+    id: [],
     /*numeroCni: [],
     email: [],
     telephone: [],

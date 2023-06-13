@@ -1,0 +1,71 @@
+<div class="modal-content">
+  <div class="modal-header p-1">
+    <h5 class="modal-title font-weight-bold">Detail du client<span class="ms-1">{{clientDto.code}}</span></h5>
+    <button type="button" class="btn-close me-1 p-1" aria-label="Close" (click)="cancle()"></button>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-6 mb-2">
+        <div class="form-group">
+          <label class="control-label field-font pb-1" for="code"> Code Client</label>
+          <input disabled type="text" class="form-control field-font-header p-1" name="code" id="code" value="{{clientDto.code ? clientDto.code : '-'}}"/>
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-2">
+        <div class="form-group">
+          <label class="control-label field-font pb-1" for="nom"> Nom</label>
+          <input disabled type="text" class="form-control field-font-header p-1" name="designation" id="designation" value="{{clientDto.nom ? clientDto.nom : '-'}}"/>
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-2">
+        <div class="form-group">
+          <label class="control-label field-font pb-1" for="prixUnitaireTtc"> Prenom </label>
+          <input type="text" disabled class="form-control field-font-header p-1" name="prixUnitaireTtc" id="prixUnitaireTtc" value="{{clientDto.prenom ? clientDto.prenom : '-'}}"/>
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-2">
+        <div class="form-group">
+          <label class="control-label field-font pb-1" for="tauxTva"> Telephone </label>
+          <input type="text" disabled class="form-control field-font-header p-1" name="tauxTva" id="prixHt" value="{{clientDto.numTel ? clientDto.numTel : '-'}}"/>
+        </div>
+      </div>
+
+      <div class="col-md-6 mb-2">
+        <div class="form-group">
+          <label class="control-label field-font pb-1" for="tauxTva"> Email </label>
+          <input type="text" disabled class="form-control field-font-header p-1" name="tauxTva" id="tauxTva" value="{{clientDto.email ? clientDto.email : '-'}}"/>
+        </div>
+      </div>
+
+<!--      <div class="col-md-6 mb-2">-->
+<!--        <div class="form-group">-->
+<!--          <label class="control-label field-font pb-1" for="codeCatgorie"> Code categorie </label>-->
+<!--          <input type="text" disabled class="form-control field-font-header p-1" name="codeCatgorie" id="codeCatgorie" value="{{clientDto.category?.code ? clientDto.category?.code : '-'}}"/>-->
+<!--        </div>-->
+<!--      </div>-->
+
+      <div class="col-md-6 mb-2">
+        <div class="form-group">
+          <label class="control-label field-font pb-1" for="dateCreationArticle"> Date de création </label>
+          <input type="text" disabled class="form-control field-font-header p-1" name="dateCreationArticle" id="dateCreationArticle" value="{{clientDto.dateEnregistrement | dateHourFormat}}"/>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group form-check" *ngIf = "clientDto.actif">
+          <input type="checkbox" disabled class="form-check-input" id="isActif"  [checked]="clientDto.actif">
+          <label class="form-check-label field-font" for="isActif"><strong>Actif</strong></label>
+        </div>
+        <div class="form-group form-check" *ngIf = "!clientDto.actif">
+          <input type="checkbox" disabled class="form-check-input" id="isNotActif"  [checked]="clientDto.actif">
+          <label class="form-check-label field-font" for="isActif"><strong>Non Actif</strong></label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

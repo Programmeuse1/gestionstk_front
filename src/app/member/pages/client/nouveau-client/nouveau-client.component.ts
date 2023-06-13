@@ -30,6 +30,7 @@ export class NouveauClientComponent implements OnInit{
       // codearticle: article.code,
       nom: client.nom,
       prenom: client.prenom,
+      email: client.email,
       numTel: client.numTel,
       actif: client?.actif ?? true
     });
@@ -39,7 +40,9 @@ export class NouveauClientComponent implements OnInit{
     nom: ["", Validators.required],
     numTel: ["", Validators.required],
     prenom: ["", Validators.required],
+    email: ["", Validators.required],
     adresse: ["", Validators.required],
+    // email: ["", Validators.required],
     actif: [true],
 
 
@@ -52,11 +55,12 @@ export class NouveauClientComponent implements OnInit{
       nom: this.clientsForm?.get('nom')?.value ?? '',
       numTel: this.clientsForm?.get('numTel')?.value ?? '',
       prenom: this.clientsForm?.get('prenom')?.value ?? '',
+      email: this.clientsForm?.get('email')?.value ?? '',
       adresse:{
-        adresse1: this.clientsForm?.get('adresse1')?.value ?? '',
-        codepostale: this.clientsForm?.get('codepostale')?.value ?? '',
-        pays: this.clientsForm?.get('pays')?.value ?? '',
-        ville: this.clientsForm?.get('ville')?.value ?? '',
+        adresse1: this.clientsForm?.get('adresse1')?.value ?? 'Douala',
+        codepostale: this.clientsForm?.get('codepostale')?.value ?? '7512',
+        pays: this.clientsForm?.get('pays')?.value ?? 'Cameroun',
+        ville: this.clientsForm?.get('ville')?.value ?? 'Douala',
       }
     }
   }

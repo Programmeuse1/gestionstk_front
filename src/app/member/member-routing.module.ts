@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'commandesclients',
-    loadChildren: () => import("./pages/commandeclient/cmdclt/cmdclt.module").then(m=> m.CmdcltModule)
+    loadChildren: () => import("./pages/commandeclient/cmdclt.module").then(m=> m.CmdcltModule)
   },
   {
     path: 'clients',
@@ -46,6 +46,10 @@ const routes: Routes = [
   {
     path: 'vente',
     loadChildren: () => import("./pages/vente/vente.module").then(m=> m.VenteModule)
+  },
+  {
+    path: 'entreprise',
+    loadChildren: () => import("./pages/entreprise/entreprise.module").then(m=> m.EntrepriseModule)
   },
   {
     path:'',

@@ -111,6 +111,8 @@
               <th scope="col">Nom</th>
               <th scope="col">Prenom</th>
               <th scope="col">Telephone</th>
+              <th scope="col">Email</th>
+              <th scope="col">Date Creation</th>
               <th scope="col">Etat</th>
 <!--              <th scope="col">Adresse</th>-->
               <th scope="col">Action</th>
@@ -124,6 +126,8 @@
               <td>{{client.prenom != null ? client.prenom : '-'}}</td>
 
               <td>{{client.numTel != null ? client.numTel : '-'}}</td>
+              <td>{{client.email != null ? client.email : '-'}}</td>
+              <td>{{client.dateEnregistrement | dateHourFormat}}</td>
 <!--              <td>{{client.adresse != null ? client.adresse : '-'}}</td>-->
               <td>
                 <button [disabled]="true" *ngIf = "client?.actif" class = "btn btn-sm btn-success">Actif</button>
@@ -137,8 +141,8 @@
                   </button>
                   <ul class="dropdown-menu">
                     <li><a class="dropdown-item" (click)="updateClient(client)">Modifier</a></li>
-                    <li><a class="dropdown-item" href="#">Detail</a></li>
-                    <li><a class="dropdown-item" href="#">Supprimer</a></li>
+                    <li><a class="dropdown-item" (click)="detailClient(client)">Detail</a></li>
+                    <li><a class="dropdown-item" (click)="deleteClient(client)">Supprimer</a></li>
                   </ul>
                 </div>
               </td>

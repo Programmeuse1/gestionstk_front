@@ -340,6 +340,35 @@
         }
       }
     },
+    "/gestiondestock_backend/v1/category/listingCategorie" : {
+      "post" : {
+        "tags" : [ "categoriesApi" ],
+        "summary" : "Renvoi la liste des categorie en fonction des critères de recherche",
+        "description" : "Cette methode permet de chercher et de renvoyer la liste des categories qui existentdans la BD",
+        "operationId" : "listingCategory",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/CategoryCriteria"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "La liste des categories/ une liste vide",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/CategoryDto"
+              }
+            }
+          }
+        }
+      }
+    },
     "/gestiondestock_backend/v1/client/all" : {
       "get" : {
         "tags" : [ "clientsApi" ],
@@ -520,7 +549,7 @@
           "name" : "body",
           "required" : false,
           "schema" : {
-            "$ref" : "#/definitions/CommandeClientDto"
+            "$ref" : "#/definitions/CommandeClientUpdate"
           }
         } ],
         "responses" : {
@@ -545,8 +574,11 @@
           "format" : "int64"
         } ],
         "responses" : {
-          "default" : {
-            "description" : "successful operation"
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/CommandeClientDto"
+            }
           }
         }
       }
@@ -1315,6 +1347,35 @@
         }
       }
     },
+    "/gestiondestock_backend/v1/utilisateur/listingUtilisateur" : {
+      "post" : {
+        "tags" : [ "utilisateurApi" ],
+        "summary" : "Renvoi la liste des utilisateurs en fonction des critères de recherche",
+        "description" : "Cette methode permet de chercher et de renvoyer la liste des utilisateurs qui existentdans la BD",
+        "operationId" : "listingUtilisateur",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/UtilisateurCriteria"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "La liste des utilisateurs/ une liste vide",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/UtilisateurDto"
+              }
+            }
+          }
+        }
+      }
+    },
     "/gestiondestock_backend/v1/utilisateur/nom/{nomUtilisateur}" : {
       "get" : {
         "tags" : [ "utilisateurApi" ],
@@ -1491,6 +1552,9 @@
         "tauxTva" : {
           "type" : "number"
         },
+        "prix" : {
+          "type" : "number"
+        },
         "prixUnitaireTtc" : {
           "type" : "number"
         },
@@ -1627,6 +1691,23 @@
         }
       }
     },
+    "CategoryCriteria" : {
+      "type" : "object",
+      "properties" : {
+        "designation" : {
+          "type" : "string"
+        },
+        "code" : {
+          "type" : "string"
+        },
+        "actif" : {
+          "type" : "boolean"
+        },
+        "nombreDeResultat" : {
+          "type" : "string"
+        }
+      }
+    },
     "CategoryDto" : {
       "type" : "object",
       "properties" : {
@@ -1692,6 +1773,9 @@
         "code" : {
           "type" : "string"
         },
+        "email" : {
+          "type" : "string"
+        },
         "dateEnregistrement" : {
           "type" : "string",
           "format" : "date-time"
@@ -1748,6 +1832,23 @@
           "items" : {
             "$ref" : "#/definitions/LigneCommandeClientDto"
           }
+        },
+        "observation" : {
+          "type" : "string"
+        }
+      }
+    },
+    "CommandeClientUpdate" : {
+      "type" : "object",
+      "properties" : {
+        "commandeClientDto" : {
+          "$ref" : "#/definitions/CommandeClientDto"
+        },
+        "ligneCommandeClientDtoList" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/LigneCommandeClientDto"
+          }
         }
       }
     },
@@ -1797,6 +1898,12 @@
         },
         "nom" : {
           "type" : "string"
+        },
+        "code" : {
+          "type" : "string"
+        },
+        "actif" : {
+          "type" : "boolean"
         },
         "description" : {
           "type" : "string"
@@ -1911,6 +2018,9 @@
         },
         "article" : {
           "$ref" : "#/definitions/ArticleDto"
+        },
+        "observation" : {
+          "type" : "string"
         },
         "quantite" : {
           "type" : "number"
@@ -2028,6 +2138,23 @@
         }
       }
     },
+    "UtilisateurCriteria" : {
+      "type" : "object",
+      "properties" : {
+        "nom" : {
+          "type" : "string"
+        },
+        "code" : {
+          "type" : "string"
+        },
+        "actif" : {
+          "type" : "boolean"
+        },
+        "nombreDeResultat" : {
+          "type" : "string"
+        }
+      }
+    },
     "UtilisateurDto" : {
       "type" : "object",
       "properties" : {
@@ -2036,6 +2163,12 @@
           "format" : "int64"
         },
         "nom" : {
+          "type" : "string"
+        },
+        "actif" : {
+          "type" : "boolean"
+        },
+        "code" : {
           "type" : "string"
         },
         "dateEnregistrement" : {

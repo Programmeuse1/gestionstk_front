@@ -5,6 +5,7 @@ import {DateHourFormatPipe} from "./pipe/DateHourFormatPipe";
 import {DateFormatUpdatePipe} from "./pipe/DateFormatUpdatePipe";
 import {DateFormatPipe} from "./pipe/DateFormatPipe";
 import {MyDatePipe} from "./pipe/myDatePipe.pipe";
+import {NgSelectModule} from "@ng-select/ng-select";
 
 
 
@@ -18,12 +19,14 @@ import {MyDatePipe} from "./pipe/myDatePipe.pipe";
   imports: [
     CommonModule,
     FormsModule,
+    NgSelectModule,
     ReactiveFormsModule
   ],
   exports:[
     CommonModule,
     FormsModule,
     MyDatePipe,
+    NgSelectModule,
     DateFormatPipe,
     DateFormatUpdatePipe,
     DateHourFormatPipe,

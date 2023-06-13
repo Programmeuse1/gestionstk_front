@@ -11,6 +11,8 @@ import {FournisseurDto} from "../../../../../gs-api/src/models/fournisseur-dto";
 })
 export class NouveauFournisseurComponent implements OnInit{
 
+  isSaving = false;
+
   fournisseurDto: FournisseurDto = {};
 
   constructor(
@@ -62,8 +64,10 @@ export class NouveauFournisseurComponent implements OnInit{
         console.log(res);
         this.activeModal.close('success');
         this.cancel();
+        this.isSaving = false;
       },
       error: error =>{
+        this.isSaving = false;
       }
     })
   }

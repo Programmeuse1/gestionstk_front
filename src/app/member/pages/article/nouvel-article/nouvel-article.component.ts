@@ -13,6 +13,8 @@ import {CategoryDto} from "../../../../../gs-api/src/models/category-dto";
 })
 export class NouvelArticleComponent implements OnInit{
 
+  isSaving = false;
+
   categorieList: Array<CategoryDto> = [];
   category: CategoryDto = {};
   articleDto: ArticleDto = {};
@@ -68,13 +70,17 @@ export class NouvelArticleComponent implements OnInit{
   }
 
   saveArticle():void{
+    this.isSaving = true;
     this.articlesService.savearticle(this.saveValue()).subscribe({
       next: (res) => {
         console.log(res);
         this.activeModal.close('success');
         this.cancel();
+        this.isSaving = false;
       },
       error: error =>{
+        this.isSaving = false;
+
       }
     })
   }

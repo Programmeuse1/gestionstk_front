@@ -11,6 +11,7 @@ export interface Article {
   idEntreprise?: number;
   lastModifiedDate?: number;
   photo?: string;
+  prix?: number;
   prixUnitaireHt?: number;
   prixUnitaireTtc?: number;
   tauxTva?: number;

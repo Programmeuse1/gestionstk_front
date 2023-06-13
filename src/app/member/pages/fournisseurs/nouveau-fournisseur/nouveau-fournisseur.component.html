@@ -8,15 +8,19 @@
     <div class="modal-body">
 
       <div class="col-md-12 mb-2">
+        <label><strong>Nom</strong></label>
         <input type="text" class="form-control" placeholder="nom" formControlName="nom">
       </div>
       <div class="col-md-12 mb-2">
+        <label><strong>Prenom</strong></label>
         <input type="text" class="form-control" placeholder="prenom" formControlName="prenom">
       </div>
       <div class="col-md-12 mb-2">
+        <label><strong>Email</strong></label>
         <input type="email" class="form-control" placeholder="email" formControlName="mail">
       </div>
       <div class="col-12 mb-2">
+        <label><strong>Telephone</strong></label>
         <input type="number" class="form-control" placeholder="numTel" formControlName="numTel">
       </div>
       <div class="col-md-12 mb-2">
@@ -28,7 +32,7 @@
     </div>
     <div class="modal-footer">
       <button type="submit" class="btn btn-primary float-start" (click)="cancel()"><i class="bi bi-dash-circle-fill"></i>&nbsp; Annuler</button>
-      <button type="reset" class="btn btn-secondary float-end" (click)="saveFournisseur()">  <i class="bi bi-archive-fill"></i>&nbsp;Enregistrer</button>
+      <button type="reset" class="btn btn-secondary float-end" [disabled]="fournisseurForm.invalid || isSaving "  (click)="saveFournisseur()">  <i class="bi bi-archive-fill"></i>&nbsp;Enregistrer</button>
     </div>
   </div>
 </form>

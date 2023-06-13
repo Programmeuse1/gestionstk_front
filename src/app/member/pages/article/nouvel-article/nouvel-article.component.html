@@ -11,19 +11,19 @@
         <input type="text" class="form-control" placeholder="Code article" readonly formControlName="codearticle">
       </div>-->
       <div class="col-md-12 mb-2">
-        <label class="form-check-label" for="actif">Designation</label>
+        <label><strong>Designation</strong></label>
         <input type="email" class="form-control" placeholder="Designation" formControlName="designation">
       </div>
       <div class="col-md-12 mb-2">
-        <label class="form-check-label" for="actif">Prix Unitaire ttc</label>
+        <label><strong>Prix unitaire ttc</strong></label>
         <input type="text" class="form-control" placeholder="Prix unitaire TTC" formControlName="prixunitairettc">
       </div>
       <div class="col-md-12 mb-2">
-        <label class="form-check-label" for="actif">Taux tva</label>
+        <label><strong>Taux tva</strong></label>
         <input type="text" class="form-control" placeholder="Taux TVA" formControlName="tauxtva">
       </div>
       <div class="col-md-12 mb-2">
-        <label class="form-check-label" for="actif">Prix Unitaire Ht</label>
+        <label><strong>Prix unitaire ht</strong></label>
         <input type="text" class="form-control" placeholder="prixUnitaireHt" formControlName="prixUnitaireHt">
       </div>
       <div class="col-md-12 mb-2">
@@ -43,7 +43,7 @@
     </div>
     <div class="modal-footer">
       <button type="submit" class="btn btn-primary float-start" (click)="cancel()"><i class="bi bi-dash-circle-fill"></i>&nbsp; Annuler</button>
-      <button type="reset" class="btn btn-secondary float-end" (click)="saveArticle()">  <i class="bi bi-archive-fill"></i>&nbsp;Enregistrer</button>
+      <button type="reset" class="btn btn-secondary float-end" [disabled]="articlesForm.invalid || isSaving " (click)="saveArticle()">  <i class="bi bi-archive-fill"></i>&nbsp;Enregistrer</button>
     </div>
   </div>
 </form>

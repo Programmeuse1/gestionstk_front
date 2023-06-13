@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {CmdcltComponent} from "./cmdclt.component";
+import {EntrepriseComponent} from "./entreprise.component";
 
 const routes: Routes = [
   {
     path:'',
-    component:CmdcltComponent
+    component:EntrepriseComponent
   }
 ];
 
@@ -13,4 +13,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class CmdcltRoutingModule { }
+export class EntrepriseRoutingModule { }
