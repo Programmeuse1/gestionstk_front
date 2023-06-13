@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'commandesclients',
-    loadChildren: () => import("./pages/commandeclient/cmdclt/cmdclt.module").then(m=> m.CmdcltModule)
+    loadChildren: () => import("./pages/commandeclient/cmdclt.module").then(m=> m.CmdcltModule)
   },
   {
     path: 'clients',

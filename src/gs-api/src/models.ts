@@ -9,6 +9,7 @@ export { CategoryDto } from './models/category-dto';
 export { ClientCriteria } from './models/client-criteria';
 export { ClientDto } from './models/client-dto';
 export { CommandeClientDto } from './models/commande-client-dto';
+export { CommandeClientUpdate } from './models/commande-client-update';
 export { CommandeFournisseurDto } from './models/commande-fournisseur-dto';
 export { EntrepriseDto } from './models/entreprise-dto';
 export { FournisseurCriteria } from './models/fournisseur-criteria';

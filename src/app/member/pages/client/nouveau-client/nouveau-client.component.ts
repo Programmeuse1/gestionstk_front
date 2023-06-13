@@ -40,6 +40,7 @@ export class NouveauClientComponent implements OnInit{
     numTel: ["", Validators.required],
     prenom: ["", Validators.required],
     adresse: ["", Validators.required],
+    // email: ["", Validators.required],
     actif: [true],
 
 
@@ -53,10 +54,10 @@ export class NouveauClientComponent implements OnInit{
       numTel: this.clientsForm?.get('numTel')?.value ?? '',
       prenom: this.clientsForm?.get('prenom')?.value ?? '',
       adresse:{
-        adresse1: this.clientsForm?.get('adresse1')?.value ?? '',
-        codepostale: this.clientsForm?.get('codepostale')?.value ?? '',
-        pays: this.clientsForm?.get('pays')?.value ?? '',
-        ville: this.clientsForm?.get('ville')?.value ?? '',
+        adresse1: this.clientsForm?.get('adresse1')?.value ?? 'Douala',
+        codepostale: this.clientsForm?.get('codepostale')?.value ?? '7512',
+        pays: this.clientsForm?.get('pays')?.value ?? 'Cameroun',
+        ville: this.clientsForm?.get('ville')?.value ?? 'Douala',
       }
     }
   }

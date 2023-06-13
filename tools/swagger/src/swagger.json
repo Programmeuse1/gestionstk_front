@@ -520,7 +520,7 @@
           "name" : "body",
           "required" : false,
           "schema" : {
-            "$ref" : "#/definitions/CommandeClientDto"
+            "$ref" : "#/definitions/CommandeClientUpdate"
           }
         } ],
         "responses" : {
@@ -545,8 +545,11 @@
           "format" : "int64"
         } ],
         "responses" : {
-          "default" : {
-            "description" : "successful operation"
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/CommandeClientDto"
+            }
           }
         }
       }
@@ -1491,6 +1494,9 @@
         "tauxTva" : {
           "type" : "number"
         },
+        "prix" : {
+          "type" : "number"
+        },
         "prixUnitaireTtc" : {
           "type" : "number"
         },
@@ -1748,6 +1754,23 @@
           "items" : {
             "$ref" : "#/definitions/LigneCommandeClientDto"
           }
+        },
+        "observation" : {
+          "type" : "string"
+        }
+      }
+    },
+    "CommandeClientUpdate" : {
+      "type" : "object",
+      "properties" : {
+        "commandeClientDto" : {
+          "$ref" : "#/definitions/CommandeClientDto"
+        },
+        "ligneCommandeClientDtoList" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/LigneCommandeClientDto"
+          }
         }
       }
     },
@@ -1911,6 +1934,9 @@
         },
         "article" : {
           "$ref" : "#/definitions/ArticleDto"
+        },
+        "observation" : {
+          "type" : "string"
         },
         "quantite" : {
           "type" : "number"
