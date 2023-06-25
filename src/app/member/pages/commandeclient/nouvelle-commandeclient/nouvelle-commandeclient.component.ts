@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder} from "@angular/forms";
+import {FormBuilder, Validators} from "@angular/forms";
 import {ClientService} from "../../client/service/client.service";
 import {ClientDto} from "../../../../../gs-api/src/models/client-dto";
 import {ArticleService} from "../../article/service/article.service";
@@ -7,7 +7,8 @@ import {ArticleDto} from "../../../../../gs-api/src/models/article-dto";
 import {CommandeClientUpdate} from "../../../../../gs-api/src/models/commande-client-update";
 import {CommandeClientDto, LigneCommandeClientDto} from "../../../../../gs-api/src/models";
 import {CommandeClientService} from "../service/commande-client.service";
-import {Route, Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {JasperReportService} from "../../../service/jasper-report.service";
 
 @Component({
   selector: 'app-nouvelle-commandeclient',
@@ -18,29 +19,57 @@ export class NouvelleCommandeclientComponent implements OnInit{
   isSaveCommande: boolean = true;
   ClientListDto: ClientDto [] = [];
   articleListDto: ArticleDto [] = [];
+  commandeClientDto: CommandeClientDto = {};
   commandeClientDispo: CommandeClientUpdate = {
     ligneCommandeClientDtoList: []
   };
   commandeClientSelect: CommandeClientUpdate = {
     ligneCommandeClientDtoList: []
   };
+
   constructor(
     private fb: FormBuilder,
     private clientService: ClientService,
     private articleService: ArticleService,
     private commandeClientService: CommandeClientService,
-    private route: Router
+    private route: Router,
+    private activatedRoute: ActivatedRoute,
+    private jasperReportService: JasperReportService
   ) {}
 
   saveCommandeForm = this.fb.group({
-    client: [],
+    client: [null, Validators.required],
     designation: [''],
     code: [""],
     observation: [""]
   });
 
   ngOnInit(): void {
+    this.activatedRoute.data.subscribe(({commandeClient}) => {
+      if (commandeClient) {
+        this.commandeClientDto = commandeClient;
+        // console.log(this.commandeClientDto);
+      }
+    });
+
     this.findAllClient();
+
+    if (this.commandeClientDto.id != null){
+      this.updateCommandeClientForm(this.commandeClientDto)
+    }
+  }
+
+  private updateCommandeClientForm(commandeClientDto: CommandeClientDto) {
+    this.updateArticle();
+    this.saveCommandeForm?.get(['client'])?.setValue(commandeClientDto.client?.nom);
+    this.saveCommandeForm?.get(['observation'])?.setValue(commandeClientDto.observation);
+    this.commandeClientSelect.commandeClientDto!.client = commandeClientDto.client;
+  }
+
+  private updateArticle(){
+    this.commandeClientSelect.ligneCommandeClientDtoList = this.commandeClientDto?.ligneCommandeClients!;
+    this.commandeClientSelect.commandeClientDto = this.commandeClientDto;
+    this.findAllArticle();
   }
 
   findAllClient(){
@@ -100,6 +129,7 @@ export class NouvelleCommandeclientComponent implements OnInit{
   clientSelect(event: ClientDto) {
     if (event !== undefined){
       this.findAllArticle();
+      this.commandeClientSelect.commandeClientDto!.client = event;
     } else {
       this.articleListDto = [];
     }
@@ -145,7 +175,7 @@ export class NouvelleCommandeclientComponent implements OnInit{
     }
   }
 
-  onChangeQuantity(i: any, event: any, ligneInventaire: LigneCommandeClientDto) {
+  onChangeQuantity(i: any, event: any) {
     if (event.target.value < 0){
       this.isSaveCommande = false;
       return;
@@ -155,19 +185,40 @@ export class NouvelleCommandeclientComponent implements OnInit{
     }
   }
 
-  onChangeObservation(i: any, event: any, ligneCommande: LigneCommandeClientDto) {
+  onChangeObservation(i: any, event: any) {
     this.commandeClientSelect.ligneCommandeClientDtoList![i].observation = event.target.value;
   }
 
   saveCommande(b: boolean) {
-    this.commandeClientSelect.commandeClientDto = {
-      client: this.saveCommandeForm.value.client ?? {},
-      observation: this.saveCommandeForm.value.observation ?? undefined,
-      etatCommande: b ? "LIVREE" : "VALIDEE"
-    };
+
+    this.commandeClientSelect.commandeClientDto!.observation = this.saveCommandeForm.value.observation ?? "";
+    this.commandeClientSelect.commandeClientDto!.etatCommande =  b ? "LIVREE" : "VALIDEE";
+
     this.commandeClientService.saveCommandeClient(this.commandeClientSelect).subscribe({
-      next: res => this.route.navigateByUrl("member/commandesclients"),
+      next: () => {
+        if (b){
+          this.printFactureCommandeClient("658412036");
+        }
+          this.route.navigateByUrl("member/commandesclients");
+      },
       error: err => console.log(err)
     })
+  }
+
+  printFactureCommandeClient(codeUser: string) {
+    this.jasperReportService.printFactureClient(codeUser).subscribe({
+      next: response => {
+        if (response.statut) {
+          window.open(response.directorieLong, '_blank');
+        } else {
+          console.log("Impossible d'imprimer")
+          // ToastManagerService.toastSuccess(response.message);
+        }
+      },
+      error: err => {
+        console.log(err)
+        // ToastManagerService.toastError(err.error.message);
+      }
+    });
   }
 }

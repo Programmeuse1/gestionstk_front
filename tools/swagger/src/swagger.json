@@ -28,6 +28,8 @@
   }, {
     "name" : "fournisseurApi"
   }, {
+    "name" : "jaspertReportApi"
+  }, {
     "name" : "mvtstockApi"
   }, {
     "name" : "rolesApi"
@@ -583,7 +585,7 @@
         }
       }
     },
-    "/gestiondestock_backend/v1/commandesclients/{codeCommandeClient}" : {
+    "/gestiondestock_backend/v1/commandesclients/findbycode/{codeCommandeClient}" : {
       "get" : {
         "tags" : [ "commandesclientsApi" ],
         "operationId" : "findByCode",
@@ -603,12 +605,12 @@
         }
       }
     },
-    "/gestiondestock_backend/v1/commandesclients/{idCommandeClient}" : {
+    "/gestiondestock_backend/v1/commandesclients/findbyid/{id}" : {
       "get" : {
         "tags" : [ "commandesclientsApi" ],
         "operationId" : "findById",
         "parameters" : [ {
-          "name" : "idCommandeClient",
+          "name" : "id",
           "in" : "path",
           "required" : true,
           "type" : "integer",
@@ -619,6 +621,35 @@
             "description" : "successful operation",
             "schema" : {
               "$ref" : "#/definitions/CommandeClientDto"
+            }
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/commandesclients/listingCommandeClient" : {
+      "post" : {
+        "tags" : [ "commandesclientsApi" ],
+        "summary" : "Renvoi la liste des commande des clients en fonction des critères de recherche",
+        "description" : "Cette methode permet de chercher et de renvoyer la liste des commande des clients qui existentdans la BD",
+        "operationId" : "listingCommmandeClient",
+        "consumes" : [ "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/CommandeClientCriteria"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "La liste des commandeClient/ une liste vide",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/CommandeClientDto"
+              }
             }
           }
         }
@@ -1024,6 +1055,29 @@
           },
           "400" : {
             "description" : "Aucun fournisseur n'existe dans la bd avec le NOM fourni"
+          }
+        }
+      }
+    },
+    "/gestiondestock_backend/v1/jaspertReport/printCommandeClient/{codeUser}" : {
+      "get" : {
+        "tags" : [ "jaspertReportApi" ],
+        "summary" : "Return printer appro information from its ID and Language",
+        "description" : "Retrieves a printer appro based on the given ID and Language",
+        "operationId" : "printFactureClient",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "codeUser",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Appro printer information returned successfully",
+            "schema" : {
+              "$ref" : "#/definitions/ReportingPrinter"
+            }
           }
         }
       }
@@ -1798,6 +1852,26 @@
         }
       }
     },
+    "CommandeClientCriteria" : {
+      "type" : "object",
+      "properties" : {
+        "code" : {
+          "type" : "string"
+        },
+        "actif" : {
+          "type" : "boolean"
+        },
+        "nomClient" : {
+          "type" : "string"
+        },
+        "phoneClient" : {
+          "type" : "string"
+        },
+        "nombreDeResultat" : {
+          "type" : "string"
+        }
+      }
+    },
     "CommandeClientDto" : {
       "type" : "object",
       "properties" : {
@@ -1811,6 +1885,9 @@
         },
         "code" : {
           "type" : "string"
+        },
+        "actif" : {
+          "type" : "boolean"
         },
         "dateEnregistrement" : {
           "type" : "string",
@@ -2116,6 +2193,26 @@
         "typeMvtStk" : {
           "type" : "string",
           "enum" : [ "ENTREE", "SORTIE", "CORRECTION_POS", "CORRECTION_NEG" ]
+        }
+      }
+    },
+    "ReportingPrinter" : {
+      "type" : "object",
+      "properties" : {
+        "directorie" : {
+          "type" : "string"
+        },
+        "directorieLong" : {
+          "type" : "string"
+        },
+        "directorieLocalLong" : {
+          "type" : "string"
+        },
+        "message" : {
+          "type" : "string"
+        },
+        "statut" : {
+          "type" : "boolean"
         }
       }
     },

@@ -35,29 +35,52 @@
             <div class="col-md-12">
               <form [formGroup]="searchForm">
                 <div class="row">
-                  <!--<div class="col-md-4">
-                    <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Entrer l'identifiant"
-                             formControlName="id">
-                    </div>
-                  </div>-->
-                  <div class="col-md-6">
+
+                  <div class="col-md-3">
                     <label class="control-label field-font">
-                      Code Commande
+                      Nom client
                     </label>
                     <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Entrer le code" formControlName="code">
+                      <input type="text" class="form-control" placeholder="Entrer le nom du client"
+                             formControlName="nomClient">
                     </div>
                   </div>
-                  <div class="col-md-6">
+
+                  <div class="col-md-3">
                     <label class="control-label field-font">
-                      Resulat Max
+                      Tel client
                     </label>
                     <div class="form-group">
-                      <select class="form-control" formControlName="itemsPerPage">
-                        <option value="10">5</option>
-                        <option value="50">25</option>
-                        <option value="100">50</option>
+                      <input type="text" class="form-control" placeholder="Entrer le numéro du client"
+                             formControlName="phoneClient">
+                    </div>
+                  </div>
+
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label class="control-label field-font">
+                        Statut
+                      </label>
+                      <select class="form-control" formControlName="actif">
+                        <option [value]="''" selected>Tous</option>
+                        <option [value]="true">Actif</option>
+                        <option [value]="false">Non Actif</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label class="control-label field-font">
+                        Nombre de Résultat
+                      </label>
+                      <select class="form-control" formControlName="nombreDeResultat">
+                        <option value="10">10</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                        <option value="200">200</option>
+                        <option value="500">500</option>
+                        <option value="1000">1000</option>
                         <option value="-1">Tous</option>
                       </select>
                     </div>
@@ -81,23 +104,29 @@
           <table class="table datatable">
             <thead>
             <tr>
-              <th scope="col">Nom</th>
-              <th scope="col">Prenom</th>
-              <th scope="col">Numero</th>
-              <th scope="col">Code</th>
+              <th scope="col">N°</th>
+              <th scope="col">Client</th>
+              <th scope="col">Tel</th>
+              <th scope="col">Code Commande</th>
               <th scope="col">Date</th>
               <th scope="col">Etat</th>
+              <!--<th scope="col">Statut</th>-->
               <th scope="col">Action</th>
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <th scope="row">bouali</th>
-              <td>ali</td>
-              <td>658589878</td>
-              <td>cm002</td>
-              <td>2023-02-12</td>
-              <td>EN PREPARATION</td>
+            <tr *ngFor="let commandeClient of commandeClientDtos; let i = index"
+                [ngStyle]="{'background-color': commandeClient.etatCommande != 'LIVREE'?  '#ffffff':'rgba(246,174,184,0.36)' }">
+              <th scope="row">{{i+1}}</th>
+              <td>{{commandeClient.client?.nom}}</td>
+              <td>{{commandeClient.client?.numTel}}</td>
+              <td>{{commandeClient.code}}</td>
+              <td>{{commandeClient.dateEnregistrement | dateHourFormat}}</td>
+              <td>{{commandeClient.etatCommande}}</td>
+              <!--<td>
+                <button [disabled]="true" *ngIf = "commandeClient?.actif" class = "btn btn-sm btn-success">Actif</button>
+                <button [disabled]="true" *ngIf = "!commandeClient?.actif" class = "btn btn-sm btn-danger">Non Actif</button>
+              </td>-->
               <td>
                 <div class="btn-group">
                   <button type="button" class="btn btn-primary">Action</button>
@@ -105,42 +134,19 @@
                     <span class="visually-hidden">Toggle Dropdown</span>
                   </button>
                   <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="javascript:void(0)">Modifier</a></li>
+                    <li *ngIf="commandeClient.etatCommande != 'LIVREE'"><a class="dropdown-item" (click)="modifierCommande(commandeClient)">Modifier</a></li>
                     <li>
                       <div >
-                        <a type="button" class="dropdown-item" (click)="openModalDetaille()">
+                        <a type="button" class="dropdown-item" (click)="openModalDetaille(commandeClient)">
                           Detail
                         </a>
                       </div>
-                    </li>
-                    <li><a class="dropdown-item" href="#">Supprimer</a></li>
-                  </ul>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">Noumi</th>
-              <td>Armand</td>
-              <td>623253254</td>
-              <td>cm001</td>
-              <td>2025-20-01</td>
-              <td>EN PREPARATION</td>
-              <td>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-primary">Action</button>
-                  <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-                    <span class="visually-hidden">Toggle Dropdown</span>
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="javascript:void(0)">Modifier</a></li>
-                    <li>
                       <div >
-                        <a type="button" class="dropdown-item" (click)="openModalDetaille()">
-                          Detail
+                        <a type="button" class="dropdown-item" (click)="printFactureCommandeClient('658412036')">
+                          Imprimer
                         </a>
                       </div>
                     </li>
-                    <li><a class="dropdown-item" href="#">Supprimer le mouvement</a></li>
                   </ul>
                 </div>
               </td>
