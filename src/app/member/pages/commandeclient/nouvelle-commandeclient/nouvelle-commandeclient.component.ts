@@ -195,9 +195,9 @@ export class NouvelleCommandeclientComponent implements OnInit{
     this.commandeClientSelect.commandeClientDto!.etatCommande =  b ? "LIVREE" : "VALIDEE";
 
     this.commandeClientService.saveCommandeClient(this.commandeClientSelect).subscribe({
-      next: () => {
+      next: (res) => {
         if (b){
-          this.printFactureCommandeClient("658412036");
+          this.printFactureCommandeClient(res.code!);
         }
           this.route.navigateByUrl("member/commandesclients");
       },
@@ -205,8 +205,8 @@ export class NouvelleCommandeclientComponent implements OnInit{
     })
   }
 
-  printFactureCommandeClient(codeUser: string) {
-    this.jasperReportService.printFactureClient(codeUser).subscribe({
+  printFactureCommandeClient(codeCommande: string) {
+    this.jasperReportService.printFactureClient(codeCommande).subscribe({
       next: response => {
         if (response.statut) {
           window.open(response.directorieLong, '_blank');

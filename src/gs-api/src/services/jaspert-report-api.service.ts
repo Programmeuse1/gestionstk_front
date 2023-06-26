@@ -12,7 +12,7 @@ import { ReportingPrinter } from '../models/reporting-printer';
   providedIn: 'root',
 })
 class JaspertReportApiService extends __BaseService {
-  static readonly printFactureClientPath = '/gestiondestock_backend/v1/jaspertReport/printCommandeClient/{codeUser}';
+  static readonly printFactureClientPath = '/gestiondestock_backend/v1/jaspertReport/printCommandeClient/{codeCommande}';
 
   constructor(
     config: __Configuration,
@@ -25,17 +25,17 @@ class JaspertReportApiService extends __BaseService {
    * Return printer appro information from its ID and Language
    *
    * Retrieves a printer appro based on the given ID and Language
-   * @param codeUser undefined
+   * @param codeCommande undefined
    * @return Appro printer information returned successfully
    */
-  printFactureClientResponse(codeUser: string): __Observable<__StrictHttpResponse<ReportingPrinter>> {
+  printFactureClientResponse(codeCommande: string): __Observable<__StrictHttpResponse<ReportingPrinter>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/gestiondestock_backend/v1/jaspertReport/printCommandeClient/${encodeURIComponent(String(codeUser))}`,
+      this.rootUrl + `/gestiondestock_backend/v1/jaspertReport/printCommandeClient/${encodeURIComponent(String(codeCommande))}`,
       __body,
       {
         headers: __headers,
@@ -54,11 +54,11 @@ class JaspertReportApiService extends __BaseService {
    * Return printer appro information from its ID and Language
    *
    * Retrieves a printer appro based on the given ID and Language
-   * @param codeUser undefined
+   * @param codeCommande undefined
    * @return Appro printer information returned successfully
    */
-  printFactureClient(codeUser: string): __Observable<ReportingPrinter> {
-    return this.printFactureClientResponse(codeUser).pipe(
+  printFactureClient(codeCommande: string): __Observable<ReportingPrinter> {
+    return this.printFactureClientResponse(codeCommande).pipe(
       __map(_r => _r.body as ReportingPrinter)
     );
   }

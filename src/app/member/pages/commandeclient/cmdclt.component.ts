@@ -65,8 +65,8 @@ export class CmdcltComponent implements OnInit{
     })
   }
 
-  printFactureCommandeClient(codeUser: string) {
-    this.jasperReportService.printFactureClient(codeUser).subscribe({
+  printFactureCommandeClient(codeCommande: string) {
+    this.jasperReportService.printFactureClient(codeCommande).subscribe({
       next: response => {
         if (response.statut) {
           window.open(response.directorieLong, '_blank');

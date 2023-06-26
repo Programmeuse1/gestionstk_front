@@ -10,7 +10,7 @@ export class JasperReportService {
     private jasperReportService: JaspertReportApiService
   ) { }
 
-  printFactureClient(codeUser: string){
-    return this.jasperReportService.printFactureClient(codeUser);
+  printFactureClient(codeCommande: string){
+    return this.jasperReportService.printFactureClient(codeCommande);
   }
 }

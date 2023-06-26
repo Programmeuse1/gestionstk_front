@@ -1059,7 +1059,7 @@
         }
       }
     },
-    "/gestiondestock_backend/v1/jaspertReport/printCommandeClient/{codeUser}" : {
+    "/gestiondestock_backend/v1/jaspertReport/printCommandeClient/{codeCommande}" : {
       "get" : {
         "tags" : [ "jaspertReportApi" ],
         "summary" : "Return printer appro information from its ID and Language",
@@ -1067,7 +1067,7 @@
         "operationId" : "printFactureClient",
         "produces" : [ "application/json" ],
         "parameters" : [ {
-          "name" : "codeUser",
+          "name" : "codeCommande",
           "in" : "path",
           "required" : true,
           "type" : "string"
