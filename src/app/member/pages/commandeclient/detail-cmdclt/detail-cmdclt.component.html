@@ -1,42 +1,131 @@
-<section class="section">
-  <div class="row">
-    <div class="col-lg-12">
+<div class="pagetitle mt-3">
+  <h1>Detail Commande Client</h1>
+  <nav>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a [routerLink]="['/member/dashboard']" href="javascript:void(0)">Acceuil</a></li>
+      <li class="breadcrumb-item active">Commande Client</li>
+    </ol>
+  </nav>
+</div><!-- End Page Title -->
+<div class="card mb-4">
+  <div class="card-header">
+    <div class="float-start">
+      <h3 class="font-weight-bold mt-1 ms-2">detail commande client </h3>
+    </div>
 
-      <div class="card">
-        <div class="card-body">
-          <h1 class="card-title">Detail Commande Fournisseur</h1>
-          <button type="button" class="btn-close me-1 p-1 float-end" aria-label="Close" (click)="cancel()"></button>
-          <!-- Table with stripped rows -->
-          <table class="table datatable">
-            <thead>
-            <tr>
-              <th scope="col">Code</th>
-              <th scope="col">Designation</th>
-              <th scope="col">Quantite</th>
-              <th scope="col">Prix unitaire</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <th scope="row">cm0</th>
-              <td>appareils</td>
-              <td>2</td>
-              <td>100</td>
-            </tr>
+    <div class="float-end">
+      <button class="btn button-color float-end align-content-center" (click)="exit()" type="button">
+        <i class="bi bi-arrow-left"></i>
+      </button>
+    </div>
 
-            </tbody>
-          </table>
-          <!-- End Table with stripped rows -->
+    <div class="float-end" style="margin-left: 5px; margin-right: 5px;">
+      <button class="btn button-color float-end align-content-center" style="white-space: nowrap;" (click)="printFactureCommandeClient(commandeClientDto.code!)" type="button">
+        Imprimer la Commande
+      </button>
+    </div>
 
+  </div>
+
+  <div class="card-body" style="padding-top: 15px">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-md-3" style="padding-bottom: 15px">
+            <label class="control-label field-font">Client : </label>
+            <span
+              style="margin: 0 5px 0 5px; padding: 0 5px 0 5px; height: 10px; font-weight: bold; font-size: 16px; background-color: #2a64a6; color: white">
+                {{ commandeClientDto.client?.nom != null ? commandeClientDto.client?.nom : '-' }} | {{ commandeClientDto.client?.numTel != null ? commandeClientDto.client?.numTel : '-' }}
+              </span>
+          </div>
+          <div class="col-md-3">
+            <label class="control-label field-font">Numero commande : </label>
+            <span
+              style="margin: 0 5px 0 5px; padding: 0 5px 0 5px; height: 10px; font-weight: bold; font-size: 16px; background-color: #2a64a6; color: white">
+                {{ commandeClientDto.code!= null ? commandeClientDto.code : '-' }}
+              </span>
+          </div>
+          <div class="col-md-3">
+            <label class="control-label field-font">Date Commande : </label>
+            <span
+              style="margin: 0 5px 0 5px; padding: 0 5px 0 5px; height: 10px; font-weight: bold; font-size: 16px; background-color: #2a64a6; color: white">
+                {{ commandeClientDto.dateEnregistrement | dateHourFormat }}
+              </span>
+          </div>
+          <div class="col-md-3">
+            <label class="control-label field-font"> Etat Commande : </label>
+            <span
+              style="margin: 0 5px 0 5px; padding: 0 5px 0 5px; height: 10px; font-weight: bold; font-size: 16px; background-color: #2a64a6; color: white">
+                {{ commandeClientDto.etatCommande != null ? commandeClientDto.etatCommande : '-'}}
+              </span>
+          </div>
+          <div class="col-md-3">
+            <label class="control-label field-font"> Observation : </label>
+            <span
+              style="margin: 0 5px 0 5px; padding: 0 5px 0 5px; height: 10px; font-weight: bold; font-size: 16px; background-color: #2a64a6; color: white">
+                {{ commandeClientDto.observation != null ? commandeClientDto.observation : '-'}}
+              </span>
+          </div>
         </div>
       </div>
-
     </div>
   </div>
-  <div class="modal-footer">
-    <button type="submit" class="btn btn-primary float-start" (click)="cancel()"><i class="bi bi-dash-circle-fill"></i>&nbsp; Annuler</button>
-    <button type="reset" class="btn btn-secondary float-end">  <i class="bi bi-archive-fill"></i>&nbsp;Enregistrer</button>
-  </div>
-</section>
+</div>
 
+
+<ng-container>
+  <div class="content mt-4 mb-5">
+    <div class="container-fluid pe-0 ps-0">
+      <div class="card shadow card-solid">
+        <div class="card-header card-header-padding p-2">
+          <h3 class="float-start m-0 mt-1 ms-2 font-weight-bold">Commande N° : {{commandeClientDto.code}}</h3>
+        </div>
+        <div class="card-body p-0 bg-white">
+          <div [class]="commandeClientDto.ligneCommandeClients!.length > 0 ? 'm-0' : 'p-3'">
+            <ng-template #notFound>
+              <div class="alert alert-warning">
+                <span>Aucun article disponible</span>
+              </div>
+            </ng-template>
+            <table class="table table-striped card-table table-hover table table-mobile-md"
+                   *ngIf="commandeClientDto.ligneCommandeClients && commandeClientDto.ligneCommandeClients!.length > 0; else notFound">
+              <thead>
+              <tr>
+                <th id="num">N°</th>
+                <th id="code">Code Article</th>
+                <th id="designation">Designation</th>
+                <th id="date_creation">Date de creation</th>
+                <th id="prix">Prix</th>
+                <th id="category">Category</th>
+                <th id="quantite">quantite</th>
+                <th id="observation">Observation</th>
+              </tr>
+              </thead>
+              <tbody>
+              <!--              <tr *ngFor="let detailCommande of commandeClientDto.ligneCommandeClients | paginate: { itemsPerPage: 10, currentPage: gridListings }; let i = index;  trackBy: trackBy">-->
+              <tr *ngFor="let detailCommande of commandeClientDto.ligneCommandeClients let i = index;">
+                <td>{{i+1}}</td>
+                <td>{{detailCommande.article?.code ?? '-'}}</td>
+                <td>{{detailCommande.article?.designation ?? '-'}}</td>
+                <td>{{detailCommande.article?.dateEnregistrement | dateHourFormat}}</td>
+                <td>{{detailCommande.article?.prixUnitaireHt ?? '-'}}</td>
+                <td>{{detailCommande.article?.category?.designation ?? '-'}}</td>
+                <td>{{detailCommande.quantite ?? '-'}}</td>
+                <td>{{detailCommande.observation ?? '-'}}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!--<div *ngIf="commandeClientDto.ligneCommandeClients">
+          <div class="pagination-area text-center">
+            <pagination-controls (pageChange)="gridListings = $event"></pagination-controls>
+          </div>
+        </div>-->
+
+      </div>
+    </div>
+  </div>
+</ng-container>
 

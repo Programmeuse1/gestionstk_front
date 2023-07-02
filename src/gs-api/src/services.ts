@@ -6,6 +6,7 @@ export { CommandesclientsApiService } from './services/commandesclients-api.serv
 export { CommandesfournisseursApiService } from './services/commandesfournisseurs-api.service';
 export { EntrepriseApiService } from './services/entreprise-api.service';
 export { FournisseurApiService } from './services/fournisseur-api.service';
+export { JaspertReportApiService } from './services/jaspert-report-api.service';
 export { MvtstockApiService } from './services/mvtstock-api.service';
 export { RolesApiService } from './services/roles-api.service';
 export { UtilisateurApiService } from './services/utilisateur-api.service';

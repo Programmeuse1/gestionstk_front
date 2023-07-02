@@ -11,6 +11,7 @@ import { CommandesclientsApiService } from './services/commandesclients-api.serv
 import { CommandesfournisseursApiService } from './services/commandesfournisseurs-api.service';
 import { EntrepriseApiService } from './services/entreprise-api.service';
 import { FournisseurApiService } from './services/fournisseur-api.service';
+import { JaspertReportApiService } from './services/jaspert-report-api.service';
 import { MvtstockApiService } from './services/mvtstock-api.service';
 import { RolesApiService } from './services/roles-api.service';
 import { UtilisateurApiService } from './services/utilisateur-api.service';
@@ -37,6 +38,7 @@ import { VentesApiService } from './services/ventes-api.service';
     CommandesfournisseursApiService,
     EntrepriseApiService,
     FournisseurApiService,
+    JaspertReportApiService,
     MvtstockApiService,
     RolesApiService,
     UtilisateurApiService,

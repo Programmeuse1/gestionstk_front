@@ -190,7 +190,6 @@
                   <th id="code_article2">Code Article</th>
                   <th id="designation_article2">Designation</th>
                   <th id="date_fabrication2">Date Création</th>
-                  <!--<th>{{'stockage.quantiteEnCours' | translate}}</th>-->
                   <th>Quantite</th>
                   <th>Observation</th>
                   <th id="action2" class="text-center">Action</th>
@@ -204,26 +203,17 @@
                   <td>{{ligneCommande.article?.code}}</td>
                   <td>{{ligneCommande.article?.designation}}</td>
                   <td>{{ligneCommande.article?.dateEnregistrement | dateHourFormat}}</td>
-                  <!--<td>{{lot.lot?.dateFabrication | dateFormat}}</td>-->
-                  <!--<td>{{lot.quantiteEnCours != null ? lot.quantiteEnCours : '-'}}</td>-->
                   <td>
                     <div class="form-group">
-                      <input (change)="onChangeQuantity(i, $event, ligneCommande)" class="form-control" min="1" type="number"/>
-                      <!--<input (change)="onChangeQuantity(i, $event, lot)" class="form-control" min="1" type="number"
-                             [value]="lot.lot?.quantiteExpedier"/>-->
+                      <input (change)="onChangeQuantity(i, $event)" class="form-control" min="1" type="number" [value]="ligneCommande.quantite"/>
                     </div>
                   </td>
                   <td>
                     <div class="form-group">
-                      <input (change)="onChangeObservation(i, $event, ligneCommande)" class="form-control" type="text"/>
-                      <!--<input (change)="onChangeObservation(i, $event)" class="form-control" type="text"
-                             [value]="lot.lot?.observationExpe"/>-->
+                      <input (change)="onChangeObservation(i, $event)" class="form-control" type="text" [value]="ligneCommande.observation !== undefined ? ligneCommande.observation : ''"/>
                     </div>
                   </td>
                   <td class="text-center">
-                    <!--<button (click)="OnRemoveAricle(i)" class="btn btn-sm bg-danger text-white align-text-top">
-                      {{'remove' | translate}}
-                    </button>-->
                     <button (click)="OnRemoveAricle(i)" class="btn btn-sm bg-danger text-white align-text-top">
                       Retirer
                     </button>
