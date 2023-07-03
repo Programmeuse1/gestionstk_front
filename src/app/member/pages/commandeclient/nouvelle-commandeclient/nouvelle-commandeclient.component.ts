@@ -18,6 +18,8 @@ import {JasperReportService} from "../../../service/jasper-report.service";
 export class NouvelleCommandeclientComponent implements OnInit{
   isSaveCommande: boolean = true;
   ClientListDto: ClientDto [] = [];
+  ClientDTO1: ClientDto  = {};
+
   articleListDto: ArticleDto [] = [];
   commandeClientDto: CommandeClientDto = {};
   commandeClientDispo: CommandeClientUpdate = {
@@ -48,7 +50,6 @@ export class NouvelleCommandeclientComponent implements OnInit{
     this.activatedRoute.data.subscribe(({commandeClient}) => {
       if (commandeClient) {
         this.commandeClientDto = commandeClient;
-        // console.log(this.commandeClientDto);
       }
     });
 
@@ -129,7 +130,7 @@ export class NouvelleCommandeclientComponent implements OnInit{
   clientSelect(event: ClientDto) {
     if (event !== undefined){
       this.findAllArticle();
-      this.commandeClientSelect.commandeClientDto!.client = event;
+      this.ClientDTO1 = event;
     } else {
       this.articleListDto = [];
     }
@@ -191,8 +192,11 @@ export class NouvelleCommandeclientComponent implements OnInit{
 
   saveCommande(b: boolean) {
 
-    this.commandeClientSelect.commandeClientDto!.observation = this.saveCommandeForm.value.observation ?? "";
-    this.commandeClientSelect.commandeClientDto!.etatCommande =  b ? "LIVREE" : "VALIDEE";
+    this.commandeClientSelect.commandeClientDto = {
+      observation: this.saveCommandeForm.value.observation ?? "",
+      etatCommande: b ? "LIVREE" : "VALIDEE",
+      client: this.ClientDTO1
+    };
 
     this.commandeClientService.saveCommandeClient(this.commandeClientSelect).subscribe({
       next: (res) => {
